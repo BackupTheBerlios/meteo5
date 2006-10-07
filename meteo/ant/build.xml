@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="meteo"
+		default="class"
+		basedir="..">
+	
+	<!-- Directory for temporary files -->
+	<property name="tmp.dir" location="${basedir}/ww/" />
+
+	<!-- Java source directory -->
+	<property name="src.java.dir" location="${basedir}/java/pgm/" />
+
+	<!-- Documentation source directory -->
+	<property name="src.doc.dir" location="${basedir}/doc/" />
+
+	<!-- Build directory -->
+	<property name="build.dir" location="${basedir}/build/" />
+
+	<!-- Java class build directory -->
+	<property name="build.class.dir" location="${build.dir}/class/" />
+
+	<!-- Web directory -->
+	<property name="build.web.dir" location="${build.dir}/web/" />
+
+	<!-- Javadoc build directory -->
+	<property name="build.web.javadoc.dir" location="${build.web.dir}/api/" />
+	
+	<!-- Javancss home directory -->
+	<property name="javancss.home" location="${basedir}/ant/javancss/" />	
+		
+	<!-- Javancss report build directory -->
+	<property name="build.web.javancss.dir" location="${build.web.dir}/javancss/" />
+	
+	
+	<!-- Execute all compilation -->
+	<target name="all" depends="clean,class,javadoc,javancss"
+			description="Execute all compilation" />
+	
+	<!-- Delete all generated files -->
+	<target name="clean" depends="clean-init"
+			description="Delete all generated files" />
+	
+	<!-- Initialisation -->
+	<target name="init">
+		<echo message="Running ant for project '${ant.project.name}'" />
+
+		<tstamp />
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.class.dir}" />
+		<mkdir dir="${build.web.dir}" />
+		<mkdir dir="${build.web.javadoc.dir}" />
+		<mkdir dir="${build.web.javancss.dir}" />
+		<mkdir dir="${tmp.dir}" />
+	</target>
+
+	<target name="clean-init" 
+			depends="clean-class,clean-javadoc">
+		<delete dir="${build.dir}" />
+		<delete dir="${build.web.dir}" />
+		<delete dir="${tmp.dir}" />
+	</target>
+	
+	<!-- Sources compiling -->
+	<target name="class" depends="init" description="Sources compiling">
+		<javac srcdir="${src.java.dir}" destdir="${build.class.dir}"
+				debug="true" />
+	</target>
+	
+	<target name="clean-class" description="Delete class files">
+		<delete dir="${build.class.dir}" />
+	</target>
+	
+	<!-- Javadoc creation -->
+	<target name="javadoc" depends="init" description="Javadoc creation">
+		<javadoc sourcepath="${src.java.dir}" packagenames="*.*"
+				destdir="${build.web.javadoc.dir}"
+				author="true" version="true" use="true" private="false"
+				windowtitle="Meteo API">
+
+			<doctitle><![CDATA[<h1>Meteo API</h1>]]></doctitle>
+			<bottom><![CDATA[<i>Copyright © 2005 Catric - Le Ny - Meheut - Chinois.</i>]]></bottom>
+			<header><![CDATA[<meta HTTP-EQUIV='content-type' CONTENT='text/html; charset=UTF-8'>]]></header>
+		</javadoc>
+	</target>
+
+	<target name="clean-javadoc" description="Delete javadoc files">
+		<delete dir="${build.web.javadoc.dir}" />
+	</target>
+	
+	
+	<!-- JAVANCSS -->
+	<taskdef name="javancss" classname="javancss.JavancssAntTask" classpath="${javancss.home}/lib/javancss.jar;${javancss.home}/lib/ccl.jar"/>
+	<target name="javancss" depends="init" description="Analyse JavaNCSS">
+		<!-- Format HTML -->
+		<!-- analyse -->
+		<javancss srcdir="${src.java.dir}" abortOnFail="false" includes="**/**/*.java" generateReport="true" outputfile="${build.web.javancss.dir}/javancss_metrics.xml" format="xml" />
+		<!-- transformation XSL pour générer une page HTML -->
+		<style basedir="${build.web.javancss.dir}" destdir="${build.web.javancss.dir}" includes="javancss_metrics.xml" style="${javancss.home}/xslt/javancss2html.xsl" />
+	</target>
+	
+	
+	
+	
+	
+</project>
