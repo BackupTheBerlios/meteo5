@@ -24,6 +24,12 @@
 	<!-- Javadoc build directory -->
 	<property name="build.web.javadoc.dir" location="${build.web.dir}/api/" />
 	
+	<!-- Pdf build directory -->
+	<property name="build.web.pdf.dir" location="${build.web.dir}/pdf/" />
+	
+	<!-- Style build directory -->
+	<property name="build.web.style.dir" location="${build.web.dir}/style/" />
+	
 	<!-- Javancss home directory -->
 	<property name="javancss.home" location="${basedir}/ant/javancss/" />	
 		
@@ -47,6 +53,8 @@
 		<mkdir dir="${build.dir}" />
 		<mkdir dir="${build.class.dir}" />
 		<mkdir dir="${build.web.dir}" />
+		<mkdir dir="${build.web.pdf.dir}" />
+		<mkdir dir="${build.web.style.dir}" />
 		<mkdir dir="${build.web.javadoc.dir}" />
 		<mkdir dir="${build.web.javancss.dir}" />
 		<mkdir dir="${tmp.dir}" />
