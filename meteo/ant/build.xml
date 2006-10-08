@@ -41,15 +41,17 @@
 	
 	<!-- JDepend report build directory -->
 	<property name="build.web.jdepend.dir" location="${build.web.dir}/jdepend/" />
-
+	
+	<!-- Junit report build directory -->
+	<property name="build.web.junit.dir" location="${build.web.dir}/junit/" />
 	
 	
 	<!-- Execute all compilation -->
-	<target name="all" depends="clean,class,javadoc,javancss,jdepend"
+	<target name="all" depends="clean,class,javadoc,javancss,jdepend,junit"
 			description="Execute all compilation" />
 	
 	<!-- Delete all generated files -->
-	<target name="clean" depends="clean-class,clean-javadoc,clean-javancss,clean-jdepend"
+	<target name="clean" depends="clean-class,clean-javadoc,clean-javancss,clean-jdepend,clean-junit"
 			description="Delete all generated files" >
 		<delete dir="${tmp.dir}" />
 	</target>
@@ -62,6 +64,7 @@
 		<mkdir dir="${build.web.javadoc.dir}" />
 		<mkdir dir="${build.web.javancss.dir}" />
 		<mkdir dir="${build.web.jdepend.dir}" />
+		<mkdir dir="${build.web.junit.dir}" />
 		<mkdir dir="${tmp.dir}" />
 	</target>
 
@@ -132,6 +135,38 @@
 	<!-- Delete JDepend report -->
 	<target name="clean-jdepend" description="Delete jdepend report">
 		<delete dir="${build.web.jdepend.dir}" />
+	</target>
+	
+	
+	<!-- JUnit report :  (XML and HTML) -->
+	<target name="junit" depends="class" description="JUnit report">
+		<junit>
+			<classpath>
+				<pathelement location="${build.class.dir}" />
+			</classpath>
+			<batchtest todir="${tmp.dir}">
+				<fileset dir="${build.class.dir}">
+					<include name="**/**/*Test.class"/>
+				</fileset>
+			</batchtest>
+			<formatter type="xml" />
+		</junit>
+
+		<junitreport todir="${build.web.junit.dir}">
+			<fileset dir="${tmp.dir}">
+				<include name="*.xml" />
+			</fileset>
+			<report format="frames" todir="${build.web.junit.dir}" />
+			<report format="noframes" todir="${build.web.junit.dir}" />
+		</junitreport>
+		<delete>
+			<fileset dir="${tmp.dir}" includes="*" />
+		</delete>
+	</target>
+	
+	<!-- Delete JUnit report -->
+	<target name="clean-junit" description="Delete junit report">
+		<delete dir="${build.web.junit.dir}" />
 	</target>
 	
 	

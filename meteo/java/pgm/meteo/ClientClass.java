@@ -2,8 +2,13 @@ package meteo;
 
 public class ClientClass {
 
+	private String a;
 	public ClientClass() {
-		// TODO Auto-generated constructor stub
+		a="toto";
+	}
+	
+	public String getA(){
+		return a;
 	}
 
 }
