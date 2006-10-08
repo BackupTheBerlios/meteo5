@@ -38,15 +38,9 @@
 		
 	<!-- Javancss report build directory -->
 	<property name="build.web.javancss.dir" location="${build.web.mesures.dir}/javancss/" />
-
-	<!-- Javancss home directory -->
-	<property name="jdepend.home" location="${basedir}/ant/jdepend/" />	
 	
 	<!-- JDepend report build directory -->
 	<property name="build.web.jdepend.dir" location="${build.web.mesures.dir}/jdepend/" />
-	
-	<!-- Junit home directory -->
-	<property name="junit.home" location="${basedir}/ant/junit/" />	
 	
 	<!-- Junit report build directory -->
 	<property name="build.web.junit.dir" location="${build.web.dir}/junit/" />
@@ -60,6 +54,7 @@
 	<target name="clean" depends="clean-class,clean-javadoc,clean-javancss,clean-jdepend,clean-junit"
 			description="Delete all generated files" >
 		<delete dir="${tmp.dir}" />
+		<delete dir="${build.web.mesures.dir}"/>
 	</target>
 		
 	<!-- Initialisation -->
@@ -107,13 +102,13 @@
 	
 	
 	<!-- JAVANCSS -->
-	<taskdef name="javancss" classname="javancss.JavancssAntTask" classpath="${javancss.home}/lib/javancss.jar;${javancss.home}/lib/ccl.jar"/>
+	<taskdef name="javancss" classname="javancss.JavancssAntTask" classpath="ant/lib/javancss.jar;ant/lib/ccl.jar"/>
 	<target name="javancss" depends="init" description="Analyse JavaNCSS">
 		<!-- Format HTML -->
 		<!-- analyse -->
 		<javancss srcdir="${src.java.dir}" abortOnFail="false" includes="**/**/*.java" generateReport="true" outputfile="${build.web.javancss.dir}/javancss_metrics.xml" format="xml" />
 		<!-- transformation XSL pour générer une page HTML -->
-		<style basedir="${build.web.javancss.dir}" destdir="${build.web.javancss.dir}" includes="javancss_metrics.xml" style="${javancss.home}/xslt/javancss2html.xsl" />
+		<style basedir="${build.web.javancss.dir}" destdir="${build.web.javancss.dir}" includes="javancss_metrics.xml" style="ant/etc/javancss2html.xsl" />
 	</target>
 	
 	<!-- Delete Javancss generated -->
@@ -131,7 +126,7 @@
 		</jdepend>
 		<style basedir="${tmp.dir}"
 				destdir="${build.web.jdepend.dir}"
-				style="${jdepend.home}/xslt/jdepend.xsl"
+				style="ant/etc/jdepend.xsl"
 				force="true" />
 		<delete>
 			<fileset dir="${tmp.dir}" includes="*" />
