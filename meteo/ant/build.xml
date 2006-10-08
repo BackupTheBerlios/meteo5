@@ -27,6 +27,9 @@
 	<!-- Pdf build directory -->
 	<property name="build.web.pdf.dir" location="${build.web.dir}/pdf/" />
 	
+	<!-- Mesures build directory -->
+	<property name="build.web.mesures.dir" location="${build.web.dir}/mesures/" />
+	
 	<!-- Style build directory -->
 	<property name="build.web.style.dir" location="${build.web.dir}/style/" />
 	
@@ -34,13 +37,16 @@
 	<property name="javancss.home" location="${basedir}/ant/javancss/" />	
 		
 	<!-- Javancss report build directory -->
-	<property name="build.web.javancss.dir" location="${build.web.dir}/javancss/" />
+	<property name="build.web.javancss.dir" location="${build.web.mesures.dir}/javancss/" />
 
 	<!-- Javancss home directory -->
 	<property name="jdepend.home" location="${basedir}/ant/jdepend/" />	
 	
 	<!-- JDepend report build directory -->
-	<property name="build.web.jdepend.dir" location="${build.web.dir}/jdepend/" />
+	<property name="build.web.jdepend.dir" location="${build.web.mesures.dir}/jdepend/" />
+	
+	<!-- Junit home directory -->
+	<property name="junit.home" location="${basedir}/ant/junit/" />	
 	
 	<!-- Junit report build directory -->
 	<property name="build.web.junit.dir" location="${build.web.dir}/junit/" />
