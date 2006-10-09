@@ -9,39 +9,118 @@ package meteo.engine;
  */
 public class BasicForecastEngine implements Forecast {
 
+	/** L'élément température. */
+	private Temperature temperature;
+	/** L'élément vent. */
+	private Wind wind;
+	/** L'élément pression. */
+	private Pressure pressure;
+	/** L'élément temps. */
+	private Weather weather;
+	/** L'élément visibilité. */
+	private Visibility visibility;
+	
+	
+	public BasicForecastEngine(){
+		
+	}
+	
+	
+	/**
+	 * Accès à la température à la rosée en °C.
+	 * @return La température à la rosée en °C.
+	 */
 	public int dewTemp() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(temperature!=null){
+			return temperature.getDewTemp();
+		}else{
+			return -1;
+		}
 	}
 
+	/**
+	 * Accès à la pression.
+	 * @return La pression.
+	 */
 	public int pressure() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(pressure!=null){
+			return pressure.getPressure();
+		}else{
+			return -1;
+		}
 	}
 
-	public int temp(String codeTemp) {
-		// TODO Auto-generated method stub
-		return 0;
+	/**
+	 * Accès à la température en °C.
+	 * @return La température en °C.
+	 */
+	public int temp() {
+		if(temperature!=null){
+			return temperature.getTemp();
+		}else{
+			return -1;
+		}
 	}
 
+	/**
+	 * Accès à la visibilité.
+	 * @return La visibilité.
+	 */
 	public int visibility() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(visibility!=null){
+			return visibility.getVisibility();
+		}else{
+			return -1;
+		}
 	}
 
-	public String windDir() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Accès à la direction du vent.
+	 * @return La direction du vent.
+	 */
+	public int windDir() {
+		if(wind!=null){
+			return wind.getDirection();
+		}else{
+			return -1;
+		}
 	}
 
+	/**
+	 * Accès à la vitesse du vent.
+	 * @return La vitesse du vent.
+	 */	
 	public int windSpeed() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(wind!=null){
+			return wind.getSpeed();
+		}else{
+			return -1;
+		}
 	}
 
+	/**
+	 * Accès à la vitesse maximale du vent.
+	 * @return La vitesse maximale du vent.
+	 */	
 	public int windSpeedMax() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(wind!=null){
+			return wind.getSpeedMax();
+		}else{
+			return -1;
+		}
 	}
 
+	/**
+	 * Accès à ???
+	 * @return
+	 */
+	public boolean isCavOk(){
+		if(weather!=null){
+			return weather.isCAVOK();
+		}else{
+			return false;
+		}
+	}
+	
+	
 }

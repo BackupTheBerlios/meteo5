@@ -13,14 +13,16 @@ public interface Forecast {
 	
 	public int windSpeedMax();
 	
-	public String windDir();
+	public int windDir();
 	
-	public int temp(String codeTemp);
+	public int temp();
 	
 	public int visibility();
 	
 	public int pressure();
 	
 	public int dewTemp();
+	
+	public boolean isCavOk();
 	
 }

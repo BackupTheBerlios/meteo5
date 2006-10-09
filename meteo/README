@@ -1,3 +1,37 @@
+Membres du groupe :
+===================
+
+MEHEUT Emmanuel e0301365 glacian@hotmail.com
+YANG YITIAN e0402169 johnsonyang2001@yahoo.fr
+LE NY Clément e0300577 clemox@free.fr
+CATRIC Jérome e0401237 kutoriku@gmail.com
+
+
+Organisation du répertoire de projet :
+======================================
+
+meteo              : répertoire du projet
+|-- ant            : scripts d'automatisation ANT
+|-- build          : regroupe tous les fichiers générés
+|   |-- class      : classes Java compilées (bytecode)
+|   `-- web        : image du site web du projet
+|       |-- api    : documentation javadoc des classes Java
+|       |-- pdf    : rapports en PDF
+|       `-- style  : styles CSS du site web
+|-- docsrc         : sources des documents rédigés
+|-- java
+|   `--pgm         : sources de l'application en java
+|-- uml            : modèle UML de l'application
+`-- ww             : espace de travail développeur
+
+
+Quelques explications :
+=======================
+
+    * le répertoire build regroupe tous les résultats du projet :  on y trouve un sous-répertoire class pour les classes java compilées en byte-code et un sous-répertoire web qui accueille l'image du site web de présentation du projet. Il est important de séparer ces fichiers générés du reste car ces derniers ne sont pas sauvegardés dans les référentiels de sources (puisqu'on sait les regénérer en quelques secondes).
+    * le répertoire docsrc regroupe les sources de la documentation textuelle du projet ; il faut toujours avoir en tête que cette dernière est au moins aussi volumineuse que le code source, il y a donc lieu de s'organiser aussi bien pour la produire et la gérer.
+    * les sources Java sont placés dans le répertoire java ; on n'a pas appelé ici ce répertoire src car la majorité des applications sont multi-langages et il est bon de réserver un répertoire source par langage. Dans ce répertoire de source, on utilisera des sous-répertoires pour structurer les paquetages (packages Java).
+    
 
 INFOS POUR LES DEVELOPPERS :
 ============================
