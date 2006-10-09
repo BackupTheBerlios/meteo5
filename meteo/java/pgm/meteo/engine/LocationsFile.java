@@ -5,17 +5,27 @@
  * @author MEHEUT Emmanuel 
  */
 package meteo.engine;
+import java.util.*;
 
 /**
 * Classe singleton LocationFiles
 *
 */
 public class LocationsFile {
+	
+	private String FilePath;
+	private String locations;
+	private String airports;
+	
+	
 	private static LocationsFile instance = new LocationsFile();
 
-    // Mettre le constructeur par défaut en private
+    // Mettre les constructeurs en private
     private LocationsFile() { }
-    public static LocationsFile getInstance()
+    private LocationsFile(String FilePath){
+    	this.FilePath = FilePath;
+    }
+    public static LocationsFile getInstance(String FilePath)
     {
 
         // Double vérification 
@@ -23,9 +33,39 @@ public class LocationsFile {
         {
             synchronized(LocationsFile.class) {
                 if (instance == null)
-                    instance = new LocationsFile();
+                    instance = new LocationsFile(FilePath);
             }
         }
         return instance;
     }
+    
+    /**
+     * 
+     * @param FilePath
+     * @return
+     */
+   public LocationsFile getHandle(String FilePath){
+	   return null;
+   }
+   
+	/**
+	 * @return Returns the airports.
+	 */
+	public String getAirports() {
+		return airports;
+	}
+	
+	/**
+	 * @return Returns the locations.
+	 */
+	public String getLocations() {
+		return locations;
+	}
+	
+	public Vector<String> getLocValues(String locations){
+		return null;
+	}
+   
+   
+    
 }
