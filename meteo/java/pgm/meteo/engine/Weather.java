@@ -1,5 +1,7 @@
 package meteo.engine;
 
+import java.util.Vector;
+
 /**
  * Représentation du temps.
  * 
@@ -11,6 +13,19 @@ package meteo.engine;
 public class Weather extends MeteoElt{
 
 	private boolean cavok = true;
+	
+	public Weather(Vector<Metar> m) {
+		this.metars = m;
+		this.evalLocalValues();
+	}
+	
+	/**
+	 * Calcul les informations sur le temps.
+	 */
+	protected void evalLocalValues() {
+		this.cavok = true;
+		// ??????
+	}
 	
 	/**
 	 * Accès à ???.

@@ -1,5 +1,7 @@
 package meteo.engine;
 
+import java.util.Vector;
+
 /**
  * Représentation de la température.
  * 
@@ -10,8 +12,38 @@ package meteo.engine;
  */
 public class Temperature extends MeteoElt {
 
+	/** Température en °C. */
 	private int temperature=0;
+	
+	/** Température à la rosée en °C. */
 	private int dewTemp=0;
+	
+	/**
+	 * Constructeur de l'élément température. 
+	 * @param m Liste de métars contenant les informations.
+	 */
+	public Temperature(Vector<Metar> m) {
+		this.metars = m;
+		this.evalLocalValues();
+	}
+	
+	/**
+	 * Calcul les informations sur la température.
+	 */
+	public void evalLocalValues() {
+
+		// Plusieurs métars :
+		if (this.metars.size() > 1) {
+			for(Metar m : this.metars) {
+				// Calcul ???
+			}
+		}
+		else {
+			this.temperature = metars.get(0).getTemperature();
+			this.dewTemp = metars.get(0).getTemperatureRose();
+		}
+	}
+	
 	
 	/**
 	 * Accesseur à la température actuelle.

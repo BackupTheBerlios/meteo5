@@ -1,5 +1,7 @@
 package meteo.engine;
 
+import java.util.Vector;
+
 /**
  * Représentation de la visibilité.
  * 
@@ -14,18 +16,27 @@ public class Visibility extends MeteoElt {
 
 	/**
 	 * Constructeur de la classe.
-	 * @param tabMetars ??
+	 * @param m Liste des metars contenant les informations.
 	 */
-	public Visibility(Metar tabMetars){
-		
+	public Visibility(Vector<Metar> m) {
+		this.metars = m;
+		this.evalLocalValues();
 	}
 	
 	/**
-	 * ???
-	 *
+	 * Calcul les informations sur la visibilité.
 	 */
 	protected void evalLocalValues() {
 		
+		// Plusieurs métars :
+		if (this.metars.size() > 1) {
+			for (Metar m : this.metars) {
+				// calcul
+			}
+		}
+		else { // 1 métar
+			this.visibility = metars.get(0).getVisibilite();
+		}
 	}
 	
 	/**

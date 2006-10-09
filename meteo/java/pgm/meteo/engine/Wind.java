@@ -1,5 +1,7 @@
 package meteo.engine;
 
+import java.util.Vector;
+
 /**
  * Représentation du vent.
  * 
@@ -8,11 +10,47 @@ package meteo.engine;
  * @author Emmanuel MEHEUT
  * @author Yitian YANG
  */
-public class Wind {
+public class Wind extends MeteoElt {
 
+	/** Vitesse du vent. */
 	private int speed=0;
+	
+	/** Vitesse maximale du vent dans la journée. */
 	private int maxSpeed=0;
-	private String direction="none";
+	
+	/** Direction du vent. */
+	private int direction=0;
+	
+	/**
+	 * Constructeur.
+	 * 
+	 * @param m Liste de métars contenant les informations.
+	 */
+	public Wind(Vector<Metar> m) {
+		this.metars = m;
+		this.evalLocalValues();
+	}
+
+	/**
+	 * Calcul les informations concernant le vent.
+	 */
+	protected void evalLocalValues() {
+		this.direction = 0;
+		this.speed = 0;
+		this.maxSpeed = 0;
+
+		// Plusieurs métars.
+		if (this.metars.size() > 1) {
+			for (Metar m : this.metars) {
+				// ???
+			}
+		} else { // Pour 1 métar :
+			this.direction = this.metars.get(0).getDir();
+			this.speed = this.metars.get(0).getForce();
+			this.maxSpeed = this.metars.get(0).getForceMax();
+		}
+	}
+	
 	
 	/**
 	 * Accès à la vitesse du vent.
@@ -34,7 +72,7 @@ public class Wind {
 	 * Accès à la direction du vent.
 	 * @return La direction  du vent.
 	 */
-	public String getDirection(){
+	public int getDirection(){
 		return this.direction;
 	}
 	
