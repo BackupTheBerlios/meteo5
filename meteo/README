@@ -1,0 +1,18 @@
+
+INFOS POUR LES DEVELOPPERS :
+============================
+
+Dans le dossier "ANT"
+Les répertoires : "etc", "lib", "bin" et le fichier "build.xml" sont suffisant pas besoin du reste.
+
+
+Spécifier dans eclipse que vous utiliser le "ant" du projet.
+Pour ce faire ouvrir le fichier "build.xml" clic droit sur "all" puis "run as..." et "external tool.."
+Aller dans l'onglet "classpath" puis cliquer sur le bouton "Ant Home" et spécifier le repertoire
+ de "ant" qui est : "~/workspace/meteo/ant"
+ 
+ 
+ Pour utiliser "ant" dans une console faire pointer sa variable d'environement vers le 
+ dossier ant du projet
+ 
+ export ANT_HOME=~/workspace/meteo/ant
