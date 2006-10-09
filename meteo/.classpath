@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="java/pgm"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/kutoriku/workspace/meteo/ant/lib/log4j-1.2.14.jar"/>
-	<classpathentry kind="lib" path="/home/kutoriku/workspace/meteo/ant/lib/junit-4.1.jar"/>
+	<classpathentry kind="lib" path="/ubs/home/etud/2004/e0401237/workspace/meteo/ant/lib/junit-4.1.jar"/>
+	<classpathentry kind="lib" path="/ubs/home/etud/2004/e0401237/workspace/meteo/ant/lib/log4j-1.2.14.jar"/>
 	<classpathentry kind="output" path="build/class"/>
 </classpath>
