@@ -6,7 +6,7 @@
  */
 package meteo.engine;
 
-public class TestMeteoServer implements MeteoServer{
+public class TestMeteoServer extends MeteoServer{
 	public String getAMetarString(String code, long timeStamp){
 		return null;
 	}
