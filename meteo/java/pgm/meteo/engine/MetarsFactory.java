@@ -1,31 +1,70 @@
+package meteo.engine;
+import java.util.*;
 /**
  * @author LE NY Clément
  * @author CATRIC Jérôme
  * @author YANG Yitian
  * @author MEHEUT Emmanuel 
- */
-package meteo.engine;
-import java.util.*;
-/**
- * Classe MeteoEltFactory
- * Construit des MeteosElt
+ *
+ * Construction de metar pour une ville.
  */
 public class MetarsFactory {
-	/**
-	 * 
-	 * @param location
-	 * @param timeStamp
-	 * @return
-	 */
-	public Vector<Metar> getMetars(String location, long timeStamp){
-		return null;
-	}
 	
 	/**
-	 * 
-	 * @return
+	 * Contient les différents endroit où les
+	 * relevés météo peuvent être fait.
 	 */
-	public String getPossibleLocations(){
-		return null;
+	private LocationsFile places = null;
+	
+	/**
+	 * Constructeur de la classe.
+	 */
+	public MetarsFactory() {
+		places = LocationsFile.getHandle("java/pgm/meteo/engine/places");
 	}
+	
+	
+	/**
+	 * Permet d'obtenir les différents métars selon la ville
+	 * et le date.
+	 * @param location Ville demandée.
+	 * @param timeStamp Date du metar demandé.
+	 * @return Un vecteur contenant de 0 à 3 metar.
+	 */
+	public Vector<Metar> getMetars(String location, long timeStamp){
+		Vector<Metar> metars = new Vector<Metar>();
+		
+		// Code des aéroports et distance par rapport à la ville.
+		Vector<String> codes = places.getLocValues(location);
+		
+		// Serveur d'accès aux infos météo.
+		MeteoServer server = new TestMeteoServer();
+
+		// Récupération des metars
+		for(String c : codes) {
+			// Découpage code / distance
+			String[] infos = c.split(",");
+			
+			// Récupération du message par le serveur.
+			String message = server.getAMetarString(infos[0], timeStamp);
+			
+			// Traitement du message.
+			Metar m = Metar.parse(message);
+			m.setDistance(Integer.parseInt(infos[1]));
+			
+			metars.add(m);
+		}
+		
+		return metars;
+	}
+	
+
+	/**
+	 * Obtenir la liste des villes possibles.
+	 * @return La liste des villes possibles.
+	 */
+	public Vector<String> getPossibleLocations() {
+		return this.places.getLocations();
+	}
+	
 }

@@ -43,6 +43,9 @@ public class Metar {
     
 	/** Code internationnal de l'aéroport.*/
     private String place;
+    
+    /** Distance entre la ville et l'aéroport. */
+    private int distance = 0;
         
     /** Jour du mois, heure et minute du bulletin Metar. */
     private int day, hour, min;
@@ -237,6 +240,22 @@ public class Metar {
 	 */
 	public int getVisibilite() {
 		return visibilite;
+	}
+	
+	/**
+	 * Récupère la distance entre la ville et l'aéroport.
+	 * @return La distance entre la ville et l'aéroport.
+	 */
+	public int getDistance() {
+		return this.distance;
+	}
+	
+	/**
+	 * Précise la distance entre la ville et l'aéroport.
+	 * @param dst La distance entre la ville et l'aéroport.
+	 */
+	public void getDistance(int dst) {
+		this.distance = dst;
 	}
 	
 	/**
