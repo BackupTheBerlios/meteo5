@@ -138,18 +138,20 @@ public class LocationsFile {
 				// Découpage aéroport / distance à la ville
 				String[] aeroDist = villeAero[1].split(";");
 				
-				
+				// Si c'est la bonne ville :
 				if(villeAero[0].equals(locations)){
 					// Récupération du code de l'aéroport
 					for(String couple : aeroDist) {
 						aeroValue.add(couple.trim());
 					}
 				}
-				else{
-					System.err.println("Erreur la ville "+locations+" n'a pas été trouvée.");
-				}
 				
 			}
+			
+			if(aeroValue.size() == 0) {
+				System.err.println("Erreur la ville "+locations+" n'a pas été trouvée.");
+			}
+			
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}
