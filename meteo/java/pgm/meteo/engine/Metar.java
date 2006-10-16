@@ -88,7 +88,7 @@ public class Metar {
      * @param place Code de l'aéroport.
      * @param day Jour de la mesure.
      * @param hour Heure de la mesure.
-     * @param min Minute de la mesure.
+     * @param minm.se Minute de la mesure.
      * @param dir Direction du vent.
      * @param f Force du vent.
      * @param fm Force maximale du vent.
@@ -254,7 +254,7 @@ public class Metar {
 	 * Précise la distance entre la ville et l'aéroport.
 	 * @param dst La distance entre la ville et l'aéroport.
 	 */
-	public void getDistance(int dst) {
+	public void setDistance(int dst) {
 		this.distance = dst;
 	}
 	
