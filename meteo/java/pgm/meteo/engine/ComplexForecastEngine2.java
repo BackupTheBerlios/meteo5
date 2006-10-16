@@ -1,5 +1,7 @@
 package meteo.engine;
 
+import java.util.Vector;
+
 /**
  * 
  * @author Clément LE NY
@@ -8,5 +10,8 @@ package meteo.engine;
  * @author Yitian YANG
  */
 public class ComplexForecastEngine2 extends BasicForecastEngine {
-
+	
+	public ComplexForecastEngine2(Vector<MeteoElt> v){
+		super(v);
+	}
 }

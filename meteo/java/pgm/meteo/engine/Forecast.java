@@ -25,4 +25,5 @@ public interface Forecast {
 	
 	public boolean isCavOk();
 	
+
 }

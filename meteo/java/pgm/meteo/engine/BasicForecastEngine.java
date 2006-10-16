@@ -1,5 +1,7 @@
 package meteo.engine;
 
+import java.util.Vector;
+
 /**
  * 
  * @author Clément LE NY
@@ -20,9 +22,29 @@ public class BasicForecastEngine implements Forecast {
 	/** L'élément visibilité. */
 	private Visibility visibility;
 	
-	
-	public BasicForecastEngine(){
-		
+	/**
+	 * Constructeur de la classe.
+	 * @param v Liste des éléments météo.
+	 */
+	public BasicForecastEngine(Vector<MeteoElt> v){
+		for(MeteoElt e : v) {
+			if(e.getClass().getName().equals("Temperature")){
+				this.temperature = (Temperature) e;
+			}
+			if(e.getClass().getName().equals("Wind")){
+				this.wind = (Wind) e;
+			}
+			if(e.getClass().getName().equals("Pressure")){
+				this.pressure = (Pressure) e;
+			}
+			if(e.getClass().getName().equals("Weather")){
+				this.weather = (Weather) e;
+			}
+			if(e.getClass().getName().equals("Visibility")){
+				this.visibility = (Visibility) e;
+			}
+
+		}
 	}
 	
 	
