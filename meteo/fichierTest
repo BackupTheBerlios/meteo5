@@ -1,0 +1,14 @@
+Cherbourg:              LFRC,0
+Brest:                  LFRB,0
+Lannion:                LFRO,0
+Le Mans:                LFRM,0
+Marseille-Provence:     LFML,0
+Nantes Atlantique:      LFRS,0
+Paris/Charles De Gaulle:LFPG,0
+Rennes:                 LFRN,0
+Caen-Carpiquet:         LFRK,0
+Vannes:                 LFRS,112; LFRN,111; LFRB,186
+St Brieuc:              LFRB,141; LFRN,101;
+Angers:                 LFRS,90;  LFRM,99;
+Evreux:                 LFRK,139; LFPG,95
+Laval:                  LFRN,75;  LFRM,86

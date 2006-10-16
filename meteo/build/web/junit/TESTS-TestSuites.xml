@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" id="0" name="ClientClassTest" package="meteoTest" tests="1" time="0.062">
+  
+    <properties>
+    
+      <property name="java.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="sun.management.compiler" value="HotSpot Client Compiler"></property>
+
+          <property name="os.name" value="Linux"></property>
+
+          <property name="sun.boot.class.path" value="/amd/ladyburn/linux/vol/jdk1.5.0_03/jre/lib/rt.jar:/amd/ladyburn/linux/vol/jdk1.5.0_03/jre/lib/i18n.jar:/amd/ladyburn/linux/vol/jdk1.5.0_03/jre/lib/sunrsasign.jar:/amd/ladyburn/linux/vol/jdk1.5.0_03/jre/lib/jsse.jar:/amd/ladyburn/linux/vol/jdk1.5.0_03/jre/lib/jce.jar:/amd/ladyburn/linux/vol/jdk1.5.0_03/jre/lib/charsets.jar:/amd/ladyburn/linux/vol/jdk1.5.0_03/jre/classes"></property>
+
+          <property name="TODAY" value="October 9 2006"></property>
+
+          <property name="build.web.junit.dir" value="/ubs/home/etud/2003/e0301365/workspace/meteo/build/web/junit"></property>
+
+          <property name="sun.desktop" value="gnome"></property>
+
+          <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="ant.home" value="/ubs/home/etud/2003/e0301365/workspace/meteo/ant"></property>
+
+          <property name="java.runtime.version" value="1.5.0_03-b07"></property>
+
+          <property name="src.java.dir" value="/ubs/home/etud/2003/e0301365/workspace/meteo/java/pgm"></property>
+
+          <property name="user.name" value="e0301365"></property>
+
+          <property name="build.web.style.dir" value="/ubs/home/etud/2003/e0301365/workspace/meteo/build/web/style"></property>
+
+          <property name="build.dir" value="/ubs/home/etud/2003/e0301365/workspace/meteo/build"></property>
+
+          <property name="user.language" value="fr"></property>
+
+          <property name="sun.boot.library.path" value="/amd/ladyburn/linux/vol/jdk1.5.0_03/jre/lib/i386"></property>
+
+          <property name="ant.project.name" value="meteo"></property>
+
+          <property name="DSTAMP" value="20061009"></property>
+
+          <property name="java.version" value="1.5.0_03"></property>
+
+          <property name="user.timezone" value=""></property>
+
+          <property name="sun.arch.data.model" value="32"></property>
+
+          <property name="java.endorsed.dirs" value="/amd/ladyburn/linux/vol/jdk1.5.0_03/jre/lib/endorsed"></property>
+
+          <property name="sun.cpu.isalist" value=""></property>
+
+          <property name="sun.jnu.encoding" value="UTF-8"></property>
+
+          <property name="file.encoding.pkg" value="sun.io"></property>
+
+          <property name="file.separator" value="/"></property>
+
+          <property name="java.specification.name" value="Java Platform API Specification"></property>
+
+          <property name="java.class.version" value="49.0"></property>
+
+          <property name="user.country" value="FR"></property>
+
+          <property name="java.home" value="/amd/ladyburn/linux/vol/jdk1.5.0_03/jre"></property>
+
+          <property name="java.vm.info" value="mixed mode, sharing"></property>
+
+          <property name="ant.file" value="/ubs/home/etud/2003/e0301365/workspace/meteo/ant/build.xml"></property>
+
+          <property name="os.version" value="2.6.15-26-686"></property>
+
+          <property name="path.separator" value=":"></property>
+
+          <property name="java.vm.version" value="1.5.0_03-b07"></property>
+
+          <property name="javancss.home" value="/ubs/home/etud/2003/e0301365/workspace/meteo/ant/javancss"></property>
+
+          <property name="ant.library.dir" value="/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib"></property>
+
+          <property name="ant.file.meteo" value="/ubs/home/etud/2003/e0301365/workspace/meteo/ant/build.xml"></property>
+
+          <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"></property>
+
+          <property name="sun.io.unicode.encoding" value="UnicodeLittle"></property>
+
+          <property name="user.home" value="/ubs/home/etud/2003/e0301365"></property>
+
+          <property name="build.class.dir" value="/ubs/home/etud/2003/e0301365/workspace/meteo/build/class"></property>
+
+          <property name="java.specification.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="tmp.dir" value="/ubs/home/etud/2003/e0301365/workspace/meteo/ww"></property>
+
+          <property name="build.web.javadoc.dir" value="/ubs/home/etud/2003/e0301365/workspace/meteo/build/web/api"></property>
+
+          <property name="java.library.path" value="/amd/ladyburn/linux/vol/jdk1.5.0_03/jre/lib/i386/client:/amd/ladyburn/linux/vol/jdk1.5.0_03/jre/lib/i386:/amd/ladyburn/linux/vol/jdk1.5.0_03/jre/../lib/i386:/vol/oracle8iR3/lib:/vol/oracle8iR3/network/lib:/ubs/home/etud/2003/e0301365/.eclipse/org.eclipse.platform_3.1.0/configuration/org.eclipse.osgi/bundles/89/1/.cp"></property>
+
+          <property name="java.vendor.url" value="http://java.sun.com/"></property>
+
+          <property name="java.vm.vendor" value="Sun Microsystems Inc."></property>
+
+          <property name="build.web.pdf.dir" value="/ubs/home/etud/2003/e0301365/workspace/meteo/build/web/pdf"></property>
+
+          <property name="java.runtime.name" value="Java(TM) 2 Runtime Environment, Standard Edition"></property>
+
+          <property name="java.class.path" value="/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-antlr.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-apache-bcel.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-apache-bsf.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-apache-log4j.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-apache-oro.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-apache-regexp.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-apache-resolver.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-commons-logging.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-commons-net.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-icontract.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-jai.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-javamail.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-jdepend.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-jmf.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-jsch.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-junit.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-launcher.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-netrexx.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-nodeps.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-starteam.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-stylebook.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-swing.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-trax.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-vaj.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-weblogic.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-xalan1.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant-xslp.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ant.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/ccl.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/javancss.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/jdepend-2.9.1.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/jhbasic.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/junit-4.1.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/log4j-1.2.14.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/xercesImpl.jar:/ubs/home/etud/2003/e0301365/workspace/meteo/ant/lib/xml-apis.jar:/ubs/home/etud/2003/e0301365/.eclipse/org.eclipse.platform_3.1.0/configuration/org.eclipse.osgi/bundles/28/1/.cp/lib/remoteAnt.jar:/amd/ladyburn/linux/vol/jdk1.5.0_03/lib/tools.jar:/amd/ladyburn/linux/vol/eclipse-3.1.0/plugins/org.eclipse.swt.gtk.linux.x86_3.1.0.jar"></property>
+
+          <property name="ant.version" value="Apache Ant version 1.6.5 compiled on June 2 2005"></property>
+
+          <property name="build.web.jdepend.dir" value="/ubs/home/etud/2003/e0301365/workspace/meteo/build/web/mesures/jdepend"></property>
+
+          <property name="TSTAMP" value="1755"></property>
+
+          <property name="java.vm.specification.name" value="Java Virtual Machine Specification"></property>
+
+          <property name="build.web.mesures.dir" value="/ubs/home/etud/2003/e0301365/workspace/meteo/build/web/mesures"></property>
+
+          <property name="java.vm.specification.version" value="1.0"></property>
+
+          <property name="sun.cpu.endian" value="little"></property>
+
+          <property name="sun.os.patch.level" value="unknown"></property>
+
+          <property name="java.io.tmpdir" value="/tmp"></property>
+
+          <property name="src.doc.dir" value="/ubs/home/etud/2003/e0301365/workspace/meteo/doc"></property>
+
+          <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"></property>
+
+          <property name="build.web.javancss.dir" value="/ubs/home/etud/2003/e0301365/workspace/meteo/build/web/mesures/javancss"></property>
+
+          <property name="os.arch" value="i386"></property>
+
+          <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"></property>
+
+          <property name="java.ext.dirs" value="/amd/ladyburn/linux/vol/jdk1.5.0_03/jre/lib/ext"></property>
+
+          <property name="user.dir" value="/amd/ladyburn/ubs/ladyburn/home.1/5/e0301365/workspace/meteo"></property>
+
+          <property name="line.separator" value=" "></property>
+
+          <property name="java.vm.name" value="Java HotSpot(TM) Client VM"></property>
+
+          <property name="basedir" value="/ubs/home/etud/2003/e0301365/workspace/meteo"></property>
+
+          <property name="ant.java.version" value="1.5"></property>
+
+          <property name="file.encoding" value="UTF-8"></property>
+
+          <property name="build.web.dir" value="/ubs/home/etud/2003/e0301365/workspace/meteo/build/web"></property>
+
+          <property name="java.specification.version" value="1.5"></property>
+
+      </properties>
+
+      <testcase classname="meteoTest.ClientClassTest" name="testClientClass" time="0.0030"></testcase>
+
+      <system-out></system-out>
+
+      <system-err></system-err>
+
+  </testsuite>
+</testsuites>
