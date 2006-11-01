@@ -15,14 +15,15 @@ import java.util.Vector;
  */
 public class MeteoReport {
 
-		/** Contient les éléments météo. */
+		/** Contient les éléments météo pour la ville. */
 		private Vector<MeteoElt> report = null;
 		
 		/** Ville où l'on veut les infos sur la météo. */
 		private String location = "";
 		
-		/** Source des metars. */
+		/** Usine à metars. */
 		private MetarsFactory metarsFact = null;
+		
 		
 		/**
 		 * Constructeur de la classe.
@@ -31,11 +32,12 @@ public class MeteoReport {
 			init();
 		}
 		
+		
 		/**
 		 * Initialise le moteur météo.
 		 */
 		public void init(){
-			// Initialise la source de metars
+			// Initialise l'usine de metars
 			this.metarsFact = new MetarsFactory();
 		}
 		
@@ -44,15 +46,13 @@ public class MeteoReport {
 		 * Génre les différents metar pour la ville donnée.
 		 * @param location Ville où l'on veut les informations météo.
 		 */
-		public void creerReport(String location) {
-			Vector<Metar> metars = new Vector<Metar>();
-			
+		public void creerReport(String location) {		
 			this.location = location;
 			
-			// Demande d'un metar pour maintenant
-			metars = this.metarsFact.getMetars(this.location, new Date().getTime());
+			// Récupération des metars pour la ville.
+			Vector<Metar> metars = this.metarsFact.getMetars(this.location, new Date().getTime());
 			
-			// Récupération des données
+			// Récupération des données météo à partir des metars
 			MeteoEltFactory meteoEltFac = new MeteoEltFactory();
 			this.report = meteoEltFac.getMeteoElts(metars);
 		}

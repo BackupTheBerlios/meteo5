@@ -315,10 +315,6 @@ public class Metar {
 		    msg = msg.substring (0, msg.length () - 1).trim ();
 		}
 
-		if (debug) {
-		    System.err.println ("msg:<"+msg+">");
-		}
-		
 		// Découpe du message selon les espaces (" ").
 		StringTokenizer st = new StringTokenizer (msg);
 
@@ -335,7 +331,7 @@ public class Metar {
 		
 		// Récupération de la date et de l'heure = "JJHHMMZ"
 		token = st.nextToken ();
-		if (token.endsWith ("Z")) {
+		if (token.endsWith("Z")) {
 		    d = Integer.parseInt (token.substring (0, 2));
 		    h = Integer.parseInt (token.substring (2, 4));
 		    m = Integer.parseInt (token.substring (4, 6));
@@ -343,89 +339,78 @@ public class Metar {
 
 		// Si le token suivant est AUTO => on passe.
 	    token = st.nextToken ();
-		if ("AUTO".equals (token)) {
+		if (token.equals ("AUTO")) {
 		    token = st.nextToken ();
 		}
 
-		// Informations sur le vent : DDVV(GRR)KT
-		if (token.matches ("(VRB.*)|(0000)|(9999)")) {
-		    // VRB (<=3kt) | 00000 (calme) | 99999 (variable)
-		} else {
-		    // dddffGrr{KT,KMH,MPS} | VRB (<=3kt) | 00000 (calme) | 99999 (variable)
-		    dir = Integer.parseInt (token.substring (0, 3));
-		    f = Integer.parseInt (token.substring (3, 5));
-		    if (token.charAt (5) == 'G')
-			fm = Integer.parseInt (token.substring (6, 8));
-		    if (token.endsWith ("KMH")) {
-			f /= KT2KMH;
-			fm /= KT2KMH;
-		    } else if (token.endsWith ("MPS")) {
-			f /= KT2MS;
-			fm /= KT2MS;
+		// Informations sur le vent : ddffGrrKT 
+		if(token.endsWith("KT") || token.endsWith("KMH") || token.endsWith("MPS")) {
+			dir = Integer.parseInt (token.substring(0, 2));
+			f = Integer.parseInt (token.substring (2, 4));
+		    if (token.charAt(5) == 'G') {
+				fm = Integer.parseInt (token.substring (6, 8));
 		    }
+			if (token.endsWith ("KMH")) {
+				f /= KT2KMH;
+				fm /= KT2KMH;
+			} else if (token.endsWith ("MPS")) {
+				f /= KT2MS;
+				fm /= KT2MS;
+			}
+		}
+		else if (token.matches ("(VRB.*)|(0000)|(9999)")) {
+		    // VRB (<=3kt) | 00000 (calme) | 99999 (variable)
 		}
 		
-	    // resynchro
+	    // resynchro : recherche de CAVOK ou d'un nombre à 4 chiffres
 		token = st.nextToken ();
 		while (!token.matches ("(CAVOK)|(\\d{4}.*)")) {
 		    token = st.nextToken ();
 		}
 
-		// Si CAVOK :
+		// Si CAVOK (temps clair) :
 		if (token.equals("CAVOK")) {
 		    cav = true;
 		    token = st.nextToken ();
-		} else {
+		} else { // sinon visibilité, temps présent, état du ciel
+			
 		    // visibilite (en metre) = "xxxx" | "9999" (> 10km)
-		    v = Integer.parseInt (token.substring (0, 4));
-		    token = st.nextToken ();
+		    v = Integer.parseInt(token.substring(0,4));
+		    token = st.nextToken();
 
-		    if (debug) {
-		    	System.err.println ("token:<"+token+">");
-		    }
-
-		    // Le phénomène : état du temps
+		    // Eétat du temps
 		    if (token.matches ("[-=+]?(\\w\\w)+")) {
 		    	// 	phenomene {-=+}{XX}* ou //
-		    	if (debug) {
-		    		System.err.println ("phenomene:<"+token+">");
-		    	}
 		    	token = st.nextToken ();
 		    } 
 		    else if ("//".equals (token)) {
 		    	token = st.nextToken ();
 		    }
+		    
+			// état du ciel
+			while (token.matches ("\\w\\w\\w\\d\\d\\d")) {
+			    token = st.nextToken ();
+			}
 		}
 
-		// état du ciel
-		while (token.matches ("\\w\\w\\w\\d\\d\\d")) {
-		    token = st.nextToken ();
-		}
-
-	    // resynchro
+	    // resynchro sur la température (abris/rose)
 	 	while (!token.matches ("[M0-9]\\d*/[M0-9]\\d*")) {
 	 	    token = st.nextToken ();
 	 	}
-
-		// temperature (abris/rose)
-		if (debug) {
-		    System.err.println ("T:<"+token+">");
-		}
-		
 		int pos = token.indexOf ("/");
 		token = token.replaceAll ("M", "-");
 		t = Integer.parseInt (token.substring (0, pos));
 		tr = Integer.parseInt (token.substring (pos+1));
-		token = st.nextToken ();
+
 		
 		// QNH (=pression atmospherique au sol)
+		token = st.nextToken ();
 		if (token.startsWith ("Q")) {
-		    token = token.substring (1);
+		    token = token.substring(1);
+		    qnh = Integer.parseInt (token);
 		}
-		qnh = Integer.parseInt (token);
 
 		// la suite du Metar contient des tendances
-
 		return new Metar (place, d, h, m, dir, f, fm, cav, v, t, tr, qnh);
     }
 }

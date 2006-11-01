@@ -16,11 +16,13 @@ public class MetarsFactory {
 	 */
 	private LocationsFile places = null;
 	
+	
 	/**
 	 * Constructeur de la classe.
 	 */
 	public MetarsFactory() {
-		places = LocationsFile.getHandle("java/pgm/meteo/engine/places");
+		// Récupérer l'instance donnant l'accès aux aéroports, villes...
+		this.places = LocationsFile.getHandle("java/pgm/meteo/engine/places");
 	}
 	
 	
@@ -37,22 +39,26 @@ public class MetarsFactory {
 		// Code des aéroports et distance par rapport à la ville.
 		Vector<String> codes = places.getLocValues(location);
 		
-		// Serveur d'accès aux infos météo.
+		// Serveur nous donnant les metars.
 		MeteoServer server = new TestMeteoServer();
 
 		// Récupération des metars
 		for(String c : codes) {
 			// Découpage code / distance
 			String[] infos = c.split(",");
-			
+						
 			// Récupération du message par le serveur.
 			String message = server.getAMetarString(infos[0], timeStamp);
+			System.out.println("metar :" + message);
 			
-			// Traitement du message.
-			Metar m = Metar.parse(message);
-			m.setDistance(Integer.parseInt(infos[1]));
-			
-			metars.add(m);
+			// Si on a bien récupéré un metar
+			if(!message.equals("")) {
+				// Traitement du message.
+				Metar m = Metar.parse(message);
+				m.setDistance(Integer.parseInt(infos[1]));
+				
+				metars.add(m);
+			}
 		}
 		
 		return metars;

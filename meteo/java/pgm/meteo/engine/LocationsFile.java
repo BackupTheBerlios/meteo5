@@ -32,6 +32,7 @@ public class LocationsFile {
 		this.FilePath = FilePath;
 	}
 	
+	
 	/**
 	 * Créer une instance de la classe.
 	 * @param FilePath Fichier contenant la liste des villes.
