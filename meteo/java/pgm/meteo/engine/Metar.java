@@ -37,10 +37,7 @@ public class Metar {
 	
     /* Attributs de classe :  
 	  ===================== */
-	
-    /** Pour debugage rapide. */
-    static boolean debug = false;
-    
+	    
 	/** Code internationnal de l'aéroport.*/
     private String place;
     

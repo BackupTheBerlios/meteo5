@@ -31,17 +31,24 @@ public class Temperature extends MeteoElt {
 	 * Calcul les informations sur la température.
 	 */
 	public void evalLocalValues() {
-
-		// Plusieurs métars :
-		if (this.metars.size() > 1) {
-			for(Metar m : this.metars) {
-				// Calcul ???
-			}
+		float tempMoy = 0.0f;
+		float dewTempMoy = 0.0f;
+		float coef = 0.0f;
+		
+		for(Metar m : this.metars) {
+			// Triangularisation par sommation inverse à la distance
+			tempMoy += m.getTemperature() * (1 / m.getDistance());
+			dewTempMoy += m.getTemperatureRose() * (1 / m.getDistance());
+			
+			// Coefficient diviseur
+			coef += 1 / m.getDistance();		
 		}
-		else {
-			this.temperature = metars.get(0).getTemperature();
-			this.dewTemp = metars.get(0).getTemperatureRose();
-		}
+		
+		tempMoy /= coef;
+		dewTempMoy /= coef;
+		
+		this.temperature = Math.round(tempMoy);
+		this.dewTemp = Math.round(dewTempMoy);
 	}
 	
 	

@@ -39,16 +39,28 @@ public class Wind extends MeteoElt {
 		this.speed = 0;
 		this.maxSpeed = 0;
 
-		// Plusieurs métars.
-		if (this.metars.size() > 1) {
-			for (Metar m : this.metars) {
-				// ???
-			}
-		} else { // Pour 1 métar :
-			this.direction = this.metars.get(0).getDir();
-			this.speed = this.metars.get(0).getForce();
-			this.maxSpeed = this.metars.get(0).getForceMax();
+		float speedMoy = 0.0f;
+		float maxSpeedMoy = 0.0f;
+		float dirMoy = 0.0f;
+		float coef = 0.0f;
+		
+		for(Metar m : this.metars) {
+			// Triangularisation par sommation inverse à la distance
+			speedMoy += m.getForce() * (1 / m.getDistance());
+			maxSpeedMoy += m.getForceMax() * (1 / m.getDistance());
+			dirMoy += m.getDir() * (1 / m.getDistance());
+			
+			// Coefficient diviseur
+			coef += 1 / m.getDistance();		
 		}
+		
+		speedMoy /= coef;
+		maxSpeedMoy /= coef;
+		dirMoy /= coef;
+		
+		this.direction = Math.round(dirMoy);
+		this.maxSpeed = Math.round(maxSpeedMoy);
+		this.speed = Math.round(speedMoy);
 	}
 	
 	

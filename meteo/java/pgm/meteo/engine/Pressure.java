@@ -30,17 +30,20 @@ public class Pressure extends MeteoElt {
 	 * Calcul les données fournis par les différents métars.
 	 */
 	protected void evalLocalValues() {
+		float presMoy = 0.0f;
+		float coef = 0.0f;
 		
-		// Plusieurs métars
-		if (this.metars.size() > 1) {
-			for(Metar m : this.metars) {
-				// Calcul à faire !				
-			}
-			this.pressure = 0;
+		for(Metar m : this.metars) {
+			// Triangularisation par sommation inverse à la distance
+			presMoy += m.getQnh() * (1 / m.getDistance());
+			
+			// Coefficient diviseur
+			coef += 1 / m.getDistance();		
 		}
-		else {
-			this.pressure = this.metars.get(0).getQnh();
-		}
+		
+		presMoy /= coef;
+
+		this.pressure = Math.round(presMoy);
 	}
 	
 	/**

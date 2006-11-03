@@ -17,7 +17,6 @@ public class MeteoEltFactory {
 	 * @return L'ensemble des éléments météo.
 	 */
 	public Vector<MeteoElt> getMeteoElts(Vector<Metar> metars){
-		
 		Vector<MeteoElt> meteoElt = new Vector<MeteoElt>();
 		
 		//Calcul les informations du vent

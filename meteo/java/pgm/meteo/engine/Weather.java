@@ -23,13 +23,17 @@ public class Weather extends MeteoElt{
 	 * Calcul les informations sur le temps.
 	 */
 	protected void evalLocalValues() {
-		this.cavok = true;
-		// ??????
+		boolean cavOk = false;
+		for(Metar m : this.metars) {
+			cavOk &= m.isCavok();
+		}
+		
+		this.cavok = cavOk;
 	}
 	
 	/**
-	 * Accès à ???.
-	 * @return ???
+	 * Le temps est-il clair.
+	 * @return True si le temps est clair.
 	 */
 	public boolean isCAVOK(){
 		return cavok;

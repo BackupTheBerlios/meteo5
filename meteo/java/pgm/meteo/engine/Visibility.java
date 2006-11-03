@@ -27,16 +27,20 @@ public class Visibility extends MeteoElt {
 	 * Calcul les informations sur la visibilité.
 	 */
 	protected void evalLocalValues() {
+		float visiMoy = 0.0f;
+		float coef = 0.0f;
 		
-		// Plusieurs métars :
-		if (this.metars.size() > 1) {
-			for (Metar m : this.metars) {
-				// calcul
-			}
+		for(Metar m : this.metars) {
+			// Triangularisation par sommation inverse à la distance
+			visiMoy += m.getQnh() * (1 / m.getDistance());
+			
+			// Coefficient diviseur
+			coef += 1 / m.getDistance();		
 		}
-		else { // 1 métar
-			this.visibility = metars.get(0).getVisibilite();
-		}
+		
+		visiMoy /= coef;
+
+		this.visibility = Math.round(visiMoy);
 	}
 	
 	/**
