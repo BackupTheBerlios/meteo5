@@ -89,7 +89,7 @@ public class ClientClass implements ActionListener  {
 		listeLocation.addActionListener(this);
 		jmi_Quitter.addActionListener(this);
 		
-		jf.setSize(500,250);
+		jf.setSize(620,250);
 		jf.setVisible(true);
 	}
 	
@@ -102,7 +102,7 @@ public class ClientClass implements ActionListener  {
 			//info.setText(listeLocation.getSelectedItem().toString());
 			meteo.creerReport(listeLocation.getSelectedItem().toString());
 			System.out.println(meteo.toString());
-			info.setText(meteo.toString()+"ff");
+			info.setText(meteo.toString());
 			}else{
 				info.setText("");
 			}
