@@ -71,7 +71,8 @@ public class ClientClass implements ActionListener  {
 		
 		
 		info = new JTextArea();
-		info.setBackground(Color.WHITE);
+		//info.setBackground(Color.LIGHT_GRAY);
+		info.setOpaque(false);
 		info.setEnabled(false);
 		info.setVisible(true);
 		
@@ -94,13 +95,14 @@ public class ClientClass implements ActionListener  {
 	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==listeLocation){
-			meteo.creerReport(listeLocation.getSelectedItem().toString());
+			
 			
 			if(listeLocation.getSelectedIndex()!=0){
 			
-			info.setText(listeLocation.getSelectedItem().toString());
+			//info.setText(listeLocation.getSelectedItem().toString());
 			meteo.creerReport(listeLocation.getSelectedItem().toString());
-			info.setText(meteo.toString());
+			System.out.println(meteo.toString());
+			info.setText(meteo.toString()+"ff");
 			}else{
 				info.setText("");
 			}
