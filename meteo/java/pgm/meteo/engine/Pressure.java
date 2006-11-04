@@ -4,12 +4,12 @@ package meteo.engine;
 import java.util.Vector;
 
 /**
- * Représentation de la pression d'air.
- * 
  * @author Clément LE NY
  * @author Jérôme CATRIC
  * @author Emmanuel MEHEUT
  * @author Yitian YANG
+ * 
+ * Représentation de la pression d'air.
  */
 public class Pressure extends MeteoElt {
 
@@ -59,7 +59,7 @@ public class Pressure extends MeteoElt {
 	 * @return La pression sous forme de texte.
 	 */
 	public String toString(){
-		return "The pressure is "+pressure+".";
+		return "La pression atmosphérique au sol est de " + this.pressure + ".";
 	}
 
 }

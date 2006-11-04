@@ -12,8 +12,13 @@ import java.util.Vector;
  */
 public class Weather extends MeteoElt{
 
+	/** Vrai si le temps est clair. */
 	private boolean cavok = true;
 	
+	/**
+	 * Constructeur de la classe.
+	 * @param m Metars permettant de définir l'état du temps.
+	 */
 	public Weather(Vector<Metar> m) {
 		this.metars = m;
 		this.evalLocalValues();
@@ -45,6 +50,13 @@ public class Weather extends MeteoElt{
 	 * @return Les informations sur le temps.
 	 */
 	public String toString(){
-		return "Weather is "+cavok+".";
+		String ret;
+		if(this.cavok) {
+			ret = "Le temps est clair.";
+		}
+		else {
+			ret = "Le temps n'est pas clair, ce référer à la visibilité.";
+		}
+		return ret;
 	}
 }

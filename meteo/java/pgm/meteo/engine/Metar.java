@@ -57,7 +57,7 @@ public class Metar {
     private boolean cavok;
     
     /** Visibilite en metres. */
-    private int visibilite;
+    private int visibilite; 
     
     /** Temperature sous abris et temperature de point de rose. */
     private int temperature, temperatureRose;

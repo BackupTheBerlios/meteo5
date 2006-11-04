@@ -2,21 +2,22 @@ package meteo.engine;
 
 import java.util.Vector;
 
-/**
- * Représentation de la température.
- * 
+/** 
  * @author Clément LE NY
  * @author Jérôme CATRIC
  * @author Emmanuel MEHEUT
  * @author Yitian YANG
+ * 
+ * Représente un élément météo de type température.
  */
 public class Temperature extends MeteoElt {
 
 	/** Température en °C. */
-	private int temperature=0;
+	private int temperature = 0;
 	
 	/** Température à la rosée en °C. */
-	private int dewTemp=0;
+	private int dewTemp = 0;
+	
 	
 	/**
 	 * Constructeur de l'élément température. 
@@ -26,6 +27,7 @@ public class Temperature extends MeteoElt {
 		this.metars = m;
 		this.evalLocalValues();
 	}
+	
 	
 	/**
 	 * Calcul les informations sur la température.
@@ -60,6 +62,7 @@ public class Temperature extends MeteoElt {
 		return this.temperature;
 	}
 	
+	
 	/**
 	 * Accesseur à la température à la rosée.
 	 * @return La température à la rosée.
@@ -68,12 +71,16 @@ public class Temperature extends MeteoElt {
 		return this.dewTemp;
 	}
 	
+	
 	/**
 	 * Renvoie la température actuelle et celle à la rosée en format texte.
 	 * @return La pression sous forme de texte.
 	 */
 	public String toString(){
-		return "The temperature is "+temperature+" and dew temperature is "+dewTemp+".";
+		String ret;
+		ret = "La température a la rosée était de " + this.dewTemp + " °C.\n";
+		ret += "La température est de " + this.temperature + " °C.";
+		return ret;
 	}
 
 }

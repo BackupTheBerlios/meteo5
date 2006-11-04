@@ -2,13 +2,13 @@ package meteo.engine;
 
 import java.util.Vector;
 
-/**
- * Représentation de la visibilité.
- * 
+/** 
  * @author Clément LE NY
  * @author Jérôme CATRIC
  * @author Emmanuel MEHEUT
  * @author Yitian YANG
+ * 
+ * Représe l'information météo sur la visibilité.
  */
 public class Visibility extends MeteoElt {
 	
@@ -56,7 +56,7 @@ public class Visibility extends MeteoElt {
 	 * @return Les informations sur la visibilité sous forme de texte.
 	 */
 	public String toString(){
-		return "Visibility is "+visibility+".";
+		return "La visibilité est de " + this.visibility + " mète(s).";
 	}
 	
 }

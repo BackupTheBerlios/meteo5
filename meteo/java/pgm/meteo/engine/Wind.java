@@ -94,6 +94,10 @@ public class Wind extends MeteoElt {
 	 * @return Les informations sous forme de texte.
 	 */
 	public String toString(){
-		return "Wind speed is "+speed+". \n Wind max speed is "+maxSpeed+". \n Wind direction is "+direction+".";
+		String ret;
+		ret = "La vitesse maximale du vent a été de " + this.maxSpeed + " km/h.\n";
+		ret += "La vitesse du vent est de " + this.speed + " km/h.\n";
+		ret += "La direction du vent vaut " + this.direction + ".";
+		return ret;
 	}
 }
