@@ -101,7 +101,6 @@ public class ClientClass implements ActionListener  {
 			
 			//info.setText(listeLocation.getSelectedItem().toString());
 			meteo.creerReport(listeLocation.getSelectedItem().toString());
-			System.out.println(meteo.toString());
 			info.setText(meteo.toString());
 			}else{
 				info.setText("");
