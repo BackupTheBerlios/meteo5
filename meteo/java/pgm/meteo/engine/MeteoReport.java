@@ -95,44 +95,13 @@ public class MeteoReport {
 				if(e.getClass().getName().equals("Visibility")){
 					v = (Visibility) e;
 				}
-
 			}
 			
-			/*
-			Weather we = (Weather)this.report.get("Weather");
-			Temperature te = (Temperature)this.report.get("Temperature");
-			Visibility vi = (Visibility)this.report.get("Visibility");
-			Pressure pr = (Pressure)this.report.get("Pressure");
-			
-			String[] tmpStrTab = Translation.transWeather(we);
-			
-			ret += "Couverture nuageuse : " + tmpStrTab[0] + "\n";
-			ret += "Hauteur de la couverture nuageuse : " + tmpStrTab[1] + "\n";
-			ret += "Temps : ";
-			for(int i = 2; i < tmpStrTab.length; i++)
-				ret += tmpStrTab[2] + " ";
-			ret += "\n";
-			
-			
-			tmpStrTab = Translation.transTemperature(te);
-			
-			ret += "TempÃ©rature : " + tmpStrTab[0] + "\n";
-			ret += "TempÃ©rature du point de rosÃ©e : " + tmpStrTab[1] + "\n";
-			
-			
-			tmpStrTab = Translation.transVisibility(vi);
-			
-			ret += "VisibilitÃ© : " + tmpStrTab[0] + "\n";
-			if(!tmpStrTab[1].startsWith("-1")){
-				ret += "VisibilitÃ© minimale : " + tmpStrTab[1] + "\n";
-				ret += "Direction de la visibilitÃ© minimale : " + tmpStrTab[2] + "\n";
-			}
-			
-			
-			tmpStrTab[0] = Translation.transPressure(pr);
-			
-			ret += "Pression atmosphÃ©rique : " + tmpStrTab[0] + "\n";
-			*/
+			ret += t.toString() + "\n";
+			ret += v.toString() + "\n";
+			ret += p.toString() + "\n";
+			ret += wind.toString() + "\n";
+			ret += w.toString();
 			
 			return ret;
 		}
