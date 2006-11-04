@@ -27,8 +27,8 @@
 	<!-- Pdf build directory -->
 	<property name="build.web.pdf.dir" location="${build.web.dir}/pdf/" />
 	
-	<!-- Mesures build directory -->
-	<property name="build.web.mesures.dir" location="${build.web.dir}/mesures/" />
+	<!-- Controle build directory -->
+	<property name="build.web.controle.dir" location="${build.web.dir}/controle/" />
 	
 	<!-- Style build directory -->
 	<property name="build.web.style.dir" location="${build.web.dir}/style/" />
@@ -37,13 +37,13 @@
 	<property name="javancss.home" location="${basedir}/ant/javancss/" />	
 		
 	<!-- Javancss report build directory -->
-	<property name="build.web.javancss.dir" location="${build.web.mesures.dir}/javancss/" />
+	<property name="build.web.javancss.dir" location="${build.web.controle.dir}/javancss/" />
 	
 	<!-- JDepend report build directory -->
-	<property name="build.web.jdepend.dir" location="${build.web.mesures.dir}/jdepend/" />
+	<property name="build.web.jdepend.dir" location="${build.web.controle.dir}/jdepend/" />
 	
 	<!-- Junit report build directory -->
-	<property name="build.web.junit.dir" location="${build.web.dir}/junit/" />
+	<property name="build.web.junit.dir" location="${build.web.dir}/test/" />
 	
 	
 	<!-- Execute all compilation -->
@@ -54,7 +54,7 @@
 	<target name="clean" depends="clean-class,clean-javadoc,clean-javancss,clean-jdepend,clean-junit"
 			description="Delete all generated files" >
 		<delete dir="${tmp.dir}" />
-		<delete dir="${build.web.mesures.dir}"/>
+		<delete dir="${build.web.controle.dir}"/>
 	</target>
 		
 	<!-- Initialisation -->
@@ -65,6 +65,7 @@
 		<mkdir dir="${build.web.javadoc.dir}" />
 		<mkdir dir="${build.web.javancss.dir}" />
 		<mkdir dir="${build.web.jdepend.dir}" />
+		<mkdir dir="${build.web.controle.dir}" />
 		<mkdir dir="${build.web.junit.dir}" />
 		<mkdir dir="${tmp.dir}" />
 	</target>
