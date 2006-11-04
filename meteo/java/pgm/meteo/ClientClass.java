@@ -71,9 +71,9 @@ public class ClientClass implements ActionListener  {
 		
 		
 		info = new JTextArea();
-		//info.setBackground(Color.LIGHT_GRAY);
+		
 		info.setOpaque(false);
-		info.setEnabled(false);
+		info.setEditable(false);
 		info.setVisible(true);
 		
 		p2.add(BorderLayout.CENTER ,info);
