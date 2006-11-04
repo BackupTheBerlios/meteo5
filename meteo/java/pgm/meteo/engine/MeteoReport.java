@@ -101,7 +101,7 @@ public class MeteoReport {
 			ret += v.toString() + "\n";
 			ret += p.toString() + "\n";
 			ret += wind.toString() + "\n";
-			ret += w.toString();
+			ret += w.toString() + "\n";
 			
 			return ret;
 		}

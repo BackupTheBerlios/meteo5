@@ -6,7 +6,7 @@ package meteo.engine;
  * @author YANG Yitian
  * @author MEHEUT Emmanuel
  * 
- *  Définit un serveur de métar.
+ *  Définit un serveur de metar.
  */
 public abstract class MeteoServer {
 	
