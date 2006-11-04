@@ -99,7 +99,8 @@ public class ClientClass implements ActionListener  {
 			if(listeLocation.getSelectedIndex()!=0){
 			
 			info.setText(listeLocation.getSelectedItem().toString());
-			//info.setText(meteo.toString());
+			meteo.creerReport(listeLocation.getSelectedItem().toString());
+			info.setText(meteo.toString());
 			}else{
 				info.setText("");
 			}
