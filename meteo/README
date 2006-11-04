@@ -42,7 +42,7 @@ Les répertoires : "etc", "lib", "bin" et le fichier "build.xml" sont suffisant 
 
 Spécifier dans eclipse que vous utiliser le "ant" du projet.
 Pour ce faire ouvrir le fichier "build.xml" clic droit sur "all" puis "run as..." et "external tool.."
-Aller dans l'onglet "classpath" puis cliquer sur le bouton "Ant Home" et spécifier le repertoire
+Aller dans l'onglet "classpath" puis cliquer sur le bouton "Ant Home" (en bas à droite) et spécifier le repertoire
 de "ant" qui est : "~/workspace/meteo/ant"
 
 Penser a importer : "Junit.jar" et "Log4J.jar" dans le projet de eclipse librairie dans 
