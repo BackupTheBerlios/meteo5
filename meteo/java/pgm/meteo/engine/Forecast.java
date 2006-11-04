@@ -1,7 +1,6 @@
 package meteo.engine;
 
 /**
- * 
  * @author Clément LE NY
  * @author Jérôme CATRIC
  * @author Emmanuel MEHEUT

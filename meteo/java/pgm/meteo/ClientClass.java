@@ -94,7 +94,7 @@ public class ClientClass implements ActionListener  {
 	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==listeLocation){
-			//meteo.creerReport(listeLocation.getSelectedItem().toString());
+			meteo.creerReport(listeLocation.getSelectedItem().toString());
 			
 			if(listeLocation.getSelectedIndex()!=0){
 			

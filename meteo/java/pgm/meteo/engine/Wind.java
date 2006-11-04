@@ -35,32 +35,36 @@ public class Wind extends MeteoElt {
 	 * Calcul les informations concernant le vent.
 	 */
 	protected void evalLocalValues() {
-		this.direction = 0;
-		this.speed = 0;
-		this.maxSpeed = 0;
-
-		float speedMoy = 0.0f;
-		float maxSpeedMoy = 0.0f;
-		float dirMoy = 0.0f;
-		float coef = 0.0f;
 		
-		for(Metar m : this.metars) {
-			// Triangularisation par sommation inverse à la distance
-			speedMoy += m.getForce() * (1 / m.getDistance());
-			maxSpeedMoy += m.getForceMax() * (1 / m.getDistance());
-			dirMoy += m.getDir() * (1 / m.getDistance());
+		if(this.metars.size() > 1) {
+			float speedMoy = 0.0f;
+			float maxSpeedMoy = 0.0f;
+			float dirMoy = 0.0f;
+			float coef = 0.0f;
 			
-			// Coefficient diviseur
-			coef += 1 / m.getDistance();		
+			for(Metar m : this.metars) {
+				// Triangularisation par sommation inverse à la distance
+				speedMoy += m.getForce() * (1 / m.getDistance());
+				maxSpeedMoy += m.getForceMax() * (1 / m.getDistance());
+				dirMoy += m.getDir() * (1 / m.getDistance());
+				
+				// Coefficient diviseur
+				coef += 1 / m.getDistance();
+			}
+			
+			speedMoy /= coef;
+			maxSpeedMoy /= coef;
+			dirMoy /= coef;
+			
+			this.direction = Math.round(dirMoy);
+			this.maxSpeed = Math.round(maxSpeedMoy);
+			this.speed = Math.round(speedMoy);
 		}
-		
-		speedMoy /= coef;
-		maxSpeedMoy /= coef;
-		dirMoy /= coef;
-		
-		this.direction = Math.round(dirMoy);
-		this.maxSpeed = Math.round(maxSpeedMoy);
-		this.speed = Math.round(speedMoy);
+		else if(this.metars.size() != 0) {
+			this.direction = this.metars.get(0).getDir();
+			this.maxSpeed = this.metars.get(0).getDir();
+			this.speed = this.metars.get(0).getDir();
+		}
 	}
 	
 	

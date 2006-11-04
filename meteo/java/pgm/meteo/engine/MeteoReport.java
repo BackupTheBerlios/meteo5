@@ -97,11 +97,21 @@ public class MeteoReport {
 				}
 			}
 			
-			ret += t.toString() + "\n";
-			ret += v.toString() + "\n";
-			ret += p.toString() + "\n";
-			ret += wind.toString() + "\n";
-			ret += w.toString() + "\n";
+			if(t != null) {
+				ret += t.toString() + "\n";
+			}
+			if(v != null) {
+				ret += v.toString() + "\n";
+			}
+			if(p != null) {
+				ret += p.toString() + "\n";
+			}
+			if(wind != null) {
+				ret += wind.toString() + "\n";
+			}
+			if(w != null) {
+				ret += w.toString() + "\n";
+			}
 			
 			return ret;
 		}
