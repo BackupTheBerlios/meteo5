@@ -80,19 +80,19 @@ public class MeteoReport {
 			
 			// Récupération des éléments meteo
 			for(MeteoElt e : this.report) {
-				if(e.getClass().getName().equals("Temperature")){
+				if(e.getClass().getName().equals("meteo.engine.Temperature")){
 					t = (Temperature) e;
 				}
-				if(e.getClass().getName().equals("Wind")){
+				if(e.getClass().getName().equals("meteo.engine.Wind")){
 					wind = (Wind) e;
 				}
-				if(e.getClass().getName().equals("Pressure")){
+				if(e.getClass().getName().equals("meteo.engine.Pressure")){
 					p = (Pressure) e;
 				}
-				if(e.getClass().getName().equals("Weather")){
+				if(e.getClass().getName().equals("meteo.engine.Weather")){
 					w = (Weather) e;
 				}
-				if(e.getClass().getName().equals("Visibility")){
+				if(e.getClass().getName().equals("meteo.engine.Visibility")){
 					v = (Visibility) e;
 				}
 			}
