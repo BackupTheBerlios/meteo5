@@ -3,20 +3,21 @@ package meteo.engine;
 import java.util.Vector;
 
 /**
+ * Classe caractérisant la pression d'air.
+ * 
  * @author Clément LE NY
  * @author Jérôme CATRIC
  * @author Emmanuel MEHEUT
  * @author Yitian YANG
  * 
- * Représentation de la pression d'air.
  */
 public class Pressure extends MeteoElt {
 
-	/** Pression. */
+	/** L'élément pression. */
 	private int pressure = 0;
 
 	/**
-	 * Constructeur.
+	 * Constructeur de la classe.
 	 * 
 	 * @param m
 	 *            Liste de métars contenant les informations.

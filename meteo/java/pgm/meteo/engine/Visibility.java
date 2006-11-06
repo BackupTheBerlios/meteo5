@@ -3,15 +3,17 @@ package meteo.engine;
 import java.util.Vector;
 
 /**
+ * Classe représentant l'information météo sur la visibilité.
+ * 
  * @author Clément LE NY
  * @author Jérôme CATRIC
  * @author Emmanuel MEHEUT
  * @author Yitian YANG
  * 
- * Représe l'information météo sur la visibilité.
  */
 public class Visibility extends MeteoElt {
 
+	/** Element visibilité. */
 	private int visibility = 0;
 
 	/**

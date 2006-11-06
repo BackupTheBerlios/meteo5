@@ -12,14 +12,11 @@ import java.util.Vector;
  * @author Yitian YANG
  */
 public abstract class MeteoElt {
-	
+
 	/** Liste des 3 métars. */
-	protected Vector<Metar> metars = new Vector<Metar>(); 
-	
-	/**
-	 * Calcul les données fournis par les différents métars.
-	 *
-	 */
+	protected Vector<Metar> metars = new Vector<Metar>();
+
+	/** Calcul les données fournis par les différents métars. */
 	protected abstract void evalLocalValues();
 
 }

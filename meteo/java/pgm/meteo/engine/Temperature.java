@@ -3,12 +3,13 @@ package meteo.engine;
 import java.util.Vector;
 
 /**
+ * Classe représentant un élément météo de type température.
+ * 
  * @author Clément LE NY
  * @author Jérôme CATRIC
  * @author Emmanuel MEHEUT
  * @author Yitian YANG
  * 
- * Représente un élément météo de type température.
  */
 public class Temperature extends MeteoElt {
 

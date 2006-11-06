@@ -3,6 +3,7 @@ package meteo.engine;
 import java.util.Vector;
 
 /**
+ * Classe servant aux prévisions météorologiques complexes
  * 
  * @author Clément LE NY
  * @author Jérôme CATRIC
@@ -11,8 +12,14 @@ import java.util.Vector;
  */
 public class ComplexForecastEngine extends BasicForecastEngine {
 
-	public ComplexForecastEngine(Vector<MeteoElt> v){
+	/**
+	 * Constructeur de la classe.
+	 * 
+	 * @param v
+	 *            Liste des éléments météo.
+	 */
+	public ComplexForecastEngine(Vector<MeteoElt> v) {
 		super(v);
 	}
-	
+
 }
