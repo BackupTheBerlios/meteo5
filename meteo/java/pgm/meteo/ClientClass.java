@@ -16,6 +16,16 @@ import javax.swing.JTextArea;
 
 import meteo.engine.*;
 
+/**
+* @author LE NY Clément
+* @author CATRIC Jérôme
+* @author YANG Yitian
+* @author MEHEUT Emmanuel
+* 
+* Classe servant a affichié les informations métérologique 
+* pour la ville choisie. 
+*/
+
 public class ClientClass implements ActionListener  {
 
 	private JComboBox listeLocation;
