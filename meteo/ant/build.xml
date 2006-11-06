@@ -45,7 +45,9 @@
 	<!-- Junit report build directory -->
 	<property name="build.web.junit.dir" location="${build.web.dir}/test/" />
 	
-	
+	<!-- Definition du classpath-->
+	<property name="classpath.dir" location="${build.class.dir};./ant/lib/junit-4.1.jar;./ant/lib/jdepend-2.9.1.jar" /> 
+
 	<!-- Execute all compilation -->
 	<target name="all" depends="clean,class,javadoc,javancss,jdepend,junit"
 			description="Execute all compilation" />

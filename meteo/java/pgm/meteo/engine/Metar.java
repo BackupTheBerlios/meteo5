@@ -92,7 +92,7 @@ public class Metar {
 	 *            Jour de la mesure.
 	 * @param hour
 	 *            Heure de la mesure.
-	 * @param minm.se
+	 * @param min
 	 *            Minute de la mesure.
 	 * @param dir
 	 *            Direction du vent.
