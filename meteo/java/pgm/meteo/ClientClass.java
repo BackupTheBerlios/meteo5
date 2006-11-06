@@ -25,7 +25,6 @@ import meteo.engine.*;
  * @author MEHEUT Emmanuel
  * 
  */
-
 public class ClientClass implements ActionListener {
 
 	/** Liste déroulante contenant la liste des aéroports. */
