@@ -45,6 +45,23 @@ div#pied_page {
 	color: #FFFFFF; 
 }
 
+/* Section de texte */
+div#texte {
+    display: block;
+    text-align: justify;
+    margin: 0px 0px 0px 25px;
+}
+
+div#sec {
+	margin: 0px 0px 0px 15px;
+	padding: 0.3ex 0.5em 0.3ex 0.5em;
+}
+
+div#secs {
+	margin: 0px 0px 0px 10px;                       
+    padding: 0.2ex 0.4em 0.2ex 0.4em;
+}
+
 /* Logo UBS a gauche dans le cadre du haut */
 span#image_gauche {
 	float:left;
@@ -81,9 +98,16 @@ h2 {
 	color:#000099;
 }
 
-ul{
-	margin-top:0px; 
-	padding-left:4em;
+h3 {
+	margin: 0px 0px 0px 10px;                       
+    padding: 0.2ex 0.4em 0.2ex 0.4em;
+    text-align: left;
+	color:#000099;
+}
+
+/* base de paragraphes standard */
+p {          
+	margin: 0px 0px 0px 0px;
 }
 
 /* Aspect des liens hypertextes */
