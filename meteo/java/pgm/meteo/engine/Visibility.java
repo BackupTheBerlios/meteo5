@@ -71,7 +71,7 @@ public class Visibility extends MeteoElt {
 	 * @return Les informations sur la visibilité sous forme de texte.
 	 */
 	public String toString() {
-		return "La visibilité est de " + this.visibility + " mète(s).";
+		return "La visibilité est de " + this.visibility + " mètre(s).";
 	}
 
 }
