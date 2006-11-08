@@ -45,6 +45,10 @@ div#pied_page {
 	color: #FFFFFF; 
 }
 
+div#pied_page_interieur {                
+	padding: 10px 10px 10px 10px;
+}
+
 /* Logo UBS a gauche dans le cadre du haut */
 span#image_gauche {
 	float:left;
