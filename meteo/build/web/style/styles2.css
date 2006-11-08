@@ -45,6 +45,11 @@ div#pied_page {
 	color: #FFFFFF; 
 }
 
+/* Cadre intérieur du cadre de pied de page */
+div#pied_page_interieur {                
+	padding: 20px 10px 10px 10px;
+}
+
 /* Section de texte */
 div#texte {
     display: block;
