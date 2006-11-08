@@ -22,7 +22,7 @@
 					<div id="secs">
 						<div id="texte">
 							<p>Notre groupe se compose de quatre membres qui sont les suivants :</p>
-							<ul style="margin-top:0px; margin-bottom:0px;">
+							<ul>
 								<li>Jérôme Catric</li>
 								<li>Clément Le Ny</li>
 								<li>Emmanuel Meheut</li>
@@ -40,14 +40,14 @@
 								</p><br/>
 								<p>Le rôle de cette application est d'exploiter cette information et d'indiquer, pour le lieu choisi, les éléments suivants :</p>
 							<p>
-								<ul style="margin-top:0px;margin-bottom:0px;">
+								<ul >
 								<li>le temps : Ensoleillé, Peu nuageux, Nuageux, Couvert, Pluvieux ;</li>
 								<li>la température : définie en degré celsus (°C) ;</li>
 								<li>la pression atmosphérique : définie en hecto-pascal (hpa) ;</li>
 								<li>la vitesse du vent ;</li>
 								<li>l'humidité de l'air.</li>
 								</ul>
-							</p><br/>
+							</p>
 							<p>Le maillage des bornes météo étant assez lâche (3 pour la Bretagne à Rennes, Brest et Nantes), les villes proposées par l'application seront 
 							repérées par leurs distances aux trois stations météo les plus proches et les données météo affichées seront calculées par interpolation entre 
 							les données de ces trois bornes. Les règles d'interpolation ne sont pas les mêmes pour les différents types de données. </p>
@@ -273,7 +273,7 @@
 							<p>La mise au point d'un logiciel est souvent constituée de tâches répétitives (compilation, génération javadoc, test...). Afin de facilité le développement 
 							du projet, nous avons décidé d'utiliser ANT qui nous permet d'automatiser les tâches par l'intermédiaire d'un fichier "build.xml". </p><br/>
 							<p>Ce fichier contient les actions suivantes : </p>
-							<ul style="margin-top:0px;margin-bottom:0px;">
+							<ul >
 							<li><b>class</b> : compile les classes java du  projet</li>
 							<li><b>clean-class</b> : supprime les classes compilées</li>
 							<li><b>javadoc</b> : génére la JavaDoc</li>
@@ -288,7 +288,6 @@
 							<li><b>clean</b> : efface tout ce qui a été généré</li>
 							<li><b>init</b> : créer les répertoires </li>
 							</ul>
-							<br />
 							<p>Voir le <a href="../../ant/build.xml" target="_blank">code source</a> du fichier.</p>
 						</div>
 					</div>
@@ -302,13 +301,13 @@
 						<div id="texte">
 							<p>L'outil JavaNCSS nous permet d'analyser la qualité du code Java produit et de calculer les métriques de qualité.</p><br/>
 							<p>Les principals métriques sont les suivants :</p>
-							<ul style="margin-top:0px;margin-bottom:0px;">
+							<ul >
 							<li>nombre de classes</li>
 							<li>nombre de package</li>
 							<li>nombre de méthodes</li>
 							<li>nombre d’instructions sans commentaire</li>
 							<li>nombre de commentaires JavaDoc par projet, package, classe et méthode.</li>
-							</ul><br/>
+							</ul>
 							<p>Cette outil nous offre la possibilité de générer un rapport HTML. Ce dernier nous permet de connaitre les différents métriques correspondants
 							a notre code sources et ainsi cela nous permet par exemple, de rajouter des commentaires javadoc aux endroits que l'on a oublié. </p>
 							<br  />
@@ -322,7 +321,7 @@
 							<p>L'outil JDepend nous permet d'analyser le code Java produit et calcule les métriques de qualité pour chaque package. 
 							JDepend est sensible à l’extensibilité, la réutilisabilité et la maintenabilité des sources. Ce dernier nous montre aussi les dépendances des packages et classes.</p>
 							<br/><p>Cette outil nous offre la possibilité de générer un rapport HTML a partir duquel on peut avoir accès aux informations suivantes : </p>
-							<ul style="margin-top:0px;margin-bottom:0px;">
+							<ul >
 							<li>nom du package analysé</li>
 							<li>nombre total de classes</li>
 							<li>nombre de classes concrètes</li>
@@ -333,7 +332,6 @@
 							<li>liste des dépendances ascendantes</li>
 							<li>Métriques d’analyse de la qualité du code</li>
 							</ul>
-							<br  />
 							<p>Voir le <a href="controle/jdepend/jdepend-report.html" target="_blank">Rapport JDepend</a></li>.</p>
 						</div>
 					</div>
@@ -346,7 +344,7 @@
 							envergure assez grande pour nécessité l'utilisation de journaux. Il ne s'agit
 							pas non plus d'une application distribuée ou utilisant de multiples thread. Il
 							nous a donc semblé que cela serait plus une perte de temps, malgrès certains
-							avantages que nous aurions pu avoir face à "System.out.println".</p><br/>
+							avantages que nous aurions pu avoir face à "<i>System.out.println()</i>".</p><br/>
 							<p>De plus, l'outil de débuggage intégré dans l'environnement Eclipse,
 							et les jeux de tests nous semblent largement suffisant pour le projet.</p>
 							<br/>
@@ -361,106 +359,99 @@
 				
 				<h2>5. Evaluation du temps</h2>
 				<div id="sec">
-					17h de TP + travail perso
-					Seul les tâches principales sont évalués ici :
-					<ul>
-						<li>Installation de l'environnement et des outils : h</li>
-						<li>Analyse préliminaire du projet : h</li>
-						<li>Conception du projet : h</li>
-						<li>Réalisation des tests : h</li>
-						<li>Réalisation du rapport : h</li>
-					</ul>
-					Evaluation du temps total : h<br/>
-					Evaluation du temps total moyen par personne : h<br/>
+					<div id="texte">
+						<p>17h de TP + travail perso</p>
+						<p>Seul les tâches principales sont évalués ici :</p>
+						<ul >
+							<li>Installation de l'environnement et des outils : h</li>
+							<li>Analyse préliminaire du projet : h</li>
+							<li>Conception du projet : h</li>
+							<li>Réalisation des tests : h</li>
+							<li>Réalisation du rapport : h</li>
+						</ul>
+						<p>Evaluation du temps total : h</p>
+						<p>Evaluation du temps total moyen par personne : h</p>
+					</div>
 				</div>
 				<br />
 
 				<h2>6. Organisation du projet</h2>
 				<div id="sec">
-					Peu après le lancement du projet et l'analyse de celui-ci à partir des informations 
-					fournis (TP 3/4), nous avons établis une répartition du 
-					travail pour nous permettre d'accélérer le développement et de donner des
-					objectifs personnels à chacun.
-					La répartition s'est faite en 2 groupes de 2 personnes :
-					<ul>
-						<li>L'un installant ANT et les outils d'optimisation du code (javaNCSS et JDepend), 
-						ainsi que de JUnit. Ce sont également eux qui ont créé les classes de test.</li>
-						<li>Tandis que l'autre groupe s'employait à la réalisation des différentes classes
-						du moteur "meteo" ainsi qu'à leurs implémentations.</li>
-					</ul>
-					Enfin, ce rapport à été redigé conjointement par les deux groupes apportant
-					chacun leurs informations.
+					<div id="texte">
+						<p>Peu après le lancement du projet et l'analyse de celui-ci à partir des informations fournis (TP 3/4), nous avons établis une répartition du 
+						travail pour nous permettre d'accélérer le développement et de donner des objectifs personnels à chacun.
+						La répartition s'est faite en 2 groupes de 2 personnes :</p>
+						<ul>
+							<li>L'un installant ANT et les outils d'optimisation du code (javaNCSS et JDepend), 
+							ainsi que de JUnit. Ce sont également eux qui ont créé les classes de test.</li>
+							<li>Tandis que l'autre groupe s'employait à la réalisation des différentes classes
+							du moteur "meteo" ainsi qu'à leurs implémentations.</li>
+						</ul>
+						<p>Enfin, ce rapport à été redigé conjointement par les deux groupes apportant
+						chacun leurs informations.</p>
+					</div>
 				</div>
 				<br />
 
 				<h2>7. Bilan du projet</h2>
 				<div id="sec">
 
-					<h3>6.1 Conception du projet</h3>
+					<h3>7.1 Conception du projet</h3>
 					<div id="secs">
 						<div id="texte">
-							Pendant la phase de réalisation, nous nous sommes séparés la création des 
-							différentes classes pour nous permettre de travailler séparément et ainsi
-							pourvoir rester le plus indépendant possible.<br/>
+							<p>Pendant la phase de réalisation, nous nous sommes séparés la création des différentes classes pour nous permettre de travailler séparément et ainsi
+							pourvoir rester le plus indépendant possible.</p>
 							<br/>
-							La séparation s'est faite après avoir identifié les grandes fonctionnalité
-							du programme :
-							<ul>
+							<p>La séparation s'est faite après avoir identifié les grandes fonctionnalité
+							du programme :</p>
+							<ul >
 								<li>La partie serveur et ce qui concerne la localisation des villes.</li>
 								<li>La partie gérant la création des metars.
 								<li>La partie gérant la création des éléments météo.
 								<li>Le client du moteur "meteo", et la façade du moteur.</li>
 							</ul>
-							<em>Node :</em> Comme il est expliqué dans la partie 6.2, la partie concernant les prévisions
-							(ForeCast) n'a pas été implémentée.<br/>
+							<p><em>Node :</em> Comme il est expliqué dans la partie 6.2, la partie concernant les prévisions (ForeCast) n'a pas été implémentée.</p>
 							<br/>
 
-							De plus, nous avons appliqués des règles d'écriture
-							de code pour que la relecture par l'un ou par l'autre des membres du groupe
-							puisse se faire sans difficulté. Chacun ayant ses habitudes, nous
-							avons fait de sorte de faire une sorte de charte de codage (non écrite) et de
-							suivre au mieux les <a href="http://www.labo-sun.com/resource-FR-essentiels-647-1-java-general-methodes-de-programmation-bien-programmer-en-java.htm">les conventions de nommage Java</a>.<br/>
+							<p>De plus, nous avons appliqués des règles d'écriture de code pour que la relecture par l'un ou par l'autre des membres du groupe puisse se 
+							faire sans difficulté. Chacun ayant ses habitudes, nous avons fait de sorte de faire une sorte de charte de codage (non écrite) et de suivre au 
+							mieux les <a href="http://www.labo-sun.com/resource-FR-essentiels-647-1-java-general-methodes-de-programmation-bien-programmer-en-java.htm">
+							les conventions de nommage Java</a>.</p>
 							<br/>
-							De même, à chaque fois qu'un membre implémentait une méthode ou créait une classe,
-							celui-ci se devait de mettre des commentaires JavaDoc et des commentaires
-							dans le code, permettant ainsi une meilleur compréhension lors d'une relecture
-							ultérieur par lui-même ou par un autre membre du groupe (facilant nottamment la 
-							création des tests). Cela a également permis la 
-							génération automatique de la JavaDoc et donc un gain de temps énorme pour la 
-							réalisation du rapport final.
+							<p>De même, à chaque fois qu'un membre implémentait une méthode ou créait une classe, celui-ci se devait de mettre des commentaires JavaDoc et des commentaires
+							dans le code, permettant ainsi une meilleur compréhension lors d'une relecture ultérieur par lui-même ou par un autre membre du groupe (facilant nottamment la 
+							création des tests). Cela a également permis la génération automatique de la JavaDoc et donc un gain de temps énorme pour la réalisation du rapport final.</p>
 						</div>
 					</div>
 					<br/>
 
-					<h3>6.2 Les tests</h3>
+					<h3>7.2 Les tests</h3>
 					<div id="secs">
 						<div id="texte">
+							<p>BlaBla manu</p>
+							<br  />
+							<p>Voir le <a href="test/index.html" target="_blank">Rapport Test</a></li>.</p>
 						</div>
 					</div>
 					<br/>
 
-					<h3>6.3 Etat final du projet</h3>
+					<h3>7.3 Etat final du projet</h3>
 					<div id="secs">
 						<div id="texte">
-							A la fin de ce projet, nous pouvons dire que les principales fonctionnalités
-							du programme ont bien été implémentées. Le moteur "meteo" couplé avec son client
-							est fonctionnel, et nous rend des résultats cohérents.
-							Cependant, nous avons choisis de laisser quelques fonctionnalités de côté par
-							manque de temps et d'informations dans le domaine :<br/>
-							<ul>
-								<li>Il n'y a pas de connexion a un serveur réel, le programme ne peut qu'utiliser le serveur de
-							test qui fournit les metar depuis un fichier. Les mesures n'ont donc rien de réelles
-							et sont juste là pour vérifier le bon fonctionnement du programme.</li>
-								<li>Les prévisions complexes (classes ComplexForeCastX), permettant de faire des
-							prévisions sur plusieurs jours par exemple, n'ont pas été implémentées.</li>
+							<p>A la fin de ce projet, nous pouvons dire que les principales fonctionnalités du programme ont bien été implémentées. Le moteur "meteo" couplé avec son client
+							est fonctionnel, et nous rend des résultats cohérents. Cependant, nous avons choisis de laisser quelques fonctionnalités de côté par
+							manque de temps et d'informations dans le domaine :</p>
+							<ul >
+								<li>Il n'y a pas de connexion a un serveur réel, le programme ne peut qu'utiliser le serveur de	test qui fournit les metar depuis un fichier. 
+								 Les mesures n'ont donc rien de réelles et sont juste là pour vérifier le bon fonctionnement du programme.</li>
+								<li>Les prévisions complexes (classes ComplexForeCastX), permettant de faire des prévisions sur plusieurs jours par exemple, n'ont pas été implémentées.</li>
 							</ul>
-
-							Nous pouvons également soulever un point moins important, qui est que certaines données
+							<p>Nous pouvons également soulever un point moins important, qui est que certaines données
 							se trouvant dans un metar ne sont pas exploitées. Il s'agit par exemple
 							d'informations sur la précision du temps (effet atmosphérique, brouillard, 
-							hauteur des nuages ...).<br/>
-							Ainsi, les informations que nous avons exploité dans les metar sont :<br/>
-							<ul>
+							hauteur des nuages ...).</p> <br  />
+							<p>Ainsi, les informations que nous avons exploité dans les metar sont :</p>
+							<ul >
 								<li>La pression atmosphérique.</li>
 								<li>La température et la température à la rosée.</li>
 								<li>La force du vent, la force maximale du vent et la direction du vent.</li>
@@ -469,10 +460,10 @@
 							</ul>
 						</div>
 					</div>
-
-				</div>
 				<br />
+				
 			</div>
+		</div>
 		</div>
 	<center>
 		<div id="pied_page"><div id="pied_page_interieur"><small>
