@@ -34,10 +34,11 @@
 					<h3>1.2 Présentation du projet</h3>
 					<div id="secs">
 						<div id="texte">
-							<p>Ce projet a pour objectif de réaliser l'application station méteo, dans le cadre de l'unité d'enseignement INF2104.</p>
+							<p>Ce projet a pour objectif de réaliser l'application station méteo, dans le cadre de l'unité d'enseignement INF2104.</p><br/>
 							<p> Le logiciel <b>météo</b> est une application qui fournit des informations météorologiques sur une région choisie au préalable.
 								Pour cela, elle est à l'écoute de bornes météo, situées dans les aéroports, qui fournissent de l'information météorologique à l'état brut. 
-								Le rôle de cette application est d'exploiter cette information et d'indiquer, pour le lieu choisi, les éléments suivants :</p>
+								</p><br/>
+								<p>Le rôle de cette application est d'exploiter cette information et d'indiquer, pour le lieu choisi, les éléments suivants :</p>
 							<p>
 								<ul style="margin-top:0px;margin-bottom:0px;">
 								<li>le temps : Ensoleillé, Peu nuageux, Nuageux, Couvert, Pluvieux ;</li>
@@ -46,7 +47,7 @@
 								<li>la vitesse du vent ;</li>
 								<li>l'humidité de l'air.</li>
 								</ul>
-							</p>
+							</p><br/>
 							<p>Le maillage des bornes météo étant assez lâche (3 pour la Bretagne à Rennes, Brest et Nantes), les villes proposées par l'application seront 
 							repérées par leurs distances aux trois stations météo les plus proches et les données météo affichées seront calculées par interpolation entre 
 							les données de ces trois bornes. Les règles d'interpolation ne sont pas les mêmes pour les différents types de données. </p>
@@ -121,7 +122,7 @@
                                 <td>lib</td>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
-                                <td>: r&eacute;pertoire contenant les librairies (jdepend, javancss, junit, log4j)</td>
+                                <td>: r&eacute;pertoire contenant les librairies (ant, jdepend, javancss, junit, log4j)</td>
                               </tr>
                               <tr>
                                 <td>|-------</td>
@@ -154,7 +155,7 @@
                                 <td>api</td>
                                 <td>&nbsp;</td>
                                 <td>: r&eacute;pertoire de la documentation javadoc des classes Java</td>
-                              </tr>/ubs/home/etud/2003/e0300577/ubs/workspace
+                              </tr>
                               <tr>
                                 <td>|</td>
                                 <td>&nbsp;</td>
@@ -270,18 +271,18 @@
 					<div id="secs">
 						<div id="texte">
 							<p>La mise au point d'un logiciel est souvent constituée de tâches répétitives (compilation, génération javadoc, test...). Afin de facilité le développement 
-							du projet, nous avons décidé d'utiliser ANT qui nous permet d'automatiser les tâches par l'intermédiaire d'un fichier "build.xml". </p>
+							du projet, nous avons décidé d'utiliser ANT qui nous permet d'automatiser les tâches par l'intermédiaire d'un fichier "build.xml". </p><br/>
 							<p>Ce fichier contient les actions suivantes : </p>
 							<ul style="margin-top:0px;margin-bottom:0px;">
 							<li><b>class</b> : compile les classes java du  projet</li>
 							<li><b>clean-class</b> : supprime les classes compilées</li>
-							<li><b>javadoc</b> : génère la JavaDoc</li>
+							<li><b>javadoc</b> : génére la JavaDoc</li>
 							<li><b>clean-javadoc</b> : supprime la JavaDoc générée</li>
-							<li><b>javancss</b> : génère le rapport JavaNCSS</li>
+							<li><b>javancss</b> : génére le rapport JavaNCSS</li>
 							<li><b>clean-javancss</b> : supprime le rapport JavaNCSS généré</li>
-							<li><b>jdepent</b> : génère le rapport JDepend </li>
+							<li><b>jdepend</b> : génére le rapport JDepend </li>
 							<li><b>clean-jdepend</b> : supprime le rapport JDepend généré</li>
-							<li><b>junit</b> : génère le rapport de test </li>
+							<li><b>junit</b> : génére le rapport de test </li>
 							<li><b>clean-junit</b> : supprime le rapport de test généré</li>
 							<li><b>all</b> : exécute tout</li>
 							<li><b>clean</b> : efface tout ce qui a été généré</li>
@@ -299,7 +300,7 @@
 					<h3>4.1 JavaNCSS</h3>
 					<div id="secs">
 						<div id="texte">
-							<p>L'outil JavaNCSS nous permet d'analyser la qualité du code Java produit et de calculer les métriques de qualité.</p>
+							<p>L'outil JavaNCSS nous permet d'analyser la qualité du code Java produit et de calculer les métriques de qualité.</p><br/>
 							<p>Les principals métriques sont les suivants :</p>
 							<ul style="margin-top:0px;margin-bottom:0px;">
 							<li>nombre de classes</li>
@@ -307,7 +308,7 @@
 							<li>nombre de méthodes</li>
 							<li>nombre d’instructions sans commentaire</li>
 							<li>nombre de commentaires JavaDoc par projet, package, classe et méthode.</li>
-							</ul>
+							</ul><br/>
 							<p>Cette outil nous offre la possibilité de générer un rapport HTML. Ce dernier nous permet de connaitre les différents métriques correspondants
 							a notre code sources et ainsi cela nous permet par exemple, de rajouter des commentaires javadoc aux endroits que l'on a oublié. </p>
 							<br  />
@@ -319,8 +320,8 @@
 					<div id="secs">
 						<div id="texte">
 							<p>L'outil JDepend nous permet d'analyser le code Java produit et calcule les métriques de qualité pour chaque package. 
-							JDepend est sensible à l’extensibilité, la réutilisabilité et la maintenabilité des sources.Ce dernier nous montre aussi les dépendances des packages et classes.</p>
-							<p>Cette outil nous offre la possibilité de générer un rapport HTML a partir duquel on peut avoir accès aux informations suivantes : </p>
+							JDepend est sensible à l’extensibilité, la réutilisabilité et la maintenabilité des sources. Ce dernier nous montre aussi les dépendances des packages et classes.</p>
+							<br/><p>Cette outil nous offre la possibilité de générer un rapport HTML a partir duquel on peut avoir accès aux informations suivantes : </p>
 							<ul style="margin-top:0px;margin-bottom:0px;">
 							<li>nom du package analysé</li>
 							<li>nombre total de classes</li>
@@ -340,19 +341,19 @@
 					<h3>4.3 Log4J</h3>
 					<div id="secs">
 						<div id="texte">
-							Nous n'avons pas utilisé Log4J, pourquoi ?<br/><br/>
-							Principalement à cause du projet lui-même. Celui-ci n'est pas d'une 
+							<p>Nous n'avons pas utilisé Log4J, pourquoi ?</p><br/>
+							<p>Principalement à cause du projet lui-même. Celui-ci n'est pas d'une 
 							envergure assez grande pour nécessité l'utilisation de journaux. Il ne s'agit
 							pas non plus d'une application distribuée ou utilisant de multiples thread. Il
 							nous a donc semblé que cela serait plus une perte de temps, malgrès certains
-							avantages que nous aurions pu avoir face à "System.out.println".<br/><br/>
-							De plus, l'outil de débuggage intégré dans l'environnement Eclipse,
-							et les jeux de tests nous semblent largement suffisant pour le projet.<br/>
+							avantages que nous aurions pu avoir face à "System.out.println".</p><br/>
+							<p>De plus, l'outil de débuggage intégré dans l'environnement Eclipse,
+							et les jeux de tests nous semblent largement suffisant pour le projet.</p>
 							<br/>
-							<em>Note :</em> Nous aurions pu l'utiliser sur ce projet, car ne connaissant
+							<p><em>Note :</em> Nous aurions pu l'utiliser sur ce projet, car ne connaissant
 							pas spécialement cet outil, cela aurait permis une compréhension facilité si nous
 							devions dans l'avenir l'utiliser dans un projet où il est réellement utile,
-							c'est à dire de moyenne/grande envergure.
+							c'est à dire de moyenne/grande envergure.</p>
 						</div>
 					</div>
 				</div>
@@ -469,364 +470,6 @@
 						</div>
 					</div>
 
-				</div>
-				<br />
-			</div>
-		</div>
-	<center>
-		<div id="pied_page"><div id="pied_page_interieur"><small>
-			<p style="float:left;text-align:left;">Copyright © UBS - UFR SSI - Dept MIS</p>
-			<p style="float:right;text-align: right;">Version 2006-2007</p>
-			<p style="text-align:center;">Auteurs : Catric - Le Ny - Meheut - Yang</p></small></div>
-		</div>
-	</center>
-</body>
-</html>
-=======
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" type="text/css" href="style/styles2.css" />
-<title>Rapport Projet M&eacute;t&eacute;o</title>
-</head>
-<body>
-	<center>
-		<div id="haut_page">
-			<span id="image_gauche"></span>
-			<span id="image_droite"></span>
-			<h1>Rapport Projet M&eacute;t&eacute;o</h1>
-		</div>
-	</center>
-	
-		<div align="center" id="contenu">
-			<div id="contenu_interieur">
-				<h2>1. Présentation</h2>
-				<div id="sec">
-					<h3>1.1 Membres du groupe</h3>
-					<div id="secs">
-						<div id="texte">
-							<p>Notre groupe se compose de quatre membres qui sont les suivants :</p>
-							<ul style="margin-top:0px; margin-bottom:0px;">
-								<li>Jérôme Catric</li>
-								<li>Clément Le Ny</li>
-								<li>Emmanuel Meheut</li>
-								<li>Yitian Yang</li>
-							</ul>
-						</div>
-					</div>
-					<br />
-					<h3>1.2 Présentation du projet</h3>
-					<div id="secs">
-						<div id="texte">
-							<p>Ce projet a pour objectif de réaliser l'application station méteo, dans le cadre de l'unité d'enseignement INF2104.</p>
-							<p> Le logiciel <b>météo</b> est une application qui fournit des informations météorologiques sur une région choisie au préalable.
-								Pour cela, elle est à l'écoute de bornes météo, situées dans les aéroports, qui fournissent de l'information météorologique à l'état brut. 
-								Le rôle de cette application est d'exploiter cette information et d'indiquer, pour le lieu choisi, les éléments suivants :</p>
-							<p>
-								<ul style="margin-top:0px;margin-bottom:0px;">
-								<li>le temps : Ensoleillé, Peu nuageux, Nuageux, Couvert, Pluvieux ;</li>
-								<li>la température : définie en degré celsus (°C) ;</li>
-								<li>la pression atmosphérique : définie en hecto-pascal (hpa) ;</li>
-								<li>la vitesse du vent ;</li>
-								<li>l'humidité de l'air.</li>
-								</ul>
-							</p>
-							<p>Le maillage des bornes météo étant assez lâche (3 pour la Bretagne à Rennes, Brest et Nantes), les villes proposées par l'application seront 
-							repérées par leurs distances aux trois stations météo les plus proches et les données météo affichées seront calculées par interpolation entre 
-							les données de ces trois bornes. Les règles d'interpolation ne sont pas les mêmes pour les différents types de données. </p>
-						</div>	
-					</div>
-				</div>
-				<br />
-				<h2>2. Diagramme de classe </h2>
-				<div id="sec">
-					<div id="texte">
-						<p>La figure suivante présente le diagramme de classes (non-détaillé) pour le moteur de l'application Météo :</p><br />
-						<a href="../../uml/meteo.png" target="_blank"><img src="../../uml/meteo2.png" border="0" /></a><br /><br />
-						<p>Pour obtenir le diagramme de classe détaillé avec tous les attributs et méthodes des classes cliquer sur le diagramme de classe. </p>
-					</div>
-				</div>
-				<br />
-				<h2>3. Mise en place de environnement de développement </h2>
-				<div id="sec">
-					<h3>3.1 Structures du CVS</h3>
-					<div id="secs">
-						<div id="texte">
-							<p>Représentation de la structure globale de notre repository ci-dessous : </p>
-							<br />
-							<div style="font-size:10px;">
-							<table width="720" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="border-style:solid;border-color:#009933;border-width:1px;">
-                              <tr>
-                                <td colspan="6">&nbsp;</td>
-                              </tr>
-                              <tr>
-                                <td width="14" rowspan="23">&nbsp;</td>
-                                <td width="43">meteo</td>
-                                <td width="43">&nbsp;</td>
-                                <td width="38">&nbsp;</td>
-                                <td width="48">&nbsp;</td>
-                                <td width="69">&nbsp;</td>
-                                <td width="453">: r&eacute;pertoire du projet</td>
-                              </tr>
-                              <tr>
-                                <td>|-------</td>
-                                <td>ant</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>: r&eacute;pertoire contenant les scripts d'automatisation</td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>|-------</td>
-                                <td>bin</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>: dossier contenant les ex&eacute;cutables de ant </td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>|-------</td>
-                                <td colspan="2">build.xml</td>
-                                <td>&nbsp;</td>
-                                <td>: fichier build.xml </td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>|-------</td>
-                                <td>etc</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>: r&eacute;pertoire contenant les fichiers annexes n&eacute;c&eacute;ssaire a ant </td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>`-------</td>
-                                <td>lib</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>: r&eacute;pertoire contenant les librairies (jdepend, javancss, junit, log4j)</td>
-                              </tr>
-                              <tr>
-                                <td>|-------</td>
-                                <td>build</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>: r&eacute;pertoire regroupant tous les fichiers g&eacute;n&eacute;r&eacute;s</td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>|-------</td>
-                                <td>class</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>: r&eacute;pertoire contenant les classes Java compil&eacute;es (bytecode) </td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>`-------</td>
-                                <td>web</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>: r&eacute;pertoire du site web du projet</td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>&nbsp;</td>
-                                <td>|------</td>
-                                <td>api</td>
-                                <td>&nbsp;</td>
-                                <td>: r&eacute;pertoire de la documentation javadoc des classes Java</td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>&nbsp;</td>
-                                <td>|------</td>
-                                <td>controle</td>
-                                <td>&nbsp;</td>
-                                <td>: r&eacute;pertoire des rapports de mesures </td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>&nbsp;</td>
-                                <td>|</td>
-                                <td>|--------</td>
-                                <td>jdepend</td>
-                                <td>: r&eacute;pertoire du rapport jdepend </td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>&nbsp;</td>
-                                <td>|</td>
-                                <td>`--------</td>
-                                <td>javancss</td>
-                                <td>: r&eacute;pertoire du rapport javancss </td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>&nbsp;</td>
-                                <td>|------</td>
-                                <td colspan="2">index.html</td>
-                                <td>: fichier index.html </td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>&nbsp;</td>
-                                <td>|------</td>
-                                <td>pdf</td>
-                                <td>&nbsp;</td>
-                                <td>: r&eacute;pertoire de rapports en PDF</td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>&nbsp;</td>
-                                <td>|------</td>
-                                <td>style</td>
-                                <td>&nbsp;</td>
-                                <td>: r&eacute;pertoire de styles CSS du site web</td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>&nbsp;</td>
-                                <td>`------</td>
-                                <td>test</td>
-                                <td>&nbsp;</td>
-                                <td>: r&eacute;pertoire de rapport de test </td>
-                              </tr>
-                              <tr>
-                                <td>|-------</td>
-                                <td>docsrc</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>: r&eacute;pertoire de sources des documents r&eacute;dig&eacute;s</td>
-                              </tr>
-                              <tr>
-                                <td>|-------</td>
-                                <td>java</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>: r&eacute;pertoire des sources en java </td>
-                              </tr>
-                              <tr>
-                                <td>|</td>
-                                <td>`-------</td>
-                                <td>pgm</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>: sources de l'application et fichier de test </td>
-                              </tr>
-                              <tr>
-                                <td>|-------</td>
-                                <td>uml</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>: mod&egrave;le UML de l'application</td>
-                              </tr>
-                              <tr>
-                                <td>|-------</td>
-                                <td>ww</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>: espace de travail d&eacute;veloppeur </td>
-                              </tr>
-                              <tr>
-                                <td>`-------</td>
-                                <td colspan="2">readme</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>: fichier readme </td>
-                              </tr>
-                              <tr>
-                                <td colspan="6">&nbsp;</td>
-                              </tr>
-                            </table>
-							</div>
-							<p>&nbsp;</p>
-							
-					  </div>
-					</div>
-					<h3>3.2 Utilisation de ANT</h3>
-					<div id="secs">
-						<div id="texte">
-							<p>La mise au point d'un logiciel est souvent constituée de tâches répétitives (compilation, génération javadoc, test...). Afin de facilité le développement 
-							du projet, nous avons décidé d'utiliser ANT qui nous permet d'automatiser les tâches par l'intermédiaire d'un fichier "build.xml". </p>
-							<p>Ce fichier contient les actions suivantes : </p>
-							<ul style="margin-top:0px;margin-bottom:0px;">
-							<li><b>class</b> : compile les classes java du  projet</li>
-							<li><b>clean-class</b> : supprime les classes compilées</li>
-							<li><b>javadoc</b> : génère la JavaDoc</li>
-							<li><b>clean-javadoc</b> : supprime la JavaDoc générée</li>
-							<li><b>javancss</b> : génère le rapport JavaNCSS</li>
-							<li><b>clean-javancss</b> : supprime le rapport JavaNCSS généré</li>
-							<li><b>jdepend</b> : génère le rapport JDepend </li>
-							<li><b>clean-jdepend</b> : supprime le rapport JDepend généré</li>
-							<li><b>junit</b> : génère le rapport de test </li>
-							<li><b>clean-junit</b> : supprime le rapport de test généré</li>
-							<li><b>all</b> : exécute tout</li>
-							<li><b>clean</b> : efface tout ce qui a été généré</li>
-							<li><b>init</b> : créer les répertoires </li>
-							</ul>
-							<br />
-							<p>Voir le <a href="../../ant/build.xml" target="_blank">code source</a> du fichier.</p>
-						</div>
-					</div>
-				</div>
-				<br />
-				
-				<h2>4. Outils d'optimisation de code</h2>
-				<div id="sec">
-					<h3>4.1 JavaNCSS</h3>
-					<div id="secs">
-						<div id="texte">
-							<p>L'outil JavaNCSS nous permet d'analyser la qualité du code Java produit et de calculer les métriques de qualité.</p>
-							<p>Les principals métriques sont les suivants :</p>
-							<ul style="margin-top:0px;margin-bottom:0px;">
-							<li>nombre de classes</li>
-							<li>nombre de package</li>
-							<li>nombre de méthodes</li>
-							<li>nombre d’instructions sans commentaire</li>
-							<li>nombre de commentaires JavaDoc par projet, package, classe et méthode.</li>
-							</ul>
-							<p>Cette outil nous offre la possibilité de générer un rapport HTML. Ce dernier nous permet de connaitre les différents métriques correspondants
-							a notre code sources et ainsi cela nous permet par exemple, de rajouter des commentaires javadoc aux endroits que l'on a oublié. </p>
-							<br  />
-							<p>Voir le <a href="controle/javancss/javancss_metrics.html" target="_blank">Rapport JavaNCSS</a>.</p>
-						</div>
-					</div>
-					<br  />
-					<h3>4.2 JDepend</h3>
-					<div id="secs">
-						<div id="texte">
-							<p>L'outil JDepend nous permet d'analyser le code Java produit et calcule les métriques de qualité pour chaque package. 
-							JDepend est sensible à l’extensibilité, la réutilisabilité et la maintenabilité des sources.Ce dernier nous montre aussi les dépendances des packages et classes.</p>
-							<p>Cette outil nous offre la possibilité de générer un rapport HTML a partir duquel on peut avoir accès aux informations suivantes : </p>
-							<ul style="margin-top:0px;margin-bottom:0px;">
-							<li>nom du package analysé</li>
-							<li>nombre total de classes</li>
-							<li>nombre de classes concrètes</li>
-							<li>nombre de classes abstraites</li>
-							<li>liste des classes abstraites du package </li>
-							<li>liste des classes concrètes du package</li>
-							<li>liste des dépendances descendantes</li>
-							<li>liste des dépendances ascendantes</li>
-							<li>Métriques d’analyse de la qualité du code</li>
-							</ul>
-							<br  />
-							<p>Voir le <a href="controle/jdepend/jdepend-report.html" target="_blank">Rapport JDepend</a></li>.</p>
-						</div>
-					</div>
-				</div>
-				<br />
-				
-				<h2>5. Bilan du projet</h2>
-				<div id="sec">
-					<p>Nous n'avons pas utiliser Log4J, ni d&eacute;velopper les pr&eacute;visions m&eacute;t&eacute;orologique.</p>
 				</div>
 				<br />
 			</div>
