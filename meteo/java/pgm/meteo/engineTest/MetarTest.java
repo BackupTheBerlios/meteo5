@@ -21,28 +21,21 @@ public class MetarTest extends TestCase {
 		assertEquals(msg,metar.toString());
 	}
 	
-	/** Vérifie qu'un metar créé à partir d'une ligne est coorrect */
+	/** Vérifie qu'un metar créé à partir d'une ligne est coorrect
+	 * en comparant les valeurs de chaque a 
+	 */
 	public void testParse(){
-		String msg = "METAR VANNES 161800Z AUTO 00315G25KT CAVOK 20/12 1024 =";
-		Metar metar = new Metar("VANNES",16,18,00,3,15,25,true,50,20,12,1024);
-		Metar metarMsg = Metar.parse(msg);
-		assertEquals(metar.getNuages(),metarMsg.getNuages());
-		assertEquals(metar.getPlace(),metarMsg.getPlace());
-		assertEquals(metar.getTempsPresent(),metarMsg.getTempsPresent());
-		assertEquals(metar.getDay(),metarMsg.getDay());
-		assertEquals(metar.getDir(),metarMsg.getDir());
-		assertEquals(metar.getDistance(),metarMsg.getDistance());
-		assertEquals(metar.getForce(),metarMsg.getForce());
-		assertEquals(metar.getForceMax(),metarMsg.getForceMax());
-		assertEquals(metar.getHauteurNuages(),metarMsg.getHauteurNuages());
-		assertEquals(metar.getHour(),metarMsg.getHour());
-		assertEquals(metar.getMin(),metarMsg.getMin());
-		assertEquals(metar.getQnh(),metarMsg.getQnh());
-		assertEquals(metar.getSiteDistance(),metarMsg.getSiteDistance());
-		assertEquals(metar.getTemperature(),metarMsg.getTemperature());
-		assertEquals(metar.getTemperatureRose(),metarMsg.getTemperatureRose());
-		assertEquals(metar.getVisibilite(),metarMsg.getVisibilite());
-		assertEquals(metar.isCavok(),metarMsg.isCavok());
+		String msg = "METAR LFBD 280830Z 03005KT 360V070 9999 FEW006 BKN017 15/12 Q1023 NOSIG=";
+		Metar met = Metar.parse(msg);
+		assertEquals("LFBD",met.getPlace());
+		assertEquals(28, met.getDay());
+		assertEquals(8, met.getHour());
+		assertEquals(30, met.getMin());
+		assertEquals(3, met.getDir());
+		assertEquals(0, met.getForce());
+		assertEquals(9999, met.getVisibilite());
+		assertEquals(15, met.getTemperature());
+		assertEquals(12, met.getTemperatureRose());
 	}
 
 }
