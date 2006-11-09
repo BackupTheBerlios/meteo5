@@ -62,8 +62,8 @@ public class Wind extends MeteoElt {
 			this.speed = Math.round(speedMoy);
 		} else if (this.metars.size() != 0) {
 			this.direction = this.metars.get(0).getDir();
-			this.maxSpeed = this.metars.get(0).getDir();
-			this.speed = this.metars.get(0).getDir();
+			this.maxSpeed = this.metars.get(0).getForceMax();
+			this.speed = this.metars.get(0).getForce();
 		}
 	}
 
