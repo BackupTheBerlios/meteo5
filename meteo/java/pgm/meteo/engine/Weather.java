@@ -32,7 +32,7 @@ public class Weather extends MeteoElt {
 	protected void evalLocalValues() {
 		boolean cavOk = false;
 		for (Metar m : this.metars) {
-			cavOk &= m.isCavok();
+			cavOk = m.isCavok();
 		}
 
 		this.cavok = cavOk;
