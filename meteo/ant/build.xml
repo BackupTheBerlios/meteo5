@@ -93,7 +93,7 @@
 				windowtitle="Meteo API">
 
 			<doctitle><![CDATA[<h1>Meteo API</h1>]]></doctitle>
-			<bottom><![CDATA[<i>Copyright © 2005 Catric - Le Ny - Meheut - Yang.</i>]]></bottom>
+			<bottom><![CDATA[<i>Copyright &copy; 2005 Catric - Le Ny - Meheut - Yang.</i>]]></bottom>
 			<header><![CDATA[<meta HTTP-EQUIV='content-type' CONTENT='text/html; charset=UTF-8'>]]></header>
 		</javadoc>
 	</target>
