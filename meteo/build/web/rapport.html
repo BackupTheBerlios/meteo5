@@ -43,8 +43,8 @@
 							<p>Le r&ocirc;le de cette application est d'exploiter cette information et d'indiquer, pour le lieu choisi, les &eacute;l&eacute;ments suivants :</p>
 							<ul>
 								<li>le temps : Ensoleill&eacute;, Peu nuageux, Nuageux, Couvert, Pluvieux;</li>
-								<li>la temp&eacute;rature : d&eacute;finie en degr&eacute; celsus (&deg;C);</li>
-								<li>la pression atmosph&eacute;rique : d&eacute;finie en hecto-pascal (hpa);</li>
+								<li>la temp&eacute;rature : d&eacute;finie en degr&eacute; celsius  (&deg;C);</li>
+								<li>la pression atmosph&eacute;rique : d&eacute;finie en hectopascal (hpa);</li>
 								<li>la vitesse du vent;</li>
 								<li>l'humidit&eacute; de l'air.</li>
 							</ul>
@@ -59,7 +59,8 @@
 				<h2>2. Diagramme de classe </h2>
 				<div class="sec">
 					<div class="texte">
-						<p>La figure suivante pr&eacute;sente le diagramme de classes (non-d&eacute;taill&eacute;) pour le moteur de l'application M&eacute;t&eacute;o :</p><br />
+						<p>La figure suivante pr&eacute;sente le diagramme de classes (non d&eacute;taill&eacute;) pour le moteur de l'application M&eacute;t&eacute;o :</p>
+						<br />
 						<a href="../../uml/meteo.png" target="_blank"><img src="../../uml/meteo2.png" border="0" alt="Diagramme de classe" /></a><br /><br />
 						<p>Pour obtenir le diagramme de classe d&eacute;taill&eacute; avec tous les attributs et m&eacute;thodes des classes cliquer sur le diagramme de classe. </p>
 					</div>
@@ -271,8 +272,9 @@
 					<h3>3.2 Utilisation de ANT</h3>
 					<div class="secs">
 						<div class="texte">
-							<p>La mise au point d'un logiciel est souvent constitu&eacute;e de t&acirc;ches r&eacute;p&eacute;titives (compilation, g&eacute;n&eacute;ration javadoc, test...). Afin de facilit&eacute; le d&eacute;veloppement 
-							du projet, nous avons d&eacute;cid&eacute; d'utiliser ANT qui nous permet d'automatiser les t&acirc;ches par l'interm&eacute;diaire d'un fichier &quot;build.xml&quot;. </p><br/>
+							<p>La mise au point d'un logiciel est souvent constitu&eacute;e de t&acirc;ches r&eacute;p&eacute;titives (compilation, g&eacute;n&eacute;ration javadoc, test...). Afin de faciliter  le d&eacute;veloppement 
+							du projet, nous avons d&eacute;cid&eacute; d'utiliser ANT qui nous permet d'automatiser les t&acirc;ches par l'interm&eacute;diaire d'un fichier &quot;build.xml&quot;. </p>
+							<br/>
 							<p>Ce fichier contient les actions suivantes : </p>
 							<ul>
 								<li><b>class</b> : compile les classes java du  projet</li>
@@ -290,7 +292,7 @@
 								<li><b>init</b> : cr&eacute;er les r&eacute;pertoires </li>
 							</ul>
 							<p>Voir le <a href="../../ant/build.xml" target="_blank">code source</a> du fichier.</p>
-						</div>
+					  </div>
 					</div>
 				</div>
 				<br />
@@ -301,16 +303,16 @@
 					<div class="secs">
 						<div class="texte">
 							<p>L'outil JavaNCSS nous permet d'analyser la qualit&eacute; du code Java produit et de calculer les m&eacute;triques de qualit&eacute;.</p><br/>
-							<p>Les principals m&eacute;triques sont les suivants :</p>
+							<p>Les principaux  m&eacute;triques sont les suivants :</p>
 							<ul>
 								<li>nombre de classes</li>
 								<li>nombre de package</li>
 								<li>nombre de m&eacute;thodes</li>
 								<li>nombre d'instructions sans commentaire</li>
-								<li>nombre de commentaires JavaDoc par projet, package, classe et m&eacute;thode.</li>
+								<li>nombre de commentaires Javadoc par projet, package, classe et m&eacute;thode.</li>
 							</ul>
-							<p>Cette outil nous offre la possibilit&eacute; de g&eacute;n&eacute;rer un rapport HTML. Ce dernier nous permet de connaitre les diff&eacute;rents m&eacute;triques correspondants
-							a notre code sources et ainsi cela nous permet par exemple, de rajouter des commentaires javadoc aux endroits que l'on a oubli&eacute;. </p>
+							<p>Cet outil nous offre la possibilit&eacute; de g&eacute;n&eacute;rer un rapport HTML. Ce dernier nous permet de conna&icirc;tre  les diff&eacute;rents m&eacute;triques correspondants
+							a notre code sources et ainsi cela nous permet par exemple, de rajouter des commentaires Javadoc  aux endroits que l'on a oubli&eacute;. </p>
 							<br  />
 							<p>Voir le <a href="controle/javancss/javancss_metrics.html" target="_blank">Rapport JavaNCSS</a>.</p>
 						</div>
@@ -323,7 +325,7 @@
 							JDepend est sensible &agrave; l'extensibilit&eacute;, la r&eacute;utilisabilit&eacute; et la maintenabilit&eacute; des sources. Ce dernier nous montre aussi les 
 							d&eacute;pendances des packages et classes.</p>
 							<br/>
-							<p>Cette outil nous offre la possibilit&eacute; de g&eacute;n&eacute;rer un rapport HTML a partir duquel on peut avoir acc&egrave;s aux informations suivantes : </p>
+							<p>Cette outil nous offre la possibilit&eacute; de g&eacute;n&eacute;rer un rapport HTML &agrave; partir  duquel on peut avoir acc&egrave;s aux informations suivantes : </p>
 							<ul>
 								<li>nom du package analys&eacute;</li>
 								<li>nombre total de classes</li>
@@ -346,9 +348,10 @@
 							<p>Principalement &agrave; cause du projet lui-m&ecirc;me. Celui-ci n'est pas d'une 
 							envergure assez grande pour n&eacute;cessit&eacute; l'utilisation de journaux. Il ne s'agit
 							pas non plus d'une application distribu&eacute;e ou utilisant de multiples thread. Il
-							nous a donc sembl&eacute; que cela serait plus une perte de temps, malgr&egrave;s certains
-							avantages que nous aurions pu avoir face &agrave; &quot;<i>System.out.println()</i>&quot;.</p><br/>
-							<p>De plus, l'outil de d&eacute;buggage int&eacute;gr&eacute; dans l'environnement Eclipse,
+							nous a donc sembl&eacute; que cela serait plus une perte de temps, malgr&eacute;  certains
+							avantages que nous aurions pu avoir face &agrave; &quot;<i>System.out.println()</i>&quot;.</p>
+							<br/>
+							<p>De plus, l'outil de d&eacute;bogage  int&eacute;gr&eacute; dans l'environnement Eclipse,
 							et les jeux de tests nous semblent largement suffisant pour le projet.</p>
 							<br/>
 							<p><em>Note :</em> Nous aurions pu l'utiliser sur ce projet, car ne connaissant
@@ -364,7 +367,7 @@
 				<div class="sec">
 					<div class="texte">
 						<p>16h de TP + travail perso</p>
-						<p>Seul les t&acirc;ches principales sont &eacute;valu&eacute;s ici :</p>
+						<p>Seul les t&acirc;ches principales sont &eacute;valu&eacute;es  ici :</p>
 						<ul>
 							<li>Installation de l'environnement et des outils : 6h</li>
 							<li>Analyse pr&eacute;liminaire du projet : 6h</li>
@@ -385,12 +388,12 @@
 						travail pour nous permettre d'acc&eacute;l&eacute;rer le d&eacute;veloppement et de donner des objectifs personnels &agrave; chacun.
 						La r&eacute;partition s'est faite en 2 groupes de 2 personnes :</p>
 						<ul>
-							<li>L'un installant ANT et les outils d'optimisation du code (javaNCSS et JDepend), 
+							<li>L'un installant ANT et les outils d'optimisation du code (JavaNCSS et JDepend), 
 							ainsi que de JUnit. Ce sont &eacute;galement eux qui ont cr&eacute;&eacute; les classes de test.</li>
 							<li>Tandis que l'autre groupe s'employait &agrave; la r&eacute;alisation des diff&eacute;rentes classes
-							du moteur &quot;meteo&quot; ainsi qu'&agrave; leurs impl&eacute;mentations.</li>
+							du moteur &quot;m&eacute;t&eacute;o&quot; ainsi qu'&agrave; leurs impl&eacute;mentations.</li>
 						</ul>
-						<p>Enfin, ce rapport &agrave; &eacute;t&eacute; redig&eacute; conjointement par les deux groupes apportant
+						<p>Enfin, ce rapport &agrave; &eacute;t&eacute; r&eacute;dig&eacute;  conjointement par les deux groupes apportant
 						chacun leurs informations.</p>
 					</div>
 				</div>
@@ -405,13 +408,12 @@
 							<p>Pendant la phase de r&eacute;alisation, nous nous sommes s&eacute;par&eacute;s la cr&eacute;ation des diff&eacute;rentes classes pour nous permettre de travailler s&eacute;par&eacute;ment et ainsi
 							pourvoir rester le plus ind&eacute;pendant possible.</p>
 							<br/>
-							<p>La s&eacute;paration s'est faite apr&egrave;s avoir identifi&eacute; les grandes fonctionnalit&eacute;
-							du programme :</p>
+							<p>La s&eacute;paration s'est faite apr&egrave;s avoir identifi&eacute; les grandes fonctionnalit&eacute;s							du programme :</p>
 							<ul>
 								<li>La partie serveur et ce qui concerne la localisation des villes.</li>
 								<li>La partie g&eacute;rant la cr&eacute;ation des metars.</li>
 								<li>La partie g&eacute;rant la cr&eacute;ation des &eacute;l&eacute;ments m&eacute;t&eacute;o.</li>
-								<li>Le client du moteur &quot;meteo&quot;, et la fa&ccedil;ade du moteur.</li>
+								<li>Le client du moteur &quot;m&eacute;t&eacute;o&quot;, et la fa&ccedil;ade du moteur.</li>
 							</ul>
 							<p><i>Note :</i> Comme il est expliqu&eacute; dans la partie 6.2, la partie concernant les pr&eacute;visions (ForeCast) n'a pas &eacute;t&eacute; 
 							impl&eacute;ment&eacute;e.</p>
@@ -422,8 +424,8 @@
 							mieux les <a href="http://www.labo-sun.com/resource-FR-essentiels-647-1-java-general-methodes-de-programmation-bien-programmer-en-java.htm">
 							les conventions de nommage Java</a>.</p>
 							<br/>
-							<p>De m&ecirc;me, &agrave; chaque fois qu'un membre impl&eacute;mentait une m&eacute;thode ou cr&eacute;ait une classe, celui-ci se devait de mettre des commentaires JavaDoc et des commentaires
-							dans le code, permettant ainsi une meilleur compr&eacute;hension lors d'une relecture ult&eacute;rieur par lui-m&ecirc;me ou par un autre membre du groupe (facilant nottamment la 
+							<p>De m&ecirc;me, &agrave; chaque fois qu'un membre impl&eacute;mentait une m&eacute;thode ou cr&eacute;ait une classe, celui-ci se devait de mettre des commentaires Javadoc et des commentaires
+							dans le code, permettant ainsi une meilleur compr&eacute;hension lors d'une relecture ult&eacute;rieur par lui-m&ecirc;me ou par un autre membre du groupe (facilitant notamment la 
 							cr&eacute;ation des tests). Cela a &eacute;galement permis la g&eacute;n&eacute;ration automatique de la JavaDoc et donc un gain de temps &eacute;norme pour la r&eacute;alisation du rapport final.</p>
 						</div>
 					</div>
@@ -432,17 +434,21 @@
 					<h3>7.2 Les tests</h3>
 					<div class="secs">
 						<div class="texte">
-							<p>BlaBla manu</p>
+							<p>Pour les tests nous avons utilisé Junit comme pr&eacute;conis&eacute;  ce qui a permis un gain de temps. De plus nous avons automatis&eacute; le tout dans le fichier &quot;build.xml&quot; de ANT qui 
+							g&eacute;n&egrave;re automatiquement les rapports de test. Cette fonction nous a permis de rep&eacute;rer des problèmes dans le code des classes du projet et de les corriger rapidement.</p>
+							<br  />
+							<p>En priorit&eacute;, nous avons choisi de coder les classes centrales (Metar notamment) puis avons poursuivi par les autres. Il y a cependant certaine classe que
+							 nous n'avons volontairement pas tester comme la classe client qui est surtout graphique et donc qui n'est pas adapt&eacute;e à ce genre de test.</p>
 							<br  />
 							<p>Voir le <a href="test/index.html" target="_blank">Rapport Test</a>.</p>
-						</div>
+					  </div>
 					</div>
 					<br/>
 
 					<h3>7.3 Etat final du projet</h3>
 					<div class="secs">
 						<div class="texte">
-							<p>A la fin de ce projet, nous pouvons dire que les principales fonctionnalit&eacute;s du programme ont bien &eacute;t&eacute; impl&eacute;ment&eacute;es. Le moteur &quot;meteo&quot; coupl&eacute; avec son client
+							<p>A la fin de ce projet, nous pouvons dire que les principales fonctionnalit&eacute;s du programme ont bien &eacute;t&eacute; impl&eacute;ment&eacute;es. Le moteur &quot;m&eacute;t&eacute;o&quot; coupl&eacute; avec son client
 							est fonctionnel, et nous rend des r&eacute;sultats coh&eacute;rents. Cependant, nous avons choisis de laisser quelques fonctionnalit&eacute;s de c&ocirc;t&eacute; par
 							manque de temps et d'informations dans le domaine :</p>
 							<ul>
@@ -454,7 +460,7 @@
 							se trouvant dans un metar ne sont pas exploit&eacute;es. Il s'agit par exemple
 							d'informations sur la pr&eacute;cision du temps (effet atmosph&eacute;rique, brouillard, 
 							hauteur des nuages ...).</p> <br  />
-							<p>Ainsi, les informations que nous avons exploit&eacute; dans les metar sont :</p>
+							<p>Ainsi, les informations que nous avons exploit&eacute;es dans les metars sont :</p>
 							<ul>
 								<li>La pression atmosph&eacute;rique.</li>
 								<li>La temp&eacute;rature et la temp&eacute;rature &agrave; la ros&eacute;e.</li>
@@ -463,7 +469,8 @@
 								<li>Si le temps global est clair.</li>
 							</ul>
 							<p>A l'issue du projet, l'interface graphique du projet m&eacute;t&eacute;o est compos&eacute;e d'une liste d&eacute;roulante permettant de s&eacute;lectionner l'a&eacute;roport et d'une boite
-							de texte permettant d'afficher les informations m&eacute;t&eacute;rologiques de l'a&eacute;roport choisi. </p><br  />
+							de texte permettant d'afficher les informations m&eacute;t&eacute;orologiques de l'a&eacute;roport choisi. </p>
+							<br  />
 							<p align="center">
 							<img src="style/meteo.png" alt="Interface graphique" /><br />
 							<i><small> Interface graphique de l'application</small></i></p>
