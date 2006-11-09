@@ -49,7 +49,6 @@ public class MetarsFactory {
 
 			// Récupération du message par le serveur.
 			String message = server.getAMetarString(infos[0], timeStamp);
-			System.out.println("metar :" + message);
 
 			// Si on a bien récupéré un metar
 			if (!message.equals("")) {
