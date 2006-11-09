@@ -4,24 +4,27 @@ import meteo.engine.Metar;
 import junit.framework.TestCase;
 
 /**
+ * Classe testant la classe Metar.
+ * 
  * @author LE NY Clément
  * @author CATRIC Jérôme
  * @author YANG Yitian
  * @author MEHEUT Emmanuel
  * 
- * 
- *  Test du passage de ligne écrite à métar
- *  et de metar à ligne écrite.
  */
 public class MetarTest extends TestCase {
-	/** Vérifie que le metar créé a bien la forme textuelle eattendue */
+	
+	/** 
+	 * Vérifie que le metar créé a bien la forme textuelle eattendue 
+	 */
 	public void testToString(){
 		String msg = "METAR VANNES 161800Z AUTO 00315G25KT CAVOK 20/12 1024 =";
 		Metar metar = new Metar("VANNES",16,18,00,3,15,25,true,50,20,12,1024);
 		assertEquals(msg,metar.toString());
 	}
 	
-	/** Vérifie qu'un metar créé à partir d'une ligne est correct
+	/** 
+	 * Vérifie qu'un metar créé à partir d'une ligne est correct
 	 * en comparant les valeurs de chaque champ à leur 
 	 * valeurs théoriques trouvées en décodant le message.
 	 */

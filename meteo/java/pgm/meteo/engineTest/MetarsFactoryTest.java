@@ -7,13 +7,13 @@ import meteo.engine.MetarsFactory;
 import junit.framework.TestCase;
 
 /**
- * Classe servant au test de la construction de metar pour une ville.
+ * Classe testant la classe MetarsFacotry.
  * 
  * @author LE NY Clément
  * @author CATRIC Jérôme
  * @author YANG Yitian
- * @author MEHEUT Emmanuel 
- *
+ * @author MEHEUT Emmanuel
+ * 
  */
 public class MetarsFactoryTest extends TestCase {
 	

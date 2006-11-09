@@ -4,17 +4,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Vector;
-
 import junit.framework.TestCase;
 import meteo.engine.LocationsFile;
+
 /**
+ * Classe testant la classe LocationsFile
+ * 
  * @author LE NY Clément
  * @author CATRIC Jérôme
  * @author YANG Yitian
  * @author MEHEUT Emmanuel
  * 
- * 
- *  Test des différentes méthodes de LocationsFile.
  */
 public class LocationsFileTest extends TestCase {
 	
@@ -66,7 +66,6 @@ public class LocationsFileTest extends TestCase {
 	 * au contenu du vecteur rempli manuellement.
 	 * Fait également le test pour une ville qui n'est pas dans la liste.
 	 */
-	
 	public void testGetlocValues(){
 		Vector<String> aeroValue = new Vector<String>();
 		Vector<String> aeroValueInexistant = new Vector<String>();

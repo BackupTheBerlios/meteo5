@@ -2,16 +2,18 @@ package meteo.engineTest;
 
 import junit.framework.TestCase;
 import meteo.engine.TestMeteoServer;
+
 /**
- * Test de TestmeteoServer
+ * Classe testant la classe TestMeteoServer.
  * 
  * @author LE NY Clément
  * @author CATRIC Jérôme
  * @author YANG Yitian
  * @author MEHEUT Emmanuel
+ * 
  */
-
 public class TestMeteoServerTest extends TestCase {
+	
 	/** 
 	 * 2 test en 1: le premier sert à vérifier que pour un code
 	 * présent dans la liste, la fonction getAMetarString retourne bien
