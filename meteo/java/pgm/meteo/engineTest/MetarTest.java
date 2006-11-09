@@ -21,8 +21,9 @@ public class MetarTest extends TestCase {
 		assertEquals(msg,metar.toString());
 	}
 	
-	/** Vérifie qu'un metar créé à partir d'une ligne est coorrect
-	 * en comparant les valeurs de chaque a 
+	/** Vérifie qu'un metar créé à partir d'une ligne est correct
+	 * en comparant les valeurs de chaque champ à leur 
+	 * valeurs théoriques trouvées en décodant le message.
 	 */
 	public void testParse(){
 		String msg = "METAR LFBD 280830Z 03005KT 360V070 9999 FEW006 BKN017 15/12 Q1023 NOSIG=";
