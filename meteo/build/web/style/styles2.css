@@ -51,18 +51,18 @@ div#pied_page_interieur {
 }
 
 /* Section de texte */
-div#texte {
+div.texte {
     display: block;
     text-align: justify;
     margin: 0px 0px 0px 25px;
 }
 
-div#sec {
+div.sec {
 	margin: 0px 0px 0px 15px;
 	padding: 0.3ex 0.5em 0.3ex 0.5em;
 }
 
-div#secs {
+div.secs {
 	margin: 0px 0px 0px 10px;                       
     padding: 0.2ex 0.4em 0.2ex 0.4em;
 }
