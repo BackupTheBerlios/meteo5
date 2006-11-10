@@ -10,46 +10,34 @@ CATRIC Jérome e0401237 kutoriku@gmail.com
 Organisation du répertoire de projet :
 ======================================
 
-meteo              : répertoire du projet
-|-- ant            : scripts d'automatisation ANT
-|-- build          : regroupe tous les fichiers générés
-|   |-- class      : classes Java compilées (bytecode)
-|   `-- web        : image du site web du projet
-|       |-- api    : documentation javadoc des classes Java
-|       |-- pdf    : rapports en PDF
-|       `-- style  : styles CSS du site web
-|-- docsrc         : sources des documents rédigés
-|-- java
-|   `--pgm         : sources de l'application en java
-|-- uml            : modèle UML de l'application
-`-- ww             : espace de travail développeur
+meteo  	   	   	   	   		: répertoire du projet
+|-- ant 	  	  	  		: répertoire contenant les scripts d'automatisation
+| 	|-- bin 	  	  		: dossier contenant les exécutables de ant
+| 	|-- build.xml 	  		: fichier build.xml
+| 	|-- etc 	  	  		: répertoire contenant les fichiers annexes nécéssaire a ant
+| 	`-- lib 	  	  		: répertoire contenant les librairies (ant, jdepend, javancss, junit, log4j)
+|-- build 	  	  	  		: répertoire regroupant tous les fichiers générés
+| 	|-- class 	  	  		: répertoire contenant les classes Java compilées (bytecode)
+| 	`-- web 	  	  		: répertoire du site web du projet
+| 	  	|-- api 	  		: répertoire de la documentation javadoc des classes Java
+| 	  	|-- controle 	  	: répertoire des rapports de mesures
+| 	  	| 	|-- jdepend 	: répertoire du rapport jdepend
+| 	  	| 	`-- javancss 	: répertoire du rapport javancss
+| 	  	|-- index.html 		: fichier index.html
+| 	  	|-- pdf 	  		: répertoire de rapports en PDF
+| 	  	|-- style 	  		: répertoire de styles CSS du site web
+| 	  	`-- test 	  		: répertoire de rapport de test
+|-- docsrc 	  	  	  		: répertoire de sources des documents rédigés
+|-- java 	  	  	  		: répertoire des sources en java
+| 	`-- pgm 	  	  		: sources de l'application et fichier de test
+|-- uml 	  	  	  		: modèle UML de l'application
+|-- ww 	  	  	  			: espace de travail développeur
+`-- readme 	  	  			: fichier readme
 
 
-Quelques explications :
-=======================
+INFOS  :
+========
 
-    * le répertoire build regroupe tous les résultats du projet :  on y trouve un sous-répertoire class pour les classes java compilées en byte-code et un sous-répertoire web qui accueille l'image du site web de présentation du projet. Il est important de séparer ces fichiers générés du reste car ces derniers ne sont pas sauvegardés dans les référentiels de sources (puisqu'on sait les regénérer en quelques secondes).
-    * le répertoire docsrc regroupe les sources de la documentation textuelle du projet ; il faut toujours avoir en tête que cette dernière est au moins aussi volumineuse que le code source, il y a donc lieu de s'organiser aussi bien pour la produire et la gérer.
-    * les sources Java sont placés dans le répertoire java ; on n'a pas appelé ici ce répertoire src car la majorité des applications sont multi-langages et il est bon de réserver un répertoire source par langage. Dans ce répertoire de source, on utilisera des sous-répertoires pour structurer les paquetages (packages Java).
-    
-
-INFOS POUR LES DEVELOPPERS :
-============================
-
-Dans le dossier "ANT"
-Les répertoires : "etc", "lib", "bin" et le fichier "build.xml" sont suffisant pas besoin du reste.
-
-
-Spécifier dans eclipse que vous utiliser le "ant" du projet.
-Pour ce faire ouvrir le fichier "build.xml" clic droit sur "all" puis "run as..." et "external tool.."
-Aller dans l'onglet "classpath" puis cliquer sur le bouton "Ant Home" (en bas à droite) et spécifier le repertoire
-de "ant" qui est : "~/workspace/meteo/ant"
-
-Penser a importer : "Junit.jar" et "Log4J.jar" dans le projet de eclipse librairie dans 
-~/workspace/meteo/ant/lib 
- 
- 
-Pour utiliser "ant" dans une console faire pointer sa variable d'environement vers le 
-dossier ant du projet
+Pour utiliser "ant" dans une console faire pointer sa variable d'environement vers le dossier ant du projet
  
 export ANT_HOME=~/workspace/meteo/ant

@@ -74,7 +74,7 @@
 
 	
 	<!-- Sources compiling -->
-	<target name="class" depends="init" description="Sources compiling">
+	<target name="class" depends="init,file-data" description="Sources compiling">
 		<javac srcdir="${src.java.dir}" destdir="${build.class.dir}"
 				debug="true" />
 	</target>
@@ -84,6 +84,12 @@
 		<delete dir="${build.class.dir}" />
 	</target>
 	
+	<!-- Fichiers de donnees -->
+	<target name="file-data" description="Data files">
+		<copy todir="${build.class.dir}">
+			<fileset dir="../meteo" includes="metars,places"/>
+		</copy>
+	</target>
 	
 	<!-- Javadoc creation -->
 	<target name="javadoc" depends="init" description="Javadoc creation">

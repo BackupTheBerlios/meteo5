@@ -23,7 +23,7 @@ public class MetarsFactory {
 	 */
 	public MetarsFactory() {
 		// Récupérer l'instance donnant l'accès aux aéroports, villes...
-		this.places = LocationsFile.getHandle("java/pgm/meteo/engine/places");
+		this.places = LocationsFile.getHandle("places");
 	}
 
 	/**

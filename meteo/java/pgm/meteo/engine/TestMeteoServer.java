@@ -17,7 +17,7 @@ import java.io.IOException;
 public class TestMeteoServer extends MeteoServer {
 
 	/** Emplacement du fichier contenant les metar de test. */
-	private String metarsFile = "java/pgm/meteo/engine/metars";
+	private String metarsFile = "metars";
 
 	/**
 	 * Renvoi un metar selon le code de l'aéroport. Comme il s'agit d'un serveur
