@@ -10,7 +10,7 @@
 	<property name="src.java.dir" location="${basedir}/java/pgm/" />
 
 	<!-- Documentation source directory -->
-	<property name="src.doc.dir" location="${basedir}/doc/" />
+	<property name="src.doc.dir" location="${basedir}/docsrc/" />
 
 	<!-- Build directory -->
 	<property name="build.dir" location="${basedir}/build/" />
@@ -156,7 +156,7 @@
 			</classpath>
 			<batchtest todir="${tmp.dir}">
 				<fileset dir="${build.class.dir}">
-					<include name="**/**/*Test.class"/>
+					<include name="**/**/*[a-zA-Z0-9]Test.class"/>
 				</fileset>
 			</batchtest>
 			<formatter type="xml" />
