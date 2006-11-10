@@ -156,7 +156,7 @@
 			</classpath>
 			<batchtest todir="${tmp.dir}">
 				<fileset dir="${build.class.dir}">
-					<include name="**/**/*[a-zA-Z0-9]Test.class"/>
+					<include name="**/**/*Test.class"/>
 				</fileset>
 			</batchtest>
 			<formatter type="xml" />
