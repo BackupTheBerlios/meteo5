@@ -1,4 +1,4 @@
-package meteo.engine;
+package AeroVille;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -20,42 +20,22 @@ public class LocationsFile {
 	/** Chemin du fichier contenant la liste des villes et les aéroports. */
 	private String FilePath = "";
 
-	/** Instance de la classe. */
-	private static LocationsFile instance = null;
-
 	/**
 	 * Constructeur de la classe.
 	 * 
 	 * @param FilePath
 	 *            Fichier contenant la liste des villes.
 	 */
-	private LocationsFile(String FilePath) {
+	public LocationsFile(String FilePath) {
 		this.FilePath = FilePath;
 	}
 
-	/**
-	 * Créer une instance de la classe.
-	 * 
-	 * @param FilePath
-	 *            Fichier contenant la liste des villes.
-	 * @return Une instance de la classe.
-	 */
-	public static LocationsFile getHandle(String FilePath) {
-		// Double vérification
-		if (instance == null) {
-			synchronized (LocationsFile.class) {
-				if (instance == null) {
-					instance = new LocationsFile(FilePath);
-				}
-			}
-		}
-		return instance;
-	}
 
 	/**
 	 * Récupère la liste de tous les aéroports.
 	 * 
 	 * @return La liste des codes des aéroports.
+	 * 
 	 */
 	public Vector<String> getAirports() {
 		Vector<String> aeroports = new Vector<String>();

@@ -4,8 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Vector;
+
+import AeroVille.LocationsFile;
 import junit.framework.TestCase;
-import meteo.engine.LocationsFile;
 
 /**
  * Classe testant la classe LocationsFile

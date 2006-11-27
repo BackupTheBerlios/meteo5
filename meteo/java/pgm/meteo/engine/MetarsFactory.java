@@ -2,6 +2,8 @@ package meteo.engine;
 
 import java.util.*;
 
+import AeroVille.LocationsFile;
+
 /**
  * Classe servant à la construction de metar pour une ville.
  * 
