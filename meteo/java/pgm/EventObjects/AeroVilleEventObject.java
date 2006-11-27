@@ -5,6 +5,8 @@ import java.util.Vector;
 
 public class AeroVilleEventObject extends EventObject {
 
+	private static final long serialVersionUID = 1l;
+	
 	private Vector<String> aeroports = new Vector<String>();
 	
 	public AeroVilleEventObject(Object o) {
