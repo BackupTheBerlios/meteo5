@@ -36,20 +36,19 @@ public class AeroVille implements Serializable, VilleListener {
 	}
 	
 	
-	private void chercherAeroports() {
-		Vector<AeroVilleListener> l;
-		
+	private void chercherAeroports() {		
 		AeroVilleEventObject aveo = new AeroVilleEventObject(this);
 		
 		LocationsFile locations = new LocationsFile(this.getAeroVilleFile());
 		aveo.setAeroports(locations.getLocations());
 		
 		synchronized (this) {
-			l = (Vector<AeroVilleListener>)(this.aeroVilleListener.clone());
+			Vector<AeroVilleListener> l = (Vector<AeroVilleListener>)this.aeroVilleListener.clone();
 			
 			for(AeroVilleListener avl : l) {
 				avl.handleChercherAeroports(aveo);
 			}
+	
 		}
 		
 	}
