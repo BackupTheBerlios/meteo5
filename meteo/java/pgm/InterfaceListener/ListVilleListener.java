@@ -1,13 +1,8 @@
 package InterfaceListener;
 
-public class ListVilleListener {
+import EventObjects.ListVilleEventObject;
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+public interface ListVilleListener {
+	void handleGetListVille(ListVilleEventObject e);
 
 }

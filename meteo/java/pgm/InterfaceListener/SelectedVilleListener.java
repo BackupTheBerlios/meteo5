@@ -7,6 +7,6 @@ import EventObjects.SelectedVilleEventObject;
 
 public interface SelectedVilleListener extends EventListener {
 
-	void handleVille(SelectedVilleEventObject e);
+	void handleSelectedVille(SelectedVilleEventObject e);
 
 }
