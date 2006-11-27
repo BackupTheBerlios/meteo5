@@ -4,13 +4,12 @@ import java.io.Serializable;
 import java.util.Vector;
 
 import EventObjects.AeroVilleEventObject;
+import EventObjects.SelectedVilleEventObject;
 import InterfaceListener.AeroVilleListener;
-
-import meteo.VilleEventObject;
-import meteo.VilleListener;
+import InterfaceListener.SelectedVilleListener;
 
 
-public class AeroVille implements Serializable, VilleListener {
+public class AeroVille implements Serializable, SelectedVilleListener {
 	
 	private static final long serialVersionUID = 1l;
 	
@@ -58,7 +57,7 @@ public class AeroVille implements Serializable, VilleListener {
 	// Ecouteur d'évènements
 	
 	// exe lors de l'arrivée d'un event VilleEventObject
-	public void handleVille(VilleEventObject e) {
+	public void handleVille(SelectedVilleEventObject e) {
 		String ville = e.getVille();
 		
 		if(!ville.equals("")) {
