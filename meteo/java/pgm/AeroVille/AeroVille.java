@@ -42,9 +42,6 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 	public AeroVille() {
 	}
 
-	
-	
-	
 	// ------------------------------------------------------------------------
 	// Source de d'évènement AeroVille : liste des codes d'aéroport + distance
 
@@ -98,9 +95,6 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 
 	}
 
-	
-	
-	
 	// ---------------------------------------------------------------
 	// Source de d'évènement ListVille : contient la liste des villes
 
@@ -142,23 +136,23 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 
 		// Envoi à tous les écoutants
 		synchronized (this) {
-			Vector<ListVilleListener> l = (Vector<ListVilleListener>) this.listVilleListener.clone();
+			Vector<ListVilleListener> l = (Vector<ListVilleListener>) this.listVilleListener
+					.clone();
 			for (ListVilleListener avl : l) {
 				avl.handleGetListVille(obj);
 			}
 		}
 	}
 
-	
-	
 	// ------------------------------------------------------------------------
 	// Ecouteur d'évènement SelectedVille : contient la ville pour la recherche
 	// des aéroports
 
-
 	/**
 	 * Méthode appelée lorsqu'un évènement SelectedVille est reçu.
-	 * @param e Objet contenant les informations sur la ville choisie.
+	 * 
+	 * @param e
+	 *            Objet contenant les informations sur la ville choisie.
 	 */
 	public void handleSelectedVille(SelectedVilleEventObject e) {
 		String ville = e.getVille();
@@ -169,21 +163,19 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 		}
 	}
 
-	
-	
 	// ----------------------------------------------
 	// Ecouteur d'évènement GetListVille : demande de la liste des villes
 
 	/**
 	 * Méthode azppelée lorsqu'un évènement GetListVille est reçu.
-	 * @param e Objet ne contenant pas d'information nécessaire.
+	 * 
+	 * @param e
+	 *            Objet ne contenant pas d'information nécessaire.
 	 */
 	public void handleGetListVille(GetListVilleEventObject e) {
 		// Lance un évènement contenant la liste des villes
 		getListVille();
 	}
-	
-	
 
 	// ---------------------------------------------
 	// Propriétés
