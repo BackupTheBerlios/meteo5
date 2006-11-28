@@ -19,7 +19,7 @@ import InterfaceListener.SelectedVilleListener;
  * @author MEHEUT Emmanuel
  * 
  * Composant gérant les villes et aéroports.
-**/
+ */
 
 public class AeroVille implements Serializable, SelectedVilleListener,
 		GetListVilleListener {

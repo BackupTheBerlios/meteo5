@@ -9,13 +9,14 @@ import InterfaceListener.AeroVilleListener;
 import InterfaceListener.MetarListener;
 
 /**
-* @author LE NY Clément
-* @author CATRIC Jérôme
-* @author YANG Yitian
-* @author MEHEUT Emmanuel
-* 
-* Composant gérant les villes et aéroports.
-*/
+ * @author LE NY Clément
+ * @author CATRIC Jérôme
+ * @author YANG Yitian
+ * @author MEHEUT Emmanuel
+ * 
+ * Composant envoyant les metars au parseur.
+ */
+
 public class Serveur implements Serializable, AeroVilleListener {
 
 
