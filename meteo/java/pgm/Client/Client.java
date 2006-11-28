@@ -85,13 +85,14 @@ public class Client implements Serializable, ListVilleListener {
 	
 	
 	//----------------------------------------------
-	// Ecouteur d'évènements ListVilleListener
+	// Ecouteur d'évènements ListVille
 	
-	// exe lors de l'arrivée d'un event
+	/**
+	 * Méthode lancée lors de la réception d'un évènement ListVille.
+	 * @param e Objet contenant la liste des villes.
+	 */
 	public void handleGetListVille(ListVilleEventObject e) {
-		
-		ClientClass cc = new ClientClass(e.getVilles());
-		
+		ClientClass cc = new ClientClass(e.getVilles());		
 	}
 	
 	

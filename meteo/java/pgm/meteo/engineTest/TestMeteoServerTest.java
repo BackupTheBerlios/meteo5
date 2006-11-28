@@ -1,7 +1,8 @@
 package meteo.engineTest;
 
+import composantServeur.TestMeteoServer;
+
 import junit.framework.TestCase;
-import meteo.engine.TestMeteoServer;
 
 /**
  * Classe testant la classe TestMeteoServer.

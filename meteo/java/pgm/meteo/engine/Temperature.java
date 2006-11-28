@@ -2,6 +2,7 @@ package meteo.engine;
 
 import java.util.Vector;
 
+
 /**
  * Classe représentant un élément météo de type température.
  * 

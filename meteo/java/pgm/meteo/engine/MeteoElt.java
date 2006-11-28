@@ -2,6 +2,7 @@ package meteo.engine;
 
 import java.util.Vector;
 
+
 /**
  * Super classe des éléments météorologique.
  * (pression, temperature, vent, visibilité et temps).

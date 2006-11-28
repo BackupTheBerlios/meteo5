@@ -8,6 +8,14 @@ import EventObjects.MetarEventObject;
 import InterfaceListener.AeroVilleListener;
 import InterfaceListener.MetarListener;
 
+/**
+* @author LE NY Clément
+* @author CATRIC Jérôme
+* @author YANG Yitian
+* @author MEHEUT Emmanuel
+* 
+* Composant gérant les villes et aéroports.
+*/
 public class Serveur implements Serializable, AeroVilleListener {
 
 

@@ -2,6 +2,9 @@ package meteo.engine;
 
 import java.util.*;
 
+import composantServeur.TestMeteoServer;
+
+
 import AeroVille.LocationsFile;
 
 /**

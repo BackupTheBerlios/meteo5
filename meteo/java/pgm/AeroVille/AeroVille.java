@@ -19,19 +19,8 @@ import InterfaceListener.SelectedVilleListener;
  * @author MEHEUT Emmanuel
  * 
  * Composant gérant les villes et aéroports.
- * 
- * Il émet les évènements : ListVille : contient la liste des villes pour
- * lesquelles on peut avoir des informations météos. AeroVille : contient la
- * liste des aéroports et leurs distances par rapport à la ville.
- * 
- * Il reçoit des évènements : GetListVille : contient une demande de la liste
- * des villes. SelectedVille : contient l'information sur la ville permettant de
- * trouver le/les code(s) des aéroprts.
- * 
- * Propriétés : aeroVilleFile : Nom du fichier où récupérer les informations sur
- * les villes et aéroports aeroVilleFileSave : Nom du fichier de sauvegarde pour
- * la persistance du composant.
- */
+**/
+
 public class AeroVille implements Serializable, SelectedVilleListener,
 		GetListVilleListener {
 	private static final long serialVersionUID = 1l;
