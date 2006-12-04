@@ -8,7 +8,7 @@ import java.util.EventObject;
  * @author YANG Yitian
  * @author MEHEUT Emmanuel
  *
- * Objet échangé dans un SelectedVille Metar,
+ * Objet échangé dans un évènement SelectedVille,
  * il contient un nom de ville.
  */
 public class SelectedVilleEventObject extends EventObject {
