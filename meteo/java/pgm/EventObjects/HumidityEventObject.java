@@ -30,15 +30,15 @@ public class HumidityEventObject extends EventObject {
 		
 	/**
 	 * Préciser la liste des humidités d'air.
-	 * @param dir Direction du vent.
+	 * @param hum Liste des humidités de l'air.
 	 */
 	public void setHumidites(Vector<Integer> hum) {
 		this.humidites = hum;
 	}
 	
 	/**
-	 * Obtenir la direction du vent.
-	 * @return La direction du vent.
+	 * Obtenir la liste des humidités de l'air.
+	 * @return La liste des humidités de l'air.
 	 */
 	public Vector<Integer> getHumidites() {
 		return this.humidites;

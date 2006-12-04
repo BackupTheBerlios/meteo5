@@ -25,63 +25,63 @@ public class WindEventObject extends EventObject {
 	
 	
 	
-	/** Direction du vent (en degré). */
-	private Vector<Integer> direction = new Vector<Integer>(); 
+	/** Liste de direction du vent (en degré). */
+	private Vector<Integer> directions = new Vector<Integer>(); 
 		
 	/**
-	 * Préciser la direction du vent.
-	 * @param dir Direction du vent.
+	 * Préciser la liste des directions du vent.
+	 * @param dir Liste des directions du vent.
 	 */
-	public void setTemperatureRosee(Vector<Integer> dir) {
-		this.direction = dir;
+	public void setDirections(Vector<Integer> dir) {
+		this.directions = dir;
 	}
 	
 	/**
-	 * Obtenir la direction du vent.
-	 * @return La direction du vent.
+	 * Obtenir la liste des directions du vent.
+	 * @return La liste des directions du vent.
 	 */
-	public Vector<Integer> setTemperatureRosee() {
-		return this.direction;
+	public Vector<Integer> getDirections() {
+		return this.directions;
 	}
 	
 	
 	/** Force du vent. */
-	private Vector<Integer> force = new Vector<Integer>();
+	private Vector<Integer> forces = new Vector<Integer>();
 		
 	/**
 	 * Préciser la force du vent..
 	 * @param f La force du vent.
 	 */
-	public void setForce(Vector<Integer> f) {
-		this.force = f;
+	public void setForces(Vector<Integer> f) {
+		this.forces = f;
 	}
 	
 	/**
 	 * Obtenir la force du vent.
 	 * @return La force du vent.
 	 */
-	public Vector<Integer> getForece() {
-		return this.force;
+	public Vector<Integer> getForces() {
+		return this.forces;
 	}
 	
 
 	/** Force maximale du vent. */
-	private Vector<Integer> forceMax = new Vector<Integer>(); 
+	private Vector<Integer> forcesMax = new Vector<Integer>(); 
 		
 	/**
 	 * Préciser la force du vent.
 	 * @param f La force du vent.
 	 */
-	public void setForceMax(Vector<Integer> f) {
-		this.forceMax = f;
+	public void setForcesMax(Vector<Integer> f) {
+		this.forcesMax = f;
 	}
 	
 	/**
 	 * Obtenir la force du vent.
 	 * @return La force du vent.
 	 */
-	public Vector<Integer> getForceMax() {
-		return this.forceMax;
+	public Vector<Integer> getForcesMax() {
+		return this.forcesMax;
 	}
 	
 }

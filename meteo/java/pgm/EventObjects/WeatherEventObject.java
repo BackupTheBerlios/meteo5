@@ -25,20 +25,20 @@ public class WeatherEventObject extends EventObject {
 	}
 	
 	
-	/** Le temps est-il clair ? */
+	/** Liste de l'information sur la clarté du temps. */
 	private Vector<Boolean> isCavOk = new Vector<Boolean>(); 
 		
 	/**
-	 * Préciser si le temps est clair.
-	 * @param isCavOk True si le temps est clair.
+	 * Préciser la liste de l'imformation sur la clarté du temps.
+	 * @param isCavOk Liste de l'imformation sur la clarté du temps.
 	 */
 	public void setPressure(Vector<Boolean> isCavOk) {
 		this.isCavOk = isCavOk;
 	}
 	
 	/**
-	 * Savoir si le temps est clair..
-	 * @return True si le temps est clair.
+	 * Obtenir la liste de l'imformation sur la clarté du temps.
+	 * @return La liste de l'imformation sur la clarté du temps.
 	 */
 	public Vector<Boolean> setTemperatureRosee() {
 		return this.isCavOk;
