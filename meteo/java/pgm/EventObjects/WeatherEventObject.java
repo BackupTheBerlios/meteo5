@@ -1,6 +1,7 @@
 package EventObjects;
 
 import java.util.EventObject;
+import java.util.Vector;
 
 
 /**
@@ -25,13 +26,13 @@ public class WeatherEventObject extends EventObject {
 	
 	
 	/** Le temps est-il clair ? */
-	private boolean isCavOk = false; 
+	private Vector<Boolean> isCavOk = new Vector<Boolean>(); 
 		
 	/**
 	 * Préciser si le temps est clair.
 	 * @param isCavOk True si le temps est clair.
 	 */
-	public void setPressure(boolean isCavOk) {
+	public void setPressure(Vector<Boolean> isCavOk) {
 		this.isCavOk = isCavOk;
 	}
 	
@@ -39,7 +40,7 @@ public class WeatherEventObject extends EventObject {
 	 * Savoir si le temps est clair..
 	 * @return True si le temps est clair.
 	 */
-	public boolean setTemperatureRosee() {
+	public Vector<Boolean> setTemperatureRosee() {
 		return this.isCavOk;
 	}
 

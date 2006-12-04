@@ -1,6 +1,8 @@
 package EventObjects;
 
+import java.awt.geom.Arc2D.Float;
 import java.util.EventObject;
+import java.util.Vector;
 
 
 /**
@@ -10,7 +12,7 @@ import java.util.EventObject;
  * @author MEHEUT Emmanuel
  *
  * Objet échangé dans un évènement température,
- * il contient la température à la rosée et actuelle.
+ * il contient la liste des températures à la rosée et actuelle.
  */
 public class TemperatureEventObject extends EventObject {
 	private static final long serialVersionUID = 1l;
@@ -25,13 +27,13 @@ public class TemperatureEventObject extends EventObject {
 	
 	
 	/** Température à la rosée. */
-	private float temperatureRosee = 0.0f; 
+	private Vector<Float> temperatureRosee = new Vector<Float>(); 
 		
 	/**
 	 * Préciser la température à la rosée.
 	 * @param tRosee Température à la rosée.
 	 */
-	public void setTemperatureRosee(float tRosee) {
+	public void setTemperatureRosee(Vector<Float> tRosee) {
 		this.temperatureRosee = tRosee;
 	}
 	
@@ -39,19 +41,19 @@ public class TemperatureEventObject extends EventObject {
 	 * Obtenir la température à la rosée.
 	 * @return La température à la rosée.
 	 */
-	public float setTemperatureRosee() {
+	public Vector<Float> setTemperatureRosee() {
 		return this.temperatureRosee;
 	}
 	
 	
 	/** Température la plus récentre. */
-	private float temperature = 0.0f; 
+	private Vector<Float> temperature = new Vector<Float>(); 
 		
 	/**
 	 * Préciser la température..
 	 * @param tRosee Température.
 	 */
-	public void setTemperature(float t) {
+	public void setTemperature(Vector<Float> t) {
 		this.temperature = t;
 	}
 	
@@ -59,7 +61,7 @@ public class TemperatureEventObject extends EventObject {
 	 * Obtenir la température.
 	 * @return La température.
 	 */
-	public float getTemperature() {
+	public Vector<Float> getTemperature() {
 		return this.temperature;
 	}
 

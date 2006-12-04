@@ -1,6 +1,7 @@
 package EventObjects;
 
 import java.util.EventObject;
+import java.util.Vector;
 
 /**
  * @author LE NY Clément
@@ -25,13 +26,13 @@ public class WindEventObject extends EventObject {
 	
 	
 	/** Direction du vent (en degré). */
-	private int direction = 0; 
+	private Vector<Integer> direction = new Vector<Integer>(); 
 		
 	/**
 	 * Préciser la direction du vent.
 	 * @param dir Direction du vent.
 	 */
-	public void setTemperatureRosee(int dir) {
+	public void setTemperatureRosee(Vector<Integer> dir) {
 		this.direction = dir;
 	}
 	
@@ -39,19 +40,19 @@ public class WindEventObject extends EventObject {
 	 * Obtenir la direction du vent.
 	 * @return La direction du vent.
 	 */
-	public int setTemperatureRosee() {
+	public Vector<Integer> setTemperatureRosee() {
 		return this.direction;
 	}
 	
 	
 	/** Force du vent. */
-	private int force = 0; 
+	private Vector<Integer> force = new Vector<Integer>();
 		
 	/**
 	 * Préciser la force du vent..
 	 * @param f La force du vent.
 	 */
-	public void setForce(int f) {
+	public void setForce(Vector<Integer> f) {
 		this.force = f;
 	}
 	
@@ -59,19 +60,19 @@ public class WindEventObject extends EventObject {
 	 * Obtenir la force du vent.
 	 * @return La force du vent.
 	 */
-	public int getForece() {
+	public Vector<Integer> getForece() {
 		return this.force;
 	}
 	
 
 	/** Force maximale du vent. */
-	private int forceMax = 0; 
+	private Vector<Integer> forceMax = new Vector<Integer>(); 
 		
 	/**
 	 * Préciser la force du vent.
 	 * @param f La force du vent.
 	 */
-	public void setForceMax(int f) {
+	public void setForceMax(Vector<Integer> f) {
 		this.forceMax = f;
 	}
 	
@@ -79,7 +80,7 @@ public class WindEventObject extends EventObject {
 	 * Obtenir la force du vent.
 	 * @return La force du vent.
 	 */
-	public int getForceMax() {
+	public Vector<Integer> getForceMax() {
 		return this.forceMax;
 	}
 	

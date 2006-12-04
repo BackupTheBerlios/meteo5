@@ -1,6 +1,7 @@
 package EventObjects;
 
 import java.util.EventObject;
+import java.util.Vector;
 
 /**
  * @author LE NY Clément
@@ -25,13 +26,13 @@ public class PressureEventObject extends EventObject {
 	
 	
 	/** Pression atmosphérique. */
-	private float pressure = 0.0f; 
+	private Vector<Float> pressure = new Vector<Float>(); 
 		
 	/**
 	 * Préciser la pression.
 	 * @param pres Pression.
 	 */
-	public void setPressure(float pres) {
+	public void setPressure(Vector<Float> pres) {
 		this.pressure = pres;
 	}
 	
@@ -39,7 +40,7 @@ public class PressureEventObject extends EventObject {
 	 * Obtenir la pression.
 	 * @return La pression.
 	 */
-	public float setTemperatureRosee() {
+	public Vector<Float> setTemperatureRosee() {
 		return this.pressure;
 	}
 	
