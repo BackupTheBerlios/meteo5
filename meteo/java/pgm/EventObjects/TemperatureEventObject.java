@@ -1,6 +1,5 @@
 package EventObjects;
 
-import java.awt.geom.Arc2D.Float;
 import java.util.EventObject;
 import java.util.Vector;
 
