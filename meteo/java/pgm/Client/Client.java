@@ -3,8 +3,10 @@ package Client;
 import java.io.Serializable;
 import java.util.Vector;
 
+import EventObjects.AffichageEventObject;
 import EventObjects.ListVilleEventObject;
 
+import InterfaceListener.AffichageListener;
 import InterfaceListener.GetListVilleListener;
 import InterfaceListener.ListVilleListener;
 import InterfaceListener.SelectedVilleListener;
@@ -18,9 +20,13 @@ import InterfaceListener.SelectedVilleListener;
  * 
  * Composant gérant l'interface graphique.
  */
-public class Client implements Serializable, ListVilleListener {
+public class Client implements Serializable, ListVilleListener, AffichageListener {
 	private static final long serialVersionUID = 1l;
 		
+	/** Interface graphique du client. */
+	private ClientClass cc = null;
+	
+	
 	/**
 	 * Constructeur vide pour le composant.
 	 */
@@ -85,18 +91,28 @@ public class Client implements Serializable, ListVilleListener {
 	
 	
 	//----------------------------------------------
-	// Ecouteur d'évènements ListVille
+	// Réception d'évènements ListVille
 	
 	/**
 	 * Méthode lancée lors de la réception d'un évènement ListVille.
 	 * @param e Objet contenant la liste des villes.
 	 */
 	public void handleGetListVille(ListVilleEventObject e) {
-		ClientClass cc = new ClientClass(e.getVilles());		
+		cc = new ClientClass(e.getVilles());		
 	}
 	
 	
-
+	//----------------------------------------------
+	// Réception d'évènements Affichage
+	
+	/**
+	 * Méthode lancée lors de la réception d'un évènement ListVille.
+	 * @param e Objet contenant la liste des villes.
+	 */
+	public void handleAffichage(AffichageEventObject e) {
+		cc.setTexte(e.getTexte());
+	}
+	
 
 	
 }

@@ -132,4 +132,13 @@ public class ClientClass implements ActionListener {
 		}
 	}
 
+	
+	/**
+	 * Précise le texte à afficher par le client.
+	 * @param txt Texte à afficher par le client.
+	 */
+	public void setTexte(String txt) {
+		this.info.setText(txt);
+	}
+	
 }
