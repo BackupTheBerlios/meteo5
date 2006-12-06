@@ -26,13 +26,13 @@ public class PressureEventObject extends EventObject {
 	
 	
 	/** Pression atmosphérique. */
-	private Vector<Float> pressure = new Vector<Float>(); 
+	private Vector<Integer> pressure = new Vector<Integer>(); 
 		
 	/**
 	 * Préciser la pression.
 	 * @param pres Pression.
 	 */
-	public void setPressure(Vector<Float> pres) {
+	public void setPressure(Vector<Integer> pres) {
 		this.pressure = pres;
 	}
 	
@@ -40,7 +40,7 @@ public class PressureEventObject extends EventObject {
 	 * Obtenir la pression.
 	 * @return La pression.
 	 */
-	public Vector<Float> setTemperatureRosee() {
+	public Vector<Integer> setTemperatureRosee() {
 		return this.pressure;
 	}
 	

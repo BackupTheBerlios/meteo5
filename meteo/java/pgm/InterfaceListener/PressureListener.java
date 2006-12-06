@@ -2,6 +2,8 @@ package InterfaceListener;
 
 import java.util.EventListener;
 
+import EventObjects.PressureEventObject;
+
 /**
  * @author LE NY Clément
  * @author CATRIC Jérôme
@@ -12,5 +14,5 @@ import java.util.EventListener;
  * les évènements Pressure.
  */
 public interface PressureListener extends EventListener {
-	//void blabla(PressureEventObject e);
+	void handleCalcul(PressureEventObject e);
 }

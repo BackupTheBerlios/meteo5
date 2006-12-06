@@ -2,6 +2,8 @@ package InterfaceListener;
 
 import java.util.EventListener;
 
+import EventObjects.TemperatureEventObject;
+
 /**
  * @author LE NY Clément
  * @author CATRIC Jérôme
@@ -14,6 +16,6 @@ import java.util.EventListener;
 
 public interface TemperatureListener extends EventListener {
 	
-	//void fonction( TemperatureEventObject e);
+	void handleCalcul( TemperatureEventObject e);
 
 }

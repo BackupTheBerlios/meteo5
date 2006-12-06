@@ -1,6 +1,6 @@
 package meteo.engineTest;
 
-import meteo.engine.Metar;
+import Parseur.Metar;
 
 import junit.framework.TestCase;
 

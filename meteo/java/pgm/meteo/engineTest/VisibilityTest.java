@@ -3,8 +3,9 @@ package meteo.engineTest;
 
 import java.util.Vector;
 
+import Parseur.Metar;
 
-import meteo.engine.Metar;
+
 import meteo.engine.Visibility;
 import junit.framework.TestCase;
 

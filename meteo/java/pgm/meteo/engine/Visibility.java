@@ -2,6 +2,8 @@ package meteo.engine;
 
 import java.util.Vector;
 
+import Parseur.Metar;
+
 
 /**
  * Classe représentant l'information météo sur la visibilité.

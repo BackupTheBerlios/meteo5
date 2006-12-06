@@ -32,7 +32,7 @@ public class WeatherEventObject extends EventObject {
 	 * Préciser la liste de l'imformation sur la clarté du temps.
 	 * @param isCavOk Liste de l'imformation sur la clarté du temps.
 	 */
-	public void setPressure(Vector<Boolean> isCavOk) {
+	public void setIsCavOk(Vector<Boolean> isCavOk) {
 		this.isCavOk = isCavOk;
 	}
 	
@@ -40,7 +40,7 @@ public class WeatherEventObject extends EventObject {
 	 * Obtenir la liste de l'imformation sur la clarté du temps.
 	 * @return La liste de l'imformation sur la clarté du temps.
 	 */
-	public Vector<Boolean> setTemperatureRosee() {
+	public Vector<Boolean> getIsCavOk() {
 		return this.isCavOk;
 	}
 

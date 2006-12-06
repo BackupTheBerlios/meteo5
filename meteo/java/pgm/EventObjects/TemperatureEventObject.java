@@ -26,13 +26,13 @@ public class TemperatureEventObject extends EventObject {
 	
 	
 	/** Liste des températures à la rosée. */
-	private Vector<Float> temperatureRosee = new Vector<Float>(); 
+	private Vector<Integer> temperatureRosee = new Vector<Integer>(); 
 		
 	/**
 	 * Préciser la liste des températures à la rosée.
 	 * @param tRosee Liste des températures à la rosée.
 	 */
-	public void setTemperatureRosee(Vector<Float> tRosee) {
+	public void setTemperatureRosee(Vector<Integer> tRosee) {
 		this.temperatureRosee = tRosee;
 	}
 	
@@ -40,19 +40,19 @@ public class TemperatureEventObject extends EventObject {
 	 * Obtenir la liste des températures à la rosée.
 	 * @return La liste des températures à la rosée.
 	 */
-	public Vector<Float> getTemperatureRosee() {
+	public Vector<Integer> getTemperatureRosee() {
 		return this.temperatureRosee;
 	}
 	
 	
 	/** Liste des températures les plus récentes. */
-	private Vector<Float> temperature = new Vector<Float>(); 
+	private Vector<Integer> temperature = new Vector<Integer>(); 
 		
 	/**
 	 * Préciser la liste des températures.
 	 * @param t Liste des températures.
 	 */
-	public void setTemperature(Vector<Float> t) {
+	public void setTemperature(Vector<Integer> t) {
 		this.temperature = t;
 	}
 	
@@ -60,7 +60,7 @@ public class TemperatureEventObject extends EventObject {
 	 * Obtenir la liste des températures.
 	 * @return La liste des températures.
 	 */
-	public Vector<Float> getTemperature() {
+	public Vector<Integer> getTemperature() {
 		return this.temperature;
 	}
 

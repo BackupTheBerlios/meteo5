@@ -2,7 +2,7 @@ package InterfaceListener;
 
 import java.util.EventListener;
 
-import EventObjects.WeatherEventObject;
+import EventObjects.VisibilityEventObject;
 
 /**
  * @author LE NY Clément
@@ -11,13 +11,12 @@ import EventObjects.WeatherEventObject;
  * @author MEHEUT Emmanuel
  *
  * Interface implémentée par les composants pour écouter 
- * les évènements Weather.
+ * les évènements Visibility.
  */
-public interface WeatherListener extends EventListener {
-	
+public interface VisibilityListener extends EventListener {
 	/**
 	 * Méthode appelée lors de la réception d'un évènement.
 	 * @param e Objet contenant les informations sur l'évènement.
 	 */
-	void handleCalcul(WeatherEventObject e);	
+	void handleCalcul(VisibilityEventObject e);	
 }

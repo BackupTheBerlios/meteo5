@@ -2,6 +2,8 @@ package meteo.engine;
 
 import java.util.*;
 
+import Parseur.Metar;
+
 
 /**
  * Classe construisant des MeteosElt.

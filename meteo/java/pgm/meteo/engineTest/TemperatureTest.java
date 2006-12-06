@@ -2,8 +2,9 @@ package meteo.engineTest;
 
 import java.util.Vector;
 
+import Parseur.Metar;
 
-import meteo.engine.Metar;
+
 import meteo.engine.Temperature;
 import junit.framework.TestCase;
 

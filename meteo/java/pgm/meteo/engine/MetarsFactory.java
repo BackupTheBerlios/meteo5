@@ -6,6 +6,7 @@ import composantServeur.TestMeteoServer;
 
 
 import AeroVille.LocationsFile;
+import Parseur.Metar;
 
 /**
  * Classe servant à la construction de metar pour une ville.
