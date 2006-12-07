@@ -31,10 +31,11 @@ public class AdaptateurAffichage implements TemperatureTraiteListener {
 	    this.cible = cible;
 	}
 	
+	//-----------------------------------------
+	// Réception d'évènements TemperatureTraite
 	
 	/** Liste des fonctions à appeler selon la source de l'évènement reçu. */
 	private HashMap<Temperature, Method> methodTemperatureTraite = new HashMap<Temperature, Method>();
-	
 	
 	/**
 	 * Permet d'ajouter la méthode a appeler lors de la réception d'un évènement TemperatureTraite d'une source précise.
@@ -54,12 +55,27 @@ public class AdaptateurAffichage implements TemperatureTraiteListener {
 	    this.methodTemperatureTraite.put(source, methode);
 	    
 	    // S'inscrire chez la source comme récepteur d'évènement
-	    source.addTempChangeListener(this);
+	    source.addTemperatureTraiteListener(this);
 	}
 
-	
+	/**
+	 * Méthode appelée lors de la réception d'un évènement TemperatureTraite.
+	 * @param e Object ayant envoyé l'évènement.
+	 */
 	public void handleTraite(TemperatureTraiteEventObject e) {
-		
+		try {
+			// Récupération de la méthode à appeler sur le composant cible
+			Method methode = this.methodTemperatureTraite.get(e.getSource());
+			
+			// Création des arguments de la méthode
+			Object[] args = new Object[] { e };
+			
+			// Execution de la méthode
+			methode.invoke(this.cible, args);
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 	
 }
