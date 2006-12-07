@@ -21,6 +21,12 @@ import InterfaceListener.TemperatureTraiteListener;
 public class Affichage implements Serializable, SaveListener { 
 	private static final long serialVersionUID = 1l;
 
+	/**
+	 * Constructeur vide pour le composant.
+	 */
+	public Affichage() {
+		this.adaptateur = new AdaptateurAffichage(this);
+	}
 	
 	// ------------------------------------------------------------------------
 	// Récepteur des évènements contenant les informations météo :
@@ -63,6 +69,25 @@ public class Affichage implements Serializable, SaveListener {
 	// ---------------------------
 	// Propriétés
 	
+	/** Adaptateur qui va gérer les arrivées d'évènements. */
+	private AdaptateurAffichage adaptateur = null;
+	
+	/**
+	 * Récupérer l'adaptateur du composant.
+	 * @return L'adaptateur du composant.
+	 */
+	public AdaptateurAffichage getAdaptateur() {
+		return this.adaptateur;
+	}
+	
+	/**
+	 * Préciser l'adaptateur à utiliser.
+	 * @param adapt Adaptateur à utiliser.
+	 */
+	public void setAdaptateur(AdaptateurAffichage adapt) {
+		this.adaptateur = adapt;
+	}
+	
 	/** Nom du fichier servant à la persistance du composant. */
 	private String affichageSaveFile = "affichageVille.ser";
 
@@ -71,7 +96,7 @@ public class Affichage implements Serializable, SaveListener {
 	 * 
 	 * @return L'emplacement du fichier servant à la persistance du composant.
 	 */
-	public String getAeroVilleSaveFile() {
+	public String getAffichageSaveFile() {
 		return this.affichageSaveFile;
 	}
 
@@ -82,7 +107,7 @@ public class Affichage implements Serializable, SaveListener {
 	 *            L'emplacement du fichier servant à la persistance du
 	 *            composant.
 	 */
-	public void setAeroVilleSaveFile(String fileName) {
+	public void setAffichageSaveFile(String fileName) {
 		this.affichageSaveFile = fileName;
 	}
 

@@ -15,6 +15,10 @@ import EventObjects.TemperatureEventObject;
  */
 public interface TemperatureListener extends EventListener {
 	
-	void handleCalcul( TemperatureEventObject e);
+	/**
+	 * Méthode appelée lors de la réception d'un évènement.
+	 * @param e Objet contenant les informations sur l'évènement.
+	 */
+	void handleCalcul(TemperatureEventObject e);
 
 }

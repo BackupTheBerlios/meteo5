@@ -20,6 +20,10 @@ import Temperature.Temperature;
  */
 public class AdaptateurAffichage implements TemperatureTraiteListener {
 	
+	public AdaptateurAffichage() {
+		
+	}
+	
 	/** Objet sur lequel l'adaptateur s'applique. */
 	private Affichage cible;
 	

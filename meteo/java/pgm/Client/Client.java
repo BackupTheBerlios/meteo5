@@ -1,6 +1,8 @@
 package Client;
 
+import java.beans.Beans;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Vector;
@@ -14,6 +16,12 @@ import InterfaceListener.GetListVilleListener;
 import InterfaceListener.ListVilleListener;
 import InterfaceListener.SelectedVilleListener;
 
+import AeroVille.AeroVille;
+import Affichage.Affichage;
+import Parseur.Parseur;
+import Serveur.Serveur;
+import Temperature.Temperature;
+
 
 /**
  * @author LE NY Clément
@@ -22,9 +30,59 @@ import InterfaceListener.SelectedVilleListener;
  * @author MEHEUT Emmanuel
  * 
  * Composant gérant l'interface graphique.
+ * Elle contient également le main chargé de la création des composants.
  */
 public class Client implements Serializable, ListVilleListener, AffichageListener {
 	private static final long serialVersionUID = 1l;
+	
+	
+	/**
+	 * Création des composants et lancement de l'interface 
+	 * graphique du projet météo.
+	 * @param args Argument passés au programme.
+	 */
+	public static void main(String[] args) {
+		try {
+			
+			// Instantiation des composants
+			AeroVille avComp = (AeroVille)Beans.instantiate(ClassLoader.getSystemClassLoader(), "AeroVille");
+			Serveur servComp = (Serveur)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Serveur");
+			Parseur parsComp = (Parseur)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Parseur");
+			Temperature tmpComp = (Temperature)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Temperature");		
+			Affichage affComp = (Affichage)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Affichage");
+			Client cliComp = (Client)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Client");
+			
+			// Liaison aeroVille <-> Client
+			cliComp.addGetListVilleListener(avComp);
+			cliComp.addSelectedVilleListener(avComp);
+			avComp.addListVilleListener(cliComp);
+			
+			// Liaison aeroVille <-> Serveur
+			avComp.addAeroVilleListener(servComp);
+			
+			// Liaison Serveur <-> Parseur
+			servComp.addMetarListener(parsComp);
+			
+			// Liaison Parseur <-> éléments météo
+			parsComp.addTemperatureListener(tmpComp);
+			
+			// Liaison éléments météo <-> Affichage
+			tmpComp.addTemperatureTraiteListener(affComp.getAdaptateur());
+			
+			// Liaison Affichage <-> Client
+			affComp
+			
+			
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 		
 	/** Interface graphique du client. */
 	private ClientClass cc = null;

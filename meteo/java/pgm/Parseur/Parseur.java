@@ -142,7 +142,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 	 * @param l
 	 *            Composant écoutant l'évènement.
 	 */
-	public synchronized void addPrhandlePressureessureListener(PressureListener l) {
+	public synchronized void addPressureListener(PressureListener l) {
 		this.pressureListener.add(l);
 	}
 
@@ -247,7 +247,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 	
 	
 	// ------------------------------------------------------------------------
-	// Source de d'évènement Temperature : temperature a la rosee + temperature
+	// Source de d'évènement Wind : informations sur le vent
 
 	/** Liste de composants écoutant l'évènement. */
 	private Vector<Windlistener> windListener = new Vector<Windlistener>();
@@ -258,7 +258,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 	 * @param l
 	 *            Composant écoutant l'évènement.
 	 */
-	public synchronized void addTemperatureListener(Windlistener l) {
+	public synchronized void addWindListener(Windlistener l) {
 		this.windListener.add(l);
 	}
 
@@ -268,7 +268,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 	 * @param l
 	 *            Composant à supprimer.
 	 */
-	public synchronized void removeTemperatureListener(Windlistener l) {
+	public synchronized void removeWindListener(Windlistener l) {
 		this.windListener.remove(l);
 	}
 
@@ -322,7 +322,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 	 * @param l
 	 *            Composant écoutant l'évènement.
 	 */
-	public synchronized void addTemperatureListener(VisibilityListener l) {
+	public synchronized void addVisibilityListener(VisibilityListener l) {
 		this.visibilityListener.add(l);
 	}
 
@@ -332,7 +332,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 	 * @param l
 	 *            Composant à supprimer.
 	 */
-	public synchronized void removeTemperatureListener(VisibilityListener l) {
+	public synchronized void removeVisibilityListener(VisibilityListener l) {
 		this.visibilityListener.remove(l);
 	}
 
