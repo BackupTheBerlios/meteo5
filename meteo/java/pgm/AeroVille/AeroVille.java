@@ -1,15 +1,21 @@
 package AeroVille;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Vector;
 
 import EventObjects.AeroVilleEventObject;
 import EventObjects.GetListVilleEventObject;
 import EventObjects.ListVilleEventObject;
+import EventObjects.LoadEventObject;
+import EventObjects.SaveEventObject;
 import EventObjects.SelectedVilleEventObject;
 import InterfaceListener.AeroVilleListener;
 import InterfaceListener.GetListVilleListener;
 import InterfaceListener.ListVilleListener;
+import InterfaceListener.LoadListener;
+import InterfaceListener.SaveListener;
 import InterfaceListener.SelectedVilleListener;
 
 /**
@@ -22,7 +28,7 @@ import InterfaceListener.SelectedVilleListener;
  */
 
 public class AeroVille implements Serializable, SelectedVilleListener,
-		GetListVilleListener {
+		GetListVilleListener, SaveListener, LoadListener {
 	private static final long serialVersionUID = 1l;
 
 	/**
@@ -31,6 +37,7 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 	public AeroVille() {
 	}
 
+	
 	// ------------------------------------------------------------------------
 	// Source de d'évènement AeroVille : liste des codes d'aéroport + distance
 
@@ -84,6 +91,7 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 
 	}
 
+	
 	// ---------------------------------------------------------------
 	// Source de d'évènement ListVille : contient la liste des villes
 
@@ -134,7 +142,7 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 	}
 
 	// ------------------------------------------------------------------------
-	// Ecouteur d'évènement SelectedVille : contient la ville pour la recherche
+	// Récepteur d'évènement SelectedVille : contient la ville pour la recherche
 	// des aéroports
 
 	/**
@@ -152,8 +160,9 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 		}
 	}
 
+	
 	// ----------------------------------------------
-	// Ecouteur d'évènement GetListVille : demande de la liste des villes
+	// Récepteur d'évènement GetListVille : demande de la liste des villes
 
 	/**
 	 * Méthode azppelée lorsqu'un évènement GetListVille est reçu.
@@ -166,6 +175,40 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 		getListVille();
 	}
 
+	
+	// ----------------------------------------------------
+	// Récepteur d'évènement Save : sauvegarde du composant
+	
+	/**
+	 * Méthode azppelée lorsqu'un évènement Save est reçu.
+	 * Il sauvegarde le composant pour la persistance.
+	 * 
+	 * @param e
+	 *            Objet ne contenant pas d'information nécessaire.
+	 */
+	public void handleSave(SaveEventObject e) {
+		try {
+			// Ouverture du fichier de sauvegarde
+			FileOutputStream fichier = new FileOutputStream(this.aeroVilleSaveFile);
+			
+			// Ouverture du stream objet vers le fichier
+			ObjectOutputStream sortie = new  ObjectOutputStream(fichier);
+			
+			// Ecriture de l'objet
+			sortie.writeObject(this);
+			
+			sortie.close();
+			fichier.close();
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+	}
+	
+	
+	
+	
 	// ---------------------------------------------
 	// Propriétés
 
@@ -196,7 +239,7 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 	}
 
 	/** Nom du fichier servant à la persistance du composant. */
-	private String aeroVilleSaveFile = "";
+	private String aeroVilleSaveFile = "aeroVille.ser";
 
 	/**
 	 * Récupérer l'emplacement du fichier servant à la persistance du composant.
@@ -217,5 +260,6 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 	public void setAeroVilleFileSave(String fileName) {
 		this.aeroVilleSaveFile = fileName;
 	}
+
 
 }

@@ -2,7 +2,7 @@ package InterfaceListener;
 
 import java.util.EventListener;
 
-import EventObjects.PressureEventObject;
+import EventObjects.SaveEventObject;
 
 /**
  * @author LE NY Clément
@@ -11,13 +11,12 @@ import EventObjects.PressureEventObject;
  * @author MEHEUT Emmanuel
  *
  * Interface implémentée par les composants pour écouter 
- * les évènements Pressure.
+ * les évènements Save.
  */
-public interface PressureListener extends EventListener {
-	
+public interface SaveListener extends EventListener {
 	/**
 	 * Méthode appelée lors de la réception d'un évènement.
 	 * @param e Objet contenant les informations sur l'évènement.
 	 */
-	void handleCalcul(PressureEventObject e);
+	void handleSave(SaveEventObject e);
 }
