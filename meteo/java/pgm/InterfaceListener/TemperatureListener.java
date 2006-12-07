@@ -13,7 +13,6 @@ import EventObjects.TemperatureEventObject;
  * Interface implémentée par les composants pour écouter 
  * les évènements Temperature.
  */
-
 public interface TemperatureListener extends EventListener {
 	
 	void handleCalcul( TemperatureEventObject e);

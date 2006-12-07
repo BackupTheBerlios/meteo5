@@ -6,6 +6,7 @@ import java.util.Vector;
 import EventObjects.TemperatureEventObject;
 import InterfaceListener.MetarListener;
 import InterfaceListener.TemperatureListener;
+import InterfaceListener.TemperatureTraiteListener;
 
 /**
  * @author LE NY Clément
@@ -18,18 +19,18 @@ import InterfaceListener.TemperatureListener;
 public class Temperature implements TemperatureListener, Serializable{
 	static final long serialVersionUID =1;
 
-	//--------------------------------
-	// Source d'évènements Temperature
+	//--------------------------------------
+	// Source d'évènements TemperatureTraite
 	
 	/** liste des écouteurs d'évènements Metar */
-	private Vector<TemperatureListener> temperatureListeners = new Vector<TemperatureListener>();
+	private Vector<TemperatureTraiteListener> temperatureTraiteListeners = new Vector<TemperatureTraiteListener>();
 	
 	/** 
 	 * Ajout d'un écouteur.
 	 * @param l Ecouteur à ajouter à la liste des abbonnés.
 	 */
-	public synchronized void addMetarListener(TemperatureListener l) {
-		temperatureListeners.addElement(l);
+	public synchronized void addTemperatureTraiteListener(TemperatureTraiteListener l) {
+		this.temperatureTraiteListeners.addElement(l);
 	}
 	
 	
