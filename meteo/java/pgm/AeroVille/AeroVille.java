@@ -8,13 +8,11 @@ import java.util.Vector;
 import EventObjects.AeroVilleEventObject;
 import EventObjects.GetListVilleEventObject;
 import EventObjects.ListVilleEventObject;
-import EventObjects.LoadEventObject;
 import EventObjects.SaveEventObject;
 import EventObjects.SelectedVilleEventObject;
 import InterfaceListener.AeroVilleListener;
 import InterfaceListener.GetListVilleListener;
 import InterfaceListener.ListVilleListener;
-import InterfaceListener.LoadListener;
 import InterfaceListener.SaveListener;
 import InterfaceListener.SelectedVilleListener;
 
@@ -28,7 +26,7 @@ import InterfaceListener.SelectedVilleListener;
  */
 
 public class AeroVille implements Serializable, SelectedVilleListener,
-		GetListVilleListener, SaveListener, LoadListener {
+		GetListVilleListener, SaveListener {
 	private static final long serialVersionUID = 1l;
 
 	/**
