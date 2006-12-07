@@ -1,10 +1,13 @@
 package Client;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Vector;
 
 import EventObjects.AffichageEventObject;
 import EventObjects.ListVilleEventObject;
+import EventObjects.SaveEventObject;
 
 import InterfaceListener.AffichageListener;
 import InterfaceListener.GetListVilleListener;
@@ -113,6 +116,67 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 		cc.setTexte(e.getTexte());
 	}
 	
+	
+	
+	
+	// ----------------------------------------------------
+	// Récepteur d'évènement Save : sauvegarde du composant
+	
+	/**
+	 * Méthode azppelée lorsqu'un évènement Save est reçu.
+	 * Il sauvegarde le composant pour la persistance.
+	 * 
+	 * @param e
+	 *            Objet ne contenant pas d'information nécessaire.
+	 */
+	public void handleSave(SaveEventObject e) {
+		try {
+			// Ouverture du fichier de sauvegarde
+			FileOutputStream fichier = new FileOutputStream(this.clientSaveFile);
+			
+			// Ouverture du stream objet vers le fichier
+			ObjectOutputStream sortie = new  ObjectOutputStream(fichier);
+			
+			// Ecriture de l'objet
+			sortie.writeObject(this);
+			
+			sortie.close();
+			fichier.close();
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+	}
+	
+	
+	
+	// ---------------------
+	// Propriétés
+	
+	/** Nom du fichier servant à la persistance du composant. */
+	private String clientSaveFile = "client.ser";
+
+	/**
+	 * Récupérer l'emplacement du fichier servant à la persistance du composant.
+	 * 
+	 * @return L'emplacement du fichier servant à la persistance du composant.
+	 */
+	public String getAeroVilleSaveFile() {
+		return this.clientSaveFile;
+	}
+
+	/**
+	 * Préciser l'emplacement du fichier servant à la persistance du composant.
+	 * 
+	 * @param fileName
+	 *            L'emplacement du fichier servant à la persistance du
+	 *            composant.
+	 */
+	public void setAeroVilleSaveFile(String fileName) {
+		this.clientSaveFile = fileName;
+	}
+
 
 	
 }

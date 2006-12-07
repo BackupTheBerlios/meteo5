@@ -1,12 +1,16 @@
 package Serveur;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Vector;
 
 import EventObjects.AeroVilleEventObject;
 import EventObjects.MetarEventObject;
+import EventObjects.SaveEventObject;
 import InterfaceListener.AeroVilleListener;
 import InterfaceListener.MetarListener;
+import InterfaceListener.SaveListener;
 
 /**
  * @author LE NY Clément
@@ -17,14 +21,9 @@ import InterfaceListener.MetarListener;
  * Composant envoyant les metars au parseur.
  */
 
-public class Serveur implements Serializable, AeroVilleListener {
+public class Serveur implements Serializable, AeroVilleListener, SaveListener {
+	private static final long serialVersionUID = 1l;
 
-
-	/** url du serveur réel ou fichier. */
-	private String url;
-
-	/** Vrai si on se sert d'un fichier en guise de serveur. */
-	private boolean test;
 
 	
 	//-----------------
@@ -74,8 +73,8 @@ public class Serveur implements Serializable, AeroVilleListener {
 	}
 
 	
-	//---------
-	// Ecouteur d'event AeroVille
+	// ----------------------------------------------------
+	// Récepteur d'évènement AeroVille
 	
 	// executer à la réception d'un AeroVilleEventObject
 	/** 
@@ -86,9 +85,73 @@ public class Serveur implements Serializable, AeroVilleListener {
 		envoieMetar(o);
 	}
 
+		
+	
+	// ----------------------------------------------------
+	// Récepteur d'évènement Save : sauvegarde du composant
+	
+	/**
+	 * Méthode azppelée lorsqu'un évènement Save est reçu.
+	 * Il sauvegarde le composant pour la persistance.
+	 * 
+	 * @param e
+	 *            Objet ne contenant pas d'information nécessaire.
+	 */
+	public void handleSave(SaveEventObject e) {
+		try {
+			// Ouverture du fichier de sauvegarde
+			FileOutputStream fichier = new FileOutputStream(this.serveurSaveFile);
+			
+			// Ouverture du stream objet vers le fichier
+			ObjectOutputStream sortie = new  ObjectOutputStream(fichier);
+			
+			// Ecriture de l'objet
+			sortie.writeObject(this);
+			
+			sortie.close();
+			fichier.close();
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+	}
+	
+	
 	
 	//--------------
 	// Acces propriété
+	
+	/** url du serveur réel ou fichier. */
+	private String url;
+
+	/** Vrai si on se sert d'un fichier en guise de serveur. */
+	private boolean test;
+
+	/** Emplacement du fichier de sauvegarde du composant. */
+	private String serveurSaveFile = "serveur.ser";
+	
+	
+	/**
+	 * Récupérer l'emplacement du fichier servant à la persistance du composant.
+	 * 
+	 * @return L'emplacement du fichier servant à la persistance du composant.
+	 */
+	public String getServeurSaveFile() {
+		return this.serveurSaveFile;
+	}
+
+	/**
+	 * Préciser l'emplacement du fichier servant à la persistance du composant.
+	 * 
+	 * @param fileName
+	 *            L'emplacement du fichier servant à la persistance du
+	 *            composant.
+	 */
+	public void setServeurSaveFile(String fileName) {
+		this.serveurSaveFile = fileName;
+	}
+	
 	
 	/**
 	 * @return Rend vrai si le serveur est un serveur de test.

@@ -244,7 +244,7 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 	 * 
 	 * @return L'emplacement du fichier servant à la persistance du composant.
 	 */
-	public String getAeroVilleFileSave() {
+	public String getAeroVilleSaveFile() {
 		return this.aeroVilleSaveFile;
 	}
 
@@ -255,7 +255,7 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 	 *            L'emplacement du fichier servant à la persistance du
 	 *            composant.
 	 */
-	public void setAeroVilleFileSave(String fileName) {
+	public void setAeroVilleSaveFile(String fileName) {
 		this.aeroVilleSaveFile = fileName;
 	}
 
