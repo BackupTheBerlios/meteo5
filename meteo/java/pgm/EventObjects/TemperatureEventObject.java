@@ -25,6 +25,25 @@ public class TemperatureEventObject extends EventObject {
 	}
 	
 	
+	/** Liste des distances par rapport au point de calcul */
+	private Vector<Float> distances = new Vector<Float>();
+	
+	/**
+	 * Préciser la liste des distances.
+	 * @param d Liste des distances.
+	 */
+	public void setDistances(Vector<Float> d) {
+		this.distances = d;
+	}
+	
+	/**
+	 * Obtenir la liste des distances.
+	 * @return La liste des disttances.
+	 */
+	public Vector<Float> getDistances() {
+		return this.distances;
+	}
+	
 	/** Liste des températures à la rosée. */
 	private Vector<Integer> temperatureRosee = new Vector<Integer>(); 
 		
