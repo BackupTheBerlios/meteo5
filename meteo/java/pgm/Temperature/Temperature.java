@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Vector;
 
 import EventObjects.TemperatureEventObject;
+import EventObjects.TemperatureTraiteEventObject;
 import InterfaceListener.TemperatureListener;
 import InterfaceListener.TemperatureTraiteListener;
 
@@ -99,7 +100,9 @@ public class Temperature implements Serializable, TemperatureListener {
 	
 
 	public void handleCalcul(TemperatureEventObject e) {
-		
+		TemperatureTraiteEventObject temp = new TemperatureTraiteEventObject(e);
+		temp.setTemperatureTraite(calculeTempMoyenne(e));
+		temp.setTemperatureTraiteRosee(calculeTempRoseeMoyenne(e));
 		
 		
 		
