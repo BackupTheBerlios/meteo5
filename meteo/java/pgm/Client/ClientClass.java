@@ -46,6 +46,7 @@ public class ClientClass implements ActionListener {
 	 */
 	public ClientClass(Vector<String> villes) {
 
+		
 		meteo = new MeteoReport();
 
 		JFrame jf = new JFrame("Meteo");

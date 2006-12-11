@@ -1,12 +1,11 @@
-package meteo.engine;
+package Parseur;
 
 import java.util.*;
 
-import composantServeur.TestMeteoServer;
+import meteo.engine.MeteoServer;
 
 
 import AeroVille.LocationsFile;
-import Parseur.Metar;
 
 /**
  * Classe servant à la construction de metar pour une ville.
@@ -29,7 +28,7 @@ public class MetarsFactory {
 	 */
 	public MetarsFactory() {
 		// Récupérer l'instance donnant l'accès aux aéroports, villes...
-		this.places = LocationsFile.getHandle("places");
+	//	this.places = LocationsFile.getHandle("places");
 	}
 
 	/**
@@ -41,7 +40,7 @@ public class MetarsFactory {
 	 */
 	public Vector<Metar> getMetars(String location, long timeStamp) {
 		Vector<Metar> metars = new Vector<Metar>();
-
+/*
 		// Code des aéroports et distance par rapport à la ville.
 		Vector<String> codes = places.getLocValues(location);
 
@@ -64,7 +63,7 @@ public class MetarsFactory {
 				metars.add(m);
 			}
 		}
-
+*/
 		return metars;
 	}
 

@@ -3,8 +3,12 @@ package Affichage;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Vector;
 
+import EventObjects.AffichageEventObject;
 import EventObjects.SaveEventObject;
+import InterfaceListener.AeroVilleListener;
+import InterfaceListener.AffichageListener;
 import InterfaceListener.SaveListener;
 import InterfaceListener.TemperatureTraiteListener;
 
@@ -28,10 +32,56 @@ public class Affichage implements Serializable, SaveListener {
 		this.adaptateur = new AdaptateurAffichage(this);
 	}
 	
-	// ------------------------------------------------------------------------
-	// Récepteur des évènements contenant les informations météo :
-	// Temperature, Pressure, Weather, Wind, Visibility
 
+	
+	// ---------------------------------------------------------------
+	// Source d'évènement Affichage
+
+	/** Liste de composants écoutant l'évènement. */
+	private Vector<AffichageListener> clientListener = new Vector<AffichageListener>();
+
+	/**
+	 * Ajoute un composant écoutant l'évènement.
+	 * 
+	 * @param l
+	 *            Composant écoutant l'évènement.
+	 */
+	public synchronized void addClientListener(AffichageListener l) {
+		this.clientListener.add(l);
+	}
+
+	/**
+	 * Supprime un composant écoutant l'évènement.
+	 * 
+	 * @param l
+	 *            Composant à supprimer.
+	 */
+	public synchronized void removeListVilleListener(AffichageListener l) {
+		this.clientListener.remove(l);
+	}
+
+	
+	/**
+	 * Méthode chargée d'envoyer un évènement contenant le texte à afficher au client.
+	 */
+	private void handleAffichage() {
+
+		// Création d'un object pour l'évènement
+		AffichageEventObject aej = new AffichageEventObject(this);
+
+		// Récupération des informations
+		aej.setTexte("coucou");
+		
+		// Envoi à tous les écoutants
+		synchronized (this) {
+			Vector<AffichageListener> l = (Vector<AffichageListener>) this.clientListener
+					.clone();
+			for (AffichageListener avl : l) {
+				avl.handleAffichage(aej);
+			}
+		}
+	}
+	
 	
 
 	// ----------------------------------------------------

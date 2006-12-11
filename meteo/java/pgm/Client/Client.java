@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Vector;
 
 import EventObjects.AffichageEventObject;
+import EventObjects.GetListVilleEventObject;
 import EventObjects.ListVilleEventObject;
 import EventObjects.SaveEventObject;
 
@@ -45,12 +46,12 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 		try {
 			
 			// Instantiation des composants
-			AeroVille avComp = (AeroVille)Beans.instantiate(ClassLoader.getSystemClassLoader(), "AeroVille");
-			Serveur servComp = (Serveur)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Serveur");
-			Parseur parsComp = (Parseur)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Parseur");
-			Temperature tmpComp = (Temperature)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Temperature");		
-			Affichage affComp = (Affichage)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Affichage");
-			Client cliComp = (Client)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Client");
+			AeroVille avComp = (AeroVille)Beans.instantiate(ClassLoader.getSystemClassLoader(), "AeroVille.AeroVille");
+			Serveur servComp = (Serveur)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Serveur.Serveur");
+			Parseur parsComp = (Parseur)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Parseur.Parseur");
+			Temperature tmpComp = (Temperature)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Temperature.Temperature");		
+			Affichage affComp = (Affichage)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Affichage.Affichage");
+			Client cliComp = (Client)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Client.Client");
 			
 			// Liaison aeroVille <-> Client
 			cliComp.addGetListVilleListener(avComp);
@@ -70,8 +71,11 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 			tmpComp.addTemperatureTraiteListener(affComp.getAdaptateur());
 			
 			// Liaison Affichage <-> Client
-			affComp
+			affComp.addClientListener(cliComp);
 			
+			// Lancement général
+			ListVilleEventObject obj = new ListVilleEventObject(cliComp);
+			cliComp.handleGetListVille(obj);
 			
 		}
 		catch(IOException e) {
@@ -92,6 +96,7 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 	 * Constructeur vide pour le composant.
 	 */
 	public Client() {
+
 	}
 	
 	
@@ -146,9 +151,31 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 	 * @param l
 	 *            Composant à supprimer.
 	 */
-	public synchronized void removeGetListVilleVilleListener(SelectedVilleListener l) {
+	public synchronized void removeGetListVilleListener(SelectedVilleListener l) {
 		this.getSelectedVilletListener.remove(l);
 	}
+	
+	
+	/**
+	 * Méthode chargée d'envoyer un évènement la liste des villes dont
+	 * on peut avoir les informations.
+	 */
+	public void hangleGetListVille() {
+
+		// Création d'un objet pour l'évènement
+		GetListVilleEventObject obj = new GetListVilleEventObject(this);
+
+		// Envoi à tous les écoutant
+		synchronized (this) {
+			Vector<GetListVilleListener> l = (Vector<GetListVilleListener>) this.getSelectedVilletListener
+					.clone();
+			for (GetListVilleListener avl : l) {
+				avl.handleGetListVille(obj);
+			}
+		}
+
+	}
+	
 	
 	
 	//----------------------------------------------
