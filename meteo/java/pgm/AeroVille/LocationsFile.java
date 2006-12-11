@@ -79,7 +79,7 @@ public class LocationsFile {
 			// Ouverture du fichier
 			BufferedReader br = new BufferedReader(
 					new FileReader(this.FilePath));
-
+			
 			// Parcours du fichier
 			String tmp;
 			while ((tmp = br.readLine()) != null) {

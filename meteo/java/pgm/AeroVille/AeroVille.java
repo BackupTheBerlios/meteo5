@@ -120,7 +120,7 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 	 * Méthode chargée d'envoyer un évènement contenant les informations sur les
 	 * villes à tous les composants écoutant.
 	 */
-	private void getListVille() {
+	private void handleListVille() {
 
 		// Création d'un object pour l'évènement
 		ListVilleEventObject obj = new ListVilleEventObject(this);
@@ -128,13 +128,13 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 		// Récupération des informations
 		LocationsFile locations = new LocationsFile(this.getAeroVilleFile());
 		obj.setVilles(locations.getLocations());
-
+		
 		// Envoi à tous les écoutants
 		synchronized (this) {
 			Vector<ListVilleListener> l = (Vector<ListVilleListener>) this.listVilleListener
 					.clone();
 			for (ListVilleListener avl : l) {
-				avl.handleGetListVille(obj);
+				avl.handleListVille(obj);
 			}
 		}
 	}
@@ -170,7 +170,7 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 	 */
 	public void handleGetListVille(GetListVilleEventObject e) {
 		// Lance un évènement contenant la liste des villes
-		getListVille();
+		handleListVille();
 	}
 
 	
@@ -211,7 +211,7 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 	// Propriétés
 
 	/** Nom du fichier conteannt les informations sur les villes et aéroports. */
-	private String aeroVilleFile = "";
+	private String aeroVilleFile = "places";
 
 	/**
 	 * Récupérer l'emplacement du fichier contenant les informations sur les

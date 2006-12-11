@@ -73,9 +73,8 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 			// Liaison Affichage <-> Client
 			affComp.addClientListener(cliComp);
 			
-			// Lancement général
-			ListVilleEventObject obj = new ListVilleEventObject(cliComp);
-			cliComp.handleGetListVille(obj);
+			// Lancement général : envoi d'un event GetListVille
+			cliComp.handleGetListVille();
 			
 		}
 		catch(IOException e) {
@@ -160,8 +159,7 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 	 * Méthode chargée d'envoyer un évènement la liste des villes dont
 	 * on peut avoir les informations.
 	 */
-	public void hangleGetListVille() {
-
+	public void handleGetListVille() {
 		// Création d'un objet pour l'évènement
 		GetListVilleEventObject obj = new GetListVilleEventObject(this);
 
@@ -185,7 +183,7 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 	 * Méthode lancée lors de la réception d'un évènement ListVille.
 	 * @param e Objet contenant la liste des villes.
 	 */
-	public void handleGetListVille(ListVilleEventObject e) {
+	public void handleListVille(ListVilleEventObject e) {
 		cc = new ClientClass(e.getVilles());		
 	}
 	
