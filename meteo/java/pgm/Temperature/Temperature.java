@@ -36,15 +36,72 @@ public class Temperature implements Serializable, TemperatureListener {
 		this.temperatureTraiteListeners.addElement(l);
 	}
 	
+	/** 
+	 * Supression d'un écouteur.
+	 * @param l Ecouteur à supprimer de la liste des abbonnés.
+	 */
+	public synchronized void removeTemperatureTraiteListener(TemperatureTraiteListener l) {
+		this.temperatureTraiteListeners.removeElement(l);
+	}
 	
 	
 	
+	/** 
+	 * @param e: Evenement reçu.
+	 * @return la température moyenne calculée.
+	 */
+	public float calculeTempMoyenne(TemperatureEventObject e){
+		float tempMoyenne = 0;
+		float coef = 0;
+		for(int i=0; i< e.getDistances().size(); i++){
+			if (e.getDistances().get(i)!= 0){
+				tempMoyenne += e.getTemperature().get(i) * (1 / e.getDistances().get(i));
+			}
+			else{
+				tempMoyenne += e.getTemperature().get(i);
+			}
+//			coef diviseur
+			if (e.getDistances().get(i) != 0) {
+				coef += 1 / e.getDistances().get(i);
+			} else {
+				coef += 1;
+			}
+			tempMoyenne /= coef;
+		}
+		return tempMoyenne;
+	}
 	
+	/** 
+	 * @param e: Evenement reçu.
+	 * @return la température à la rosée moyenne calculée.
+	 */
+	public float calculeTempRoseeMoyenne(TemperatureEventObject e){
+		float tempRoseeMoyenne = 0;
+		float coef = 0;
+		for(int i=0; i< e.getDistances().size(); i++){
+			if(e.getDistances().get(i)!=0){
+				tempRoseeMoyenne += e.getTemperatureRosee().get(i) * (1 / e.getDistances().get(i));
+			}
+			else{
+				tempRoseeMoyenne += e.getTemperatureRosee().get(i);
+			}
+			//coef diviseur
+			if (e.getDistances().get(i) != 0) {
+				coef += 1 / e.getDistances().get(i);
+			} else {
+				coef += 1;
+			}
+			tempRoseeMoyenne /= coef;
+		}
+		return tempRoseeMoyenne;
+	}
 	
 	
 
 	public void handleCalcul(TemperatureEventObject e) {
-		// TODO Auto-generated method stub
+		
+		
+		
 		
 	}
 	
