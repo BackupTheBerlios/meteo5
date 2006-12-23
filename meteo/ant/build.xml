@@ -20,6 +20,9 @@
 
 	<!-- Web directory -->
 	<property name="build.web.dir" location="${build.dir}/web/" />
+	
+	<!-- Jar directory -->
+	<property name="build.jar.dir" location="${build.dir}/jar/" />
 
 	<!-- Javadoc build directory -->
 	<property name="build.web.javadoc.dir" location="${build.web.dir}/api/" />
@@ -53,7 +56,7 @@
 			description="Execute all compilation" />
 	
 	<!-- Delete all generated files -->
-	<target name="clean" depends="clean-class,clean-javadoc,clean-javancss,clean-jdepend,clean-junit"
+	<target name="clean" depends="clean-class,clean-javadoc,clean-javancss,clean-jdepend,clean-junit,clean-jar"
 			description="Delete all generated files" >
 		<delete dir="${tmp.dir}" />
 		<delete dir="${build.web.controle.dir}"/>
@@ -69,6 +72,7 @@
 		<mkdir dir="${build.web.jdepend.dir}" />
 		<mkdir dir="${build.web.controle.dir}" />
 		<mkdir dir="${build.web.junit.dir}" />
+		<mkdir dir="${build.jar.dir}"/>
 		<mkdir dir="${tmp.dir}" />
 	</target>
 
@@ -179,5 +183,33 @@
 		<delete dir="${build.web.junit.dir}" />
 	</target>
 	
+	<!-- Creating package -->
+	<target name="jar" depends="class" description="Creation archives Jar">
+		<jar destfile="${build.jar.dir}/Serveur.jar" basedir="${build.class.dir}" 
+			 includes="Serveur/*.class, InterfaceListener/AeroVilleListener.class, EventObjects/MetarEventObject.class">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Created-By" value="Catric, Meheut, Le Ny, Yang."/>
+				<attribute name="Specification-Title" value="Composant Serveur"/>
+				<section name="Serveur/Serveur.class">
+					<attribute name="Java-Bean" value="True"/>
+				</section>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="clean-jar" description="Delete package file">
+			<delete file="${build.jar.dir}/Serveur.jar" />
+			<delete file="${build.jar.dir}/Parseur.jar" />
+			<delete file="${build.jar.dir}/Affichage.jar" />
+			<delete file="${build.jar.dir}/AeroVille.jar" />
+			<delete file="${build.jar.dir}/Client.jar" />
+			<delete file="${build.jar.dir}/Temperature.jar" />
+			<delete file="${build.jar.dir}/Wind.jar" />
+			<delete file="${build.jar.dir}/Visibility.jar" />
+			<delete file="${build.jar.dir}/Presure.jar" />
+			<delete file="${build.jar.dir}/Weather.jar" />
+			<delete file="${build.jar.dir}/Prevision.jar" />
+	</target>
 	
 </project>
