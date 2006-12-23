@@ -185,25 +185,216 @@
 	
 	<!-- Creating package -->
 	<target name="jar" depends="class" description="Creation archives Jar">
+		
+		<!-- Component Serveur -->
 		<jar destfile="${build.jar.dir}/Serveur.jar" basedir="${build.class.dir}" 
-			 includes="Serveur/*.class, InterfaceListener/AeroVilleListener.class, EventObjects/MetarEventObject.class">
+			 	includes="Serveur/*.class, 
+					   		InterfaceListener/AeroVilleListener.class,
+							InterfaceListener/SaveListener.class,
+							EventObjects/MetarEventObject.class">
 			<manifest>
 				<attribute name="Manifest-Version" value="1.0"/>
 				<attribute name="Created-By" value="Catric, Meheut, Le Ny, Yang."/>
-				<attribute name="Specification-Title" value="Composant Serveur"/>
+				<attribute name="Specification-Title" value="Component Serveur"/>
 				<section name="Serveur/Serveur.class">
 					<attribute name="Java-Bean" value="True"/>
 				</section>
 			</manifest>
 		</jar>
+		
+		<!-- Component AeroVille -->
+		<jar destfile="${build.jar.dir}/AeroVille.jar" basedir="${build.class.dir}" 
+				includes="AeroVille/*.class, 
+							InterfaceListener/SelectedVilleListener.class,
+							InterfaceListener/GetListVilleListener.class,
+							InterfaceListener/SaveListener.class,
+							EventObjects/AeroVilleEventObject.class,
+							EventObjects/ListVilleEventObject.class">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Created-By" value="Catric, Meheut, Le Ny, Yang."/>
+				<attribute name="Specification-Title" value="Component AeroVille"/>
+				<section name="AeroVille/AeroVille.class">
+					<attribute name="Java-Bean" value="True"/>
+				</section>
+			</manifest>
+		</jar>
+		
+		<!-- Component Parseur -->
+		<jar destfile="${build.jar.dir}/Parseur.jar" basedir="${build.class.dir}" 
+			 	includes="Parseur/*.class,
+	   						InterfaceListener/MetarListener.class,
+							InterfaceListener/SaveListener.class,
+							EventObjects/VisibilityEventObject.class,
+							EventObjects/WeatherEventObject.class,
+							EventObjects/WindEventObject.class,
+							EventObjects/TemperatureEventObject.class,
+	   						EventObjects/PressureEventObject.class">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Created-By" value="Catric, Meheut, Le Ny, Yang."/>
+				<attribute name="Specification-Title" value="Component Parseur"/>
+				<section name="Parseur/Parseur.class">
+					<attribute name="Java-Bean" value="True"/>
+				</section>
+			</manifest>
+		</jar>
+		
+		<!-- Component Client -->
+		<jar destfile="${build.jar.dir}/Client.jar" basedir="${build.class.dir}" 
+				includes="Client/*.class,
+			   				InterfaceListener/ListVilleListener.class,
+							InterfaceListener/AffichageListener.class,
+							EventObjects/GetListVilleEventObject.class,
+			   				EventObjects/SelectedVilleEventObject.class,
+							EventObjects/SaveEventObject.class">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Created-By" value="Catric, Meheut, Le Ny, Yang."/>
+				<attribute name="Specification-Title" value="Component Client"/>
+				<section name="Client/Client.class">
+					<attribute name="Java-Bean" value="True"/>
+				</section>
+			</manifest>
+		</jar>
+		
+		<!-- Component Temperature -->
+		<jar destfile="${build.jar.dir}/Temperature.jar" basedir="${build.class.dir}" 
+				includes="Temperature/*.class,
+				   			InterfaceListener/TemperatureListener.class,
+							InterfaceListener/SaveListener.class,
+				   			EventObjects/TemperatureTraiteEventObject.class">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Created-By" value="Catric, Meheut, Le Ny, Yang."/>
+				<attribute name="Specification-Title" value="Component Temperature"/>
+				<section name="Temperature/Temperature.class">
+					<attribute name="Java-Bean" value="True"/>
+				</section>
+			</manifest>
+		</jar>		
+		
+		<!-- Component Visibility -->
+		<jar destfile="${build.jar.dir}/Visibility.jar" basedir="${build.class.dir}" 
+				includes="Visibility/*.class,
+						   	InterfaceListener/VisibilityListener.class,
+							InterfaceListener/SaveListener.class,
+						   	EventObjects/VisibilityTraiteEventObject.class">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Created-By" value="Catric, Meheut, Le Ny, Yang."/>
+				<attribute name="Specification-Title" value="Component Visibility"/>
+				<section name="Visibility/Visibility.class">
+					<attribute name="Java-Bean" value="True"/>
+				</section>
+			</manifest>
+		</jar>	
+		
+		<!-- Component Wind -->
+		<jar destfile="${build.jar.dir}/Wind.jar" basedir="${build.class.dir}" 
+				includes="Wind/*.class,
+						   	InterfaceListener/WindListener.class,
+							InterfaceListener/SaveListener.class,
+						   	EventObjects/WindTraiteEventObject.class">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Created-By" value="Catric, Meheut, Le Ny, Yang."/>
+				<attribute name="Specification-Title" value="Component Wind"/>
+				<section name="Wind/Wind.class">
+					<attribute name="Java-Bean" value="True"/>
+				</section>
+			</manifest>
+		</jar>	
+		
+		<!-- Component Weather -->
+		<jar destfile="${build.jar.dir}/Weather.jar" basedir="${build.class.dir}" 
+				includes="Weather/*.class,
+						    InterfaceListener/WeatherListener.class,
+							InterfaceListener/SaveListener.class,
+						   	EventObjects/WeatherTraiteEventObject.class">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Created-By" value="Catric, Meheut, Le Ny, Yang."/>
+				<attribute name="Specification-Title" value="Component Weather"/>
+				<section name="Weather/Weather.class">
+					<attribute name="Java-Bean" value="True"/>
+				</section>
+			</manifest>
+		</jar>	
+					
+		<!-- Component Pressure -->
+		<jar destfile="${build.jar.dir}/Pressure.jar" basedir="${build.class.dir}" 
+				includes="Pressure/*.class,
+							InterfaceListener/PressureListener.class,
+							InterfaceListener/SaveListener.class,
+							EventObjects/PressureTraiteEventObject.class">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Created-By" value="Catric, Meheut, Le Ny, Yang."/>
+				<attribute name="Specification-Title" value="Component Pressure"/>
+				<section name="Pressure/Pressure.class">
+					<attribute name="Java-Bean" value="True"/>
+				</section>
+			</manifest>
+		</jar>
+		
+		<!-- Component Prevision -->
+		<jar destfile="${build.jar.dir}/Prevision.jar" basedir="${build.class.dir}" 
+				includes="Prevision/*.class,
+							InterfaceListener/TemperatureTraiteListener.class,
+							InterfaceListener/PressureTraiteListener.class,
+							InterfaceListener/VisibilityTraiteListener.class,
+							InterfaceListener/WindTraiteListener.class,
+							InterfaceListener/WeatherTraiteListener.class,
+							InterfaceListener/SaveListener.class,
+							EventObjects/TemperatureTraiteEventObject.class,
+							EventObjects/PressureTraiteEventObject.class,
+							EventObjects/WindTraiteEventObject.class,
+							EventObjects/WeatherTraiteEventObject.class,
+							EventObjects/VisibilityTraiteEventObject.class">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Created-By" value="Catric, Meheut, Le Ny, Yang."/>
+				<attribute name="Specification-Title" value="Component Prevision"/>
+				<section name="Prevision/Prevision.class">
+					<attribute name="Java-Bean" value="True"/>
+				</section>
+			</manifest>
+		</jar>
+		
+		<!-- Component Affichage -->
+		<jar destfile="${build.jar.dir}/Affichage.jar" basedir="${build.class.dir}" 
+				includes="Affichage/*.class,
+							InterfaceListener/TemperatureTraiteListener.class,
+							InterfaceListener/PressureTraiteListener.class,
+							InterfaceListener/VisibilityTraiteListener.class,
+							InterfaceListener/WindTraiteListener.class,
+							InterfaceListener/WeatherTraiteListener.class,
+							InterfaceListener/SaveListener.class,
+							EventObjects/TemperatureTraiteEventObject.class,
+							EventObjects/PressureTraiteEventObject.class,
+							EventObjects/WindTraiteEventObject.class,
+							EventObjects/WeatherTraiteEventObject.class,
+							EventObjects/VisibilityTraiteEventObject.class,
+							EventObjects/AffichageEventObject.class">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Created-By" value="Catric, Meheut, Le Ny, Yang."/>
+				<attribute name="Specification-Title" value="Component Affichage"/>
+				<section name="Affichage/Affichage.class">
+					<attribute name="Java-Bean" value="True"/>
+				</section>
+			</manifest>
+		</jar>	
+		
 	</target>
 	
 	<target name="clean-jar" description="Delete package file">
 			<delete file="${build.jar.dir}/Serveur.jar" />
 			<delete file="${build.jar.dir}/Parseur.jar" />
-			<delete file="${build.jar.dir}/Affichage.jar" />
 			<delete file="${build.jar.dir}/AeroVille.jar" />
 			<delete file="${build.jar.dir}/Client.jar" />
+			<delete file="${build.jar.dir}/Affichage.jar" />
 			<delete file="${build.jar.dir}/Temperature.jar" />
 			<delete file="${build.jar.dir}/Wind.jar" />
 			<delete file="${build.jar.dir}/Visibility.jar" />
