@@ -114,10 +114,9 @@
 	</target>
 	
 	
-	<!-- JAVANCSS -->
+	<!-- JavaNCSS report : HTML -->
 	<taskdef name="javancss" classname="javancss.JavancssAntTask" classpath="ant/lib/javancss.jar;ant/lib/ccl.jar"/>
 	<target name="javancss" depends="init" description="Analyse JavaNCSS">
-		<!-- Format HTML -->
 		<!-- analyse -->
 		<javancss srcdir="${src.java.dir}" abortOnFail="false" includes="**/**/*.java" generateReport="true" outputfile="${build.web.javancss.dir}/javancss_metrics.xml" format="xml" />
 		<!-- transformation XSL pour générer une page HTML -->
@@ -183,7 +182,7 @@
 		<delete dir="${build.web.junit.dir}" />
 	</target>
 	
-	<!-- Creating package -->
+	<!-- Creating package jar -->
 	<target name="jar" depends="class" description="Creation archives Jar">
 		
 		<!-- Component Serveur -->
