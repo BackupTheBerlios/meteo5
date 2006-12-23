@@ -103,7 +103,7 @@
 				windowtitle="Meteo API">
 
 			<doctitle><![CDATA[<h1>Meteo API</h1>]]></doctitle>
-			<bottom><![CDATA[<i>Copyright &copy; 2005 Catric - Le Ny - Meheut - Yang.</i>]]></bottom>
+			<bottom><![CDATA[<i>Copyright &copy; 2006 Catric - Le Ny - Meheut - Yang.</i>]]></bottom>
 			<header><![CDATA[<meta HTTP-EQUIV='content-type' CONTENT='text/html; charset=UTF-8'>]]></header>
 		</javadoc>
 	</target>
@@ -118,9 +118,11 @@
 	<taskdef name="javancss" classname="javancss.JavancssAntTask" classpath="ant/lib/javancss.jar;ant/lib/ccl.jar"/>
 	<target name="javancss" depends="init" description="Analyse JavaNCSS">
 		<!-- analyse -->
-		<javancss srcdir="${src.java.dir}" abortOnFail="false" includes="**/**/*.java" generateReport="true" outputfile="${build.web.javancss.dir}/javancss_metrics.xml" format="xml" />
+		<javancss srcdir="${src.java.dir}" abortOnFail="false" includes="**/**/*.java" 
+					generateReport="true" outputfile="${build.web.javancss.dir}/javancss_metrics.xml" format="xml" />
 		<!-- transformation XSL pour générer une page HTML -->
-		<style basedir="${build.web.javancss.dir}" destdir="${build.web.javancss.dir}" includes="javancss_metrics.xml" style="ant/etc/javancss2html.xsl" />
+		<style basedir="${build.web.javancss.dir}" destdir="${build.web.javancss.dir}" 
+					includes="javancss_metrics.xml" style="ant/etc/javancss2html.xsl" />
 	</target>
 	
 	<!-- Delete Javancss generated -->
@@ -190,6 +192,7 @@
 			 	includes="Serveur/*.class, 
 					   		InterfaceListener/AeroVilleListener.class,
 							InterfaceListener/SaveListener.class,
+							EventObjects/SaveEventObject.class,
 							EventObjects/MetarEventObject.class">
 			<manifest>
 				<attribute name="Manifest-Version" value="1.0"/>
@@ -207,6 +210,7 @@
 							InterfaceListener/SelectedVilleListener.class,
 							InterfaceListener/GetListVilleListener.class,
 							InterfaceListener/SaveListener.class,
+							EventObjects/SaveEventObject.class,
 							EventObjects/AeroVilleEventObject.class,
 							EventObjects/ListVilleEventObject.class">
 			<manifest>
@@ -224,6 +228,7 @@
 			 	includes="Parseur/*.class,
 	   						InterfaceListener/MetarListener.class,
 							InterfaceListener/SaveListener.class,
+							EventObjects/SaveEventObject.class,
 							EventObjects/VisibilityEventObject.class,
 							EventObjects/WeatherEventObject.class,
 							EventObjects/WindEventObject.class,
@@ -262,6 +267,7 @@
 				includes="Temperature/*.class,
 				   			InterfaceListener/TemperatureListener.class,
 							InterfaceListener/SaveListener.class,
+							EventObjects/SaveEventObject.class,
 				   			EventObjects/TemperatureTraiteEventObject.class">
 			<manifest>
 				<attribute name="Manifest-Version" value="1.0"/>
@@ -278,6 +284,7 @@
 				includes="Visibility/*.class,
 						   	InterfaceListener/VisibilityListener.class,
 							InterfaceListener/SaveListener.class,
+							EventObjects/SaveEventObject.class,
 						   	EventObjects/VisibilityTraiteEventObject.class">
 			<manifest>
 				<attribute name="Manifest-Version" value="1.0"/>
@@ -294,6 +301,7 @@
 				includes="Wind/*.class,
 						   	InterfaceListener/WindListener.class,
 							InterfaceListener/SaveListener.class,
+							EventObjects/SaveEventObject.class,
 						   	EventObjects/WindTraiteEventObject.class">
 			<manifest>
 				<attribute name="Manifest-Version" value="1.0"/>
@@ -310,6 +318,7 @@
 				includes="Weather/*.class,
 						    InterfaceListener/WeatherListener.class,
 							InterfaceListener/SaveListener.class,
+							EventObjects/SaveEventObject.class,
 						   	EventObjects/WeatherTraiteEventObject.class">
 			<manifest>
 				<attribute name="Manifest-Version" value="1.0"/>
@@ -326,6 +335,7 @@
 				includes="Pressure/*.class,
 							InterfaceListener/PressureListener.class,
 							InterfaceListener/SaveListener.class,
+							EventObjects/SaveEventObject.class,
 							EventObjects/PressureTraiteEventObject.class">
 			<manifest>
 				<attribute name="Manifest-Version" value="1.0"/>
@@ -346,6 +356,7 @@
 							InterfaceListener/WindTraiteListener.class,
 							InterfaceListener/WeatherTraiteListener.class,
 							InterfaceListener/SaveListener.class,
+							EventObjects/SaveEventObject.class,
 							EventObjects/TemperatureTraiteEventObject.class,
 							EventObjects/PressureTraiteEventObject.class,
 							EventObjects/WindTraiteEventObject.class,
@@ -370,6 +381,7 @@
 							InterfaceListener/WindTraiteListener.class,
 							InterfaceListener/WeatherTraiteListener.class,
 							InterfaceListener/SaveListener.class,
+							EventObjects/SaveEventObject.class,
 							EventObjects/TemperatureTraiteEventObject.class,
 							EventObjects/PressureTraiteEventObject.class,
 							EventObjects/WindTraiteEventObject.class,
