@@ -6,10 +6,15 @@ import java.util.Vector;
 
 import EventObjects.AffichageEventObject;
 import EventObjects.TemperatureTraiteEventObject;
+import EventObjects.VisibilityEventObject;
+import EventObjects.VisibilityTraiteEventObject;
 import EventObjects.WindTraiteEventObject;
 import InterfaceListener.TemperatureTraiteListener;
+import InterfaceListener.VisibilityListener;
+import InterfaceListener.VisibilityTraiteListener;
 import InterfaceListener.WindTraiteListener;
 import Temperature.Temperature;
+import Visibility.Visibility;
 import Wind.Wind;
 
 /**
@@ -23,7 +28,7 @@ import Wind.Wind;
  * les évènements Affichage.
  */
 public class AdaptateurAffichage implements TemperatureTraiteListener,
-		WindTraiteListener {
+		WindTraiteListener, VisibilityTraiteListener {
 
 	public AdaptateurAffichage() {
 
@@ -94,7 +99,7 @@ public class AdaptateurAffichage implements TemperatureTraiteListener,
 	}
 
 	// ----------------------------------
-	// Réception d'évènements WindTraide
+	// Réception d'évènements WindTraite
 
 	/** Liste des fonctions à appeler selon la source de l'évènement reçu. */
 	private HashMap<Wind, Method> methodWindTraite = new HashMap<Wind, Method>();
@@ -124,7 +129,7 @@ public class AdaptateurAffichage implements TemperatureTraiteListener,
 	}
 
 	/**
-	 * Méthode appelée lors de la réception d'un évènement TemperatureTraite.
+	 * Méthode appelée lors de la réception d'un évènement WindTraite.
 	 * 
 	 * @param e
 	 *            Object ayant envoyé l'évènement.
@@ -143,5 +148,58 @@ public class AdaptateurAffichage implements TemperatureTraiteListener,
 			ex.printStackTrace();
 		}
 	}
+	
+	
+	// ---------------------------------------
+	// Réception d'évènements VisibilityTraide
+
+	/** Liste des fonctions à appeler selon la source de l'évènement reçu. */
+	private HashMap<Visibility, Method> methodVisibilityTraite = new HashMap<Visibility, Method>();
+
+	/**
+	 * Permet d'ajouter la méthode a appeler lors de la réception d'un évènement
+	 * TemperatureTraite d'une source précise.
+	 * 
+	 * @param source
+	 *            Source de l'évènement.
+	 * @param nomMethode
+	 *            Nom de la méthode à appeler.
+	 * @throws NoSuchMethodException
+	 *             Ne tient pas compte des méthodes dont le nom est inexistant.
+	 */
+	public void addVisibility(Visibility source, String nomMethode, Class[] args)
+			throws NoSuchMethodException {
+
+		// Récupération de la méthode à appeler dans le composant cible
+		Method methode = this.cible.getClass().getMethod(nomMethode, args);
+
+		// Sauvegarde dans la table
+		this.methodVisibilityTraite.put(source, methode);
+
+		// S'inscrire chez la source comme récepteur d'évènement
+		source.addVisibilityTraiteListener(this);
+	}
+
+	/**
+	 * Méthode appelée lors de la réception d'un évènement VisibilityTraite.
+	 * 
+	 * @param e
+	 *            Object ayant envoyé l'évènement.
+	 */
+	public void handleTraite(VisibilityTraiteEventObject e) {
+		try {
+			// Récupération de la méthode à appeler sur le composant cible
+			Method methode = this.methodVisibilityTraite.get(e.getSource());
+			
+			// Création des arguments de la méthode
+			Object[] args = new Object[] { e };
+
+			// Execution de la méthode correspondante
+			methode.invoke(this.cible, args);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
 
 }

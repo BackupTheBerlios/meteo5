@@ -8,6 +8,7 @@ import java.util.Vector;
 import EventObjects.AffichageEventObject;
 import EventObjects.SaveEventObject;
 import EventObjects.TemperatureTraiteEventObject;
+import EventObjects.VisibilityTraiteEventObject;
 import EventObjects.WindTraiteEventObject;
 import InterfaceListener.AffichageListener;
 import InterfaceListener.SaveListener;
@@ -66,6 +67,22 @@ public class Affichage implements Serializable, SaveListener {
 		handleAffichage(ret);
 	}
 
+	
+	
+	// -----------------------------------
+	// Réception d'un évènement windTraite
+	
+	/**
+	 * Méthode appelée par l'adaptateur lorsqu'un évènement WindTraite
+	 * est reçu.
+	 * @param e Objet reçu avec l'évènement.
+	 */
+	public void handleVisibilityTraite(VisibilityTraiteEventObject e) {
+		String ret = "";
+		ret += "La visibilité est de " + e.getVisibility() + " mètre(s).";
+		handleAffichage(ret);
+	}
+	
 	
 	
 	// ---------------------------------------------------------------

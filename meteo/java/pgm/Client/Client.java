@@ -13,6 +13,7 @@ import EventObjects.ListVilleEventObject;
 import EventObjects.SaveEventObject;
 import EventObjects.SelectedVilleEventObject;
 import EventObjects.TemperatureTraiteEventObject;
+import EventObjects.VisibilityTraiteEventObject;
 import EventObjects.WindTraiteEventObject;
 
 import InterfaceListener.AffichageListener;
@@ -25,6 +26,7 @@ import Affichage.Affichage;
 import Parseur.Parseur;
 import Serveur.Serveur;
 import Temperature.Temperature;
+import Visibility.Visibility;
 import Wind.Wind;
 
 /**
@@ -61,6 +63,8 @@ public class Client implements Serializable, ListVilleListener,
 					.getSystemClassLoader(), "Temperature.Temperature");
 			Wind windComp = (Wind) Beans.instantiate(ClassLoader
 					.getSystemClassLoader(), "Wind.Wind");
+			Visibility visComp = (Visibility) Beans.instantiate(ClassLoader
+					.getSystemClassLoader(), "Visibility.Visibility");
 			Affichage affComp = (Affichage) Beans.instantiate(ClassLoader
 					.getSystemClassLoader(), "Affichage.Affichage");
 			Client cliComp = (Client) Beans.instantiate(ClassLoader
@@ -80,6 +84,7 @@ public class Client implements Serializable, ListVilleListener,
 			// Liaison Parseur <-> éléments météo
 			parsComp.addTemperatureListener(tmpComp);
 			parsComp.addWindListener(windComp);
+			parsComp.addVisibilityListener(visComp);
 
 			// Liaison éléments météo <-> Affichage
 			try {
@@ -89,6 +94,9 @@ public class Client implements Serializable, ListVilleListener,
 				affComp.getAdaptateur().addWind(windComp,
 						"handleWindTraite",
 						new Class[] { WindTraiteEventObject.class });
+				affComp.getAdaptateur().addVisibility(visComp,
+						"handleVisibilityTraite",
+						new Class[] { VisibilityTraiteEventObject.class });
 			} catch (NoSuchMethodException e) {
 				e.printStackTrace();
 			}
