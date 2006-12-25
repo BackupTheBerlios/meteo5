@@ -112,10 +112,9 @@ public class ClientClass implements ActionListener {
 
 		/* Action sur la liste déroulante */
 		if (e.getSource() == listeLocation) {
+			info.setText("");
 			if (listeLocation.getSelectedIndex() != 0) {
 				this.client.handleSelectedVille(listeLocation.getSelectedItem().toString());
-			} else {
-				info.setText("");
 			}
 		}
 
@@ -137,8 +136,6 @@ public class ClientClass implements ActionListener {
 		for (String v : villes) {
 			this.listeLocation.addItem(v);
 		}
-		this.listeLocation.repaint();
-		this.info.setText("");
 	}
 	
 	/**

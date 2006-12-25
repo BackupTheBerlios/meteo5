@@ -411,7 +411,7 @@
 			<delete file="${build.jar.dir}/Temperature.jar" />
 			<delete file="${build.jar.dir}/Wind.jar" />
 			<delete file="${build.jar.dir}/Visibility.jar" />
-			<delete file="${build.jar.dir}/Presure.jar" />
+			<delete file="${build.jar.dir}/Pressure.jar" />
 			<delete file="${build.jar.dir}/Weather.jar" />
 			<delete file="${build.jar.dir}/Prevision.jar" />
 	</target>
