@@ -187,6 +187,11 @@
 	<!-- Creating package jar -->
 	<target name="jar" depends="class" description="Creation archives Jar">
 		
+		<!-- Copy two files : places, metars -->
+		<copy todir="${build.jar.dir}">
+		      <fileset dir="${build.class.dir}" includes="places,metars"/>
+		</copy>
+		
 		<!-- Component Serveur -->
 		<jar destfile="${build.jar.dir}/Serveur.jar" basedir="${build.class.dir}" 
 			 	includes="Serveur/*.class, 
