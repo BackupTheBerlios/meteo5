@@ -13,7 +13,7 @@ import EventObjects.WindEventObject;
  * Interface implémentée par les composants pour écouter 
  * les évènements Wind.
  */
-public interface Windlistener extends EventListener {
+public interface WindListener extends EventListener {
 	
 	/**
 	 * Méthode appelée lors de la réception d'un évènement.

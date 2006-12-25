@@ -18,7 +18,7 @@ import InterfaceListener.MetarListener;
 import InterfaceListener.PressureListener;
 import InterfaceListener.TemperatureListener;
 import InterfaceListener.WeatherListener;
-import InterfaceListener.Windlistener;
+import InterfaceListener.WindListener;
 
 /**
  * @author LE NY Clément
@@ -244,7 +244,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 	// Source de d'évènement Wind : informations sur le vent
 
 	/** Liste de composants écoutant l'évènement. */
-	private Vector<Windlistener> windListener = new Vector<Windlistener>();
+	private Vector<WindListener> windListener = new Vector<WindListener>();
 
 	/**
 	 * Ajoute un composant écoutant l'évènement.
@@ -252,7 +252,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 	 * @param l
 	 *            Composant écoutant l'évènement.
 	 */
-	public synchronized void addWindListener(Windlistener l) {
+	public synchronized void addWindListener(WindListener l) {
 		this.windListener.add(l);
 	}
 
@@ -262,7 +262,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 	 * @param l
 	 *            Composant à supprimer.
 	 */
-	public synchronized void removeWindListener(Windlistener l) {
+	public synchronized void removeWindListener(WindListener l) {
 		this.windListener.remove(l);
 	}
 
@@ -294,11 +294,11 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 		weo.setForcesMax(forceMax);
 
 		// Envoi à tous les écoutant
-		Vector<Windlistener> l;
+		Vector<WindListener> l;
 		synchronized (this) {
-			l = (Vector<Windlistener>) this.windListener.clone();
+			l = (Vector<WindListener>) this.windListener.clone();
 		}
-		for (Windlistener wl : l) {
+		for (WindListener wl : l) {
 			wl.handleCalcul(weo);
 		}
 	}

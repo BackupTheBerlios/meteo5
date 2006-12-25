@@ -256,6 +256,8 @@
 				<attribute name="Manifest-Version" value="1.0"/>
 				<attribute name="Created-By" value="Catric, Meheut, Le Ny, Yang."/>
 				<attribute name="Specification-Title" value="Component Client"/>
+				<attribute name="Main-Class" value="Client.Client"/>
+				<attribute name="Class-Path" value=".\AeroVille.jar .\Affichage.jar .\Client.jar .\Parseur.jar .\Pressure.jar .\Prevision.jar .\Serveur.jar .\Temperature.jar .\Visibility.jar .\Weather.jar .\Wind.jar"/>
 				<section name="Client/Client.class">
 					<attribute name="Java-Bean" value="True"/>
 				</section>
