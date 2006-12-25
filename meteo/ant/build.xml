@@ -52,7 +52,7 @@
 	<property name="classpath.dir" location="${build.class.dir};./ant/lib/junit-4.1.jar;./ant/lib/jdepend-2.9.1.jar" /> 
 
 	<!-- Execute all compilation -->
-	<target name="all" depends="clean,class,javadoc,javancss,jdepend,junit"
+	<target name="all" depends="clean,class,javadoc,javancss,jdepend,junit,jar"
 			description="Execute all compilation" />
 	
 	<!-- Delete all generated files -->
@@ -262,7 +262,7 @@
 				<attribute name="Created-By" value="Catric, Meheut, Le Ny, Yang."/>
 				<attribute name="Specification-Title" value="Component Client"/>
 				<attribute name="Main-Class" value="Client.Client"/>
-				<attribute name="Class-Path" value=".\AeroVille.jar .\Affichage.jar .\Client.jar .\Parseur.jar .\Pressure.jar .\Prevision.jar .\Serveur.jar .\Temperature.jar .\Visibility.jar .\Weather.jar .\Wind.jar"/>
+				<attribute name="Class-Path" value="./AeroVille.jar ./Affichage.jar ./Client.jar ./Parseur.jar ./Pressure.jar ./Prevision.jar ./Serveur.jar ./Temperature.jar ./Visibility.jar ./Weather.jar ./Wind.jar"/>
 				<section name="Client/Client.class">
 					<attribute name="Java-Bean" value="True"/>
 				</section>
@@ -407,18 +407,9 @@
 		
 	</target>
 	
+	<!-- Delete package jar -->
 	<target name="clean-jar" description="Delete package file">
-			<delete file="${build.jar.dir}/Serveur.jar" />
-			<delete file="${build.jar.dir}/Parseur.jar" />
-			<delete file="${build.jar.dir}/AeroVille.jar" />
-			<delete file="${build.jar.dir}/Client.jar" />
-			<delete file="${build.jar.dir}/Affichage.jar" />
-			<delete file="${build.jar.dir}/Temperature.jar" />
-			<delete file="${build.jar.dir}/Wind.jar" />
-			<delete file="${build.jar.dir}/Visibility.jar" />
-			<delete file="${build.jar.dir}/Pressure.jar" />
-			<delete file="${build.jar.dir}/Weather.jar" />
-			<delete file="${build.jar.dir}/Prevision.jar" />
+		<delete dir="${build.jar.dir}" />
 	</target>
 	
 </project>
