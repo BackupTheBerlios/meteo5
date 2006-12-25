@@ -13,7 +13,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import meteo.engine.*;
 
 /**
  * Classe servant a affiché les informations métérologiques pour la ville
