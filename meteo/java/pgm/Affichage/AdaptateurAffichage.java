@@ -2,6 +2,7 @@ package Affichage;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.Vector;
 
 import EventObjects.AffichageEventObject;
 import EventObjects.TemperatureTraiteEventObject;
@@ -47,10 +48,7 @@ public class AdaptateurAffichage implements TemperatureTraiteListener {
 	 * @param nomMethode Nom de la méthode à appeler.
 	 * @throws NoSuchMethodException Ne tient pas compte des méthodes dont le nom est inexistant.
 	 */
-	public void addTemperature(Temperature source, String nomMethode) throws NoSuchMethodException {
-		
-		// Liste des types d'arguments à passer à la méthode à appeler 
-		Class[] args = new Class[] { AffichageEventObject.class };
+	public void addTemperature(Temperature source, String nomMethode, Class[] args) throws NoSuchMethodException {
 		
 		// Récupération de la méthode à appeler dans le composant cible
 		Method methode = this.cible.getClass().getMethod(nomMethode, args);
@@ -74,7 +72,7 @@ public class AdaptateurAffichage implements TemperatureTraiteListener {
 			// Création des arguments de la méthode
 			Object[] args = new Object[] { e };
 			
-			// Execution de la méthode
+			// Execution de la méthode correspondante
 			methode.invoke(this.cible, args);
 		}
 		catch(Exception ex) {

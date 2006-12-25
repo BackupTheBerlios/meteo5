@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import meteo.engine.MeteoServer;
 
 /**
  * Cette classe est utilisée pour simuler le rôle du serveur. Elle rendra une
@@ -16,7 +15,7 @@ import meteo.engine.MeteoServer;
  * @author MEHEUT Emmanuel
  * 
  */
-public class TestMeteoServer extends MeteoServer {
+public class TestMeteoServer {
 
 	/** Emplacement du fichier contenant les metar de test. */
 	private String metarsFile = "metars";

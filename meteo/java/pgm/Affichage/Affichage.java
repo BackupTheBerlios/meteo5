@@ -7,6 +7,7 @@ import java.util.Vector;
 
 import EventObjects.AffichageEventObject;
 import EventObjects.SaveEventObject;
+import EventObjects.TemperatureTraiteEventObject;
 import InterfaceListener.AeroVilleListener;
 import InterfaceListener.AffichageListener;
 import InterfaceListener.SaveListener;
@@ -29,10 +30,26 @@ public class Affichage implements Serializable, SaveListener {
 	 * Constructeur vide pour le composant.
 	 */
 	public Affichage() {
+		// Création de l'adaptateur
 		this.adaptateur = new AdaptateurAffichage(this);
 	}
 	
-
+	
+	// ------------------------------------
+	// Réception d'un évènement température
+	
+	/**
+	 * Méthode appelée par l'adaptateur lorsqu'un évènement température
+	 * est reçu.
+	 * @param e Objet reçu avec l'évènement.
+	 */
+	public void handleTemperatureTraite(TemperatureTraiteEventObject e) {
+		String ret = "";
+		ret = "La température a la rosée était de " + e.getTemperatureTraiteRosee() + " °C.\n";
+		ret += "La température est de " + e.getTemperatureTraite() + " °C.";
+		handleAffichage(ret);
+	}
+	
 	
 	// ---------------------------------------------------------------
 	// Source d'évènement Affichage
@@ -63,22 +80,23 @@ public class Affichage implements Serializable, SaveListener {
 	
 	/**
 	 * Méthode chargée d'envoyer un évènement contenant le texte à afficher au client.
+	 * @param text Texte à envoyer.
 	 */
-	private void handleAffichage() {
+	private void handleAffichage(String text) {
 
 		// Création d'un object pour l'évènement
 		AffichageEventObject aej = new AffichageEventObject(this);
 
 		// Récupération des informations
-		aej.setTexte("coucou");
+		aej.setTexte(text);
 		
 		// Envoi à tous les écoutants
+		Vector<AffichageListener> l;
 		synchronized (this) {
-			Vector<AffichageListener> l = (Vector<AffichageListener>) this.clientListener
-					.clone();
-			for (AffichageListener avl : l) {
-				avl.handleAffichage(aej);
-			}
+			l = (Vector<AffichageListener>) this.clientListener.clone();
+		}
+		for (AffichageListener avl : l) {
+			avl.handleAffichage(aej);
 		}
 	}
 	

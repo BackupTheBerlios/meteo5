@@ -33,23 +33,23 @@ public class ClientClass implements ActionListener {
 	/** TextArea contenant les informations métérologique pour l'aéroport choisi. */
 	private JTextArea info;
 
-	/** Element MeteoReport. */
-	private MeteoReport meteo;
-
 	/** Menu quitter. */
 	private JMenuItem jmi_Quitter;
+	
+	/** Fenêtre de l'interface. */
+	private JFrame jf;
 
+	/** Référence vers la classe maitresse du composant. */
+	private Client client;
 	
 	/**
 	 * Constructeur de la classe construisant l'interface graphique.
-	 * @param villes Liste des villes auquelles on peut demander les infos.
+	 * @param c Référence à la classe maitresse du composant.
 	 */
-	public ClientClass(Vector<String> villes) {
-
+	public ClientClass(Client c) {
+		this.client = c;
 		
-		meteo = new MeteoReport();
-
-		JFrame jf = new JFrame("Meteo");
+		this.jf = new JFrame("Meteo");
 
 		/* Construction de la menu barre */
 		JMenuBar jmb_Barre = new JMenuBar();
@@ -70,12 +70,6 @@ public class ClientClass implements ActionListener {
 		p1.add(lbl_aero);
 
 		listeLocation = new JComboBox();
-		listeLocation.addItem(new String("Choisir un Aéroport"));
-
-		for (String v : villes) {
-			listeLocation.addItem(v);
-		}
-
 		p1.add(listeLocation);
 		jp_support.add(p1);
 
@@ -120,8 +114,7 @@ public class ClientClass implements ActionListener {
 		/* Action sur la liste déroulante */
 		if (e.getSource() == listeLocation) {
 			if (listeLocation.getSelectedIndex() != 0) {
-				meteo.creerReport(listeLocation.getSelectedItem().toString());
-				info.setText(meteo.toString());
+				this.client.handleSelectedVille(listeLocation.getSelectedItem().toString());
 			} else {
 				info.setText("");
 			}
@@ -133,13 +126,28 @@ public class ClientClass implements ActionListener {
 		}
 	}
 
+
+	/**
+	 * Rempli la liste des endroits où l'on peut avoir 
+	 * des informations météos.
+	 * @param villes Liste des noms des villes.
+	 */
+	public void setLocations(Vector<String> villes) {
+		this.listeLocation.removeAll();
+		this.listeLocation.addItem(new String("Choisir un Aéroport"));
+		for (String v : villes) {
+			this.listeLocation.addItem(v);
+		}
+		this.listeLocation.repaint();
+		this.info.setText("");
+	}
 	
 	/**
-	 * Précise le texte à afficher par le client.
-	 * @param txt Texte à afficher par le client.
+	 * Ajoute du texte à afficher.
+	 * @param txt Texte à ajouter.
 	 */
-	public void setTexte(String txt) {
-		this.info.setText(txt);
+	public void addTexte(String txt) {
+		this.info.setText(this.info.getText() + txt + "\n");
 	}
 	
 }

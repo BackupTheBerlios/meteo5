@@ -11,6 +11,8 @@ import EventObjects.AffichageEventObject;
 import EventObjects.GetListVilleEventObject;
 import EventObjects.ListVilleEventObject;
 import EventObjects.SaveEventObject;
+import EventObjects.SelectedVilleEventObject;
+import EventObjects.TemperatureTraiteEventObject;
 
 import InterfaceListener.AffichageListener;
 import InterfaceListener.GetListVilleListener;
@@ -36,6 +38,7 @@ import Temperature.Temperature;
 public class Client implements Serializable, ListVilleListener, AffichageListener {
 	private static final long serialVersionUID = 1l;
 	
+
 	
 	/**
 	 * Création des composants et lancement de l'interface 
@@ -68,14 +71,18 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 			parsComp.addTemperatureListener(tmpComp);
 			
 			// Liaison éléments météo <-> Affichage
-			tmpComp.addTemperatureTraiteListener(affComp.getAdaptateur());
+			try {
+				affComp.getAdaptateur().addTemperature(tmpComp, "handleTemperatureTraite", new Class[] { TemperatureTraiteEventObject.class });
+			}
+			catch(NoSuchMethodException e) {
+				e.printStackTrace();
+			}
 			
 			// Liaison Affichage <-> Client
 			affComp.addClientListener(cliComp);
 			
 			// Lancement général : envoi d'un event GetListVille
 			cliComp.handleGetListVille();
-			
 		}
 		catch(IOException e) {
 			e.printStackTrace();
@@ -87,15 +94,16 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 	}
 	
 		
+	
 	/** Interface graphique du client. */
-	private ClientClass cc = null;
+	private ClientClass ihm = null;
 	
 	
 	/**
 	 * Constructeur vide pour le composant.
 	 */
 	public Client() {
-
+		this.ihm = new ClientClass(this);
 	}
 	
 	
@@ -126,6 +134,28 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 	public synchronized void removeSelectedVilleListener(SelectedVilleListener l) {
 		this.selectedVilletListener.remove(l);
 	}
+	
+	/**
+	 * Méthode chargée d'envoyer un évènement la liste des auditeurs
+	 * qui attendent qu'une ville soit sélectionné
+	 */
+	public void handleSelectedVille(String ville) {
+		// Création d'un objet pour l'évènement
+		SelectedVilleEventObject obj = new SelectedVilleEventObject(this);
+		obj.setVille(ville);
+		
+		// Envoi à tous les écoutant
+		Vector<SelectedVilleListener> l;
+		synchronized (this) {
+			l = (Vector<SelectedVilleListener>) this.selectedVilletListener
+					.clone();
+		}
+		for (SelectedVilleListener item : l) {
+			item.handleSelectedVille(obj);
+		}
+
+	}
+	
 	
 	
 	//------------------------------------------------
@@ -184,7 +214,7 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 	 * @param e Objet contenant la liste des villes.
 	 */
 	public void handleListVille(ListVilleEventObject e) {
-		cc = new ClientClass(e.getVilles());		
+		this.ihm.setLocations(e.getVilles());		
 	}
 	
 	
@@ -196,7 +226,7 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 	 * @param e Objet contenant la liste des villes.
 	 */
 	public void handleAffichage(AffichageEventObject e) {
-		cc.setTexte(e.getTexte());
+		this.ihm.addTexte(e.getTexte());
 	}
 	
 	

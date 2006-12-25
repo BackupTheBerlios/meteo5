@@ -45,13 +45,51 @@ public class Temperature implements Serializable, TemperatureListener {
 		this.temperatureTraiteListeners.removeElement(l);
 	}
 	
+	/** 
+	 * Méthode qui envoie un évènements contenant les températures.
+	 * @param temp Température actuelle.
+	 * @param tempRosee Température à la rosée.
+	 */
+	private void handleSendTemperature(float temp, float tempRosee) {
+		// Création de l'objet de l'évènement
+		TemperatureTraiteEventObject obj = new TemperatureTraiteEventObject(this);
+		obj.setTemperatureTraite(temp);
+		obj.setTemperatureTraiteRosee(tempRosee);
+		
+		// Envoi des évènements à tous les auditeurs
+		Vector<TemperatureTraiteListener> l;
+		synchronized (this) {
+			l = (Vector<TemperatureTraiteListener>) this.temperatureTraiteListeners.clone();
+		}
+		for (TemperatureTraiteListener item : l) {
+			item.handleTraite(obj);
+		}
+	}
 	
 	
+	//--------------------------------------
+	// Réception d'évènements température
+	
+	/**
+	 * Méthode appelée lors de la réception d'un évènement température.
+	 * @param e Objet de l'évènement.
+	 */
+	public void handleCalcul(TemperatureEventObject e) {
+		float temp = calculeTempMoyenne(e);
+		float tempRosee = calculeTempRoseeMoyenne(e);
+		
+		handleSendTemperature(temp, tempRosee);
+	}
+	
+	
+	//--------------------------------------------------------
+	// Fonction de calcul.
+		
 	/** 
 	 * @param e: Evenement reçu.
 	 * @return la température moyenne calculée.
 	 */
-	public float calculeTempMoyenne(TemperatureEventObject e){
+	private float calculeTempMoyenne(TemperatureEventObject e){
 		float tempMoyenne = 0;
 		float coef = 0;
 		for(int i=0; i< e.getDistances().size(); i++){
@@ -76,7 +114,7 @@ public class Temperature implements Serializable, TemperatureListener {
 	 * @param e: Evenement reçu.
 	 * @return la température à la rosée moyenne calculée.
 	 */
-	public float calculeTempRoseeMoyenne(TemperatureEventObject e){
+	private float calculeTempRoseeMoyenne(TemperatureEventObject e){
 		float tempRoseeMoyenne = 0;
 		float coef = 0;
 		for(int i=0; i< e.getDistances().size(); i++){
@@ -97,16 +135,6 @@ public class Temperature implements Serializable, TemperatureListener {
 		return tempRoseeMoyenne;
 	}
 	
-	
-
-	public void handleCalcul(TemperatureEventObject e) {
-		TemperatureTraiteEventObject temp = new TemperatureTraiteEventObject(e);
-		temp.setTemperatureTraite(calculeTempMoyenne(e));
-		temp.setTemperatureTraiteRosee(calculeTempRoseeMoyenne(e));
-		
-		
-		
-	}
 	
 	
 }

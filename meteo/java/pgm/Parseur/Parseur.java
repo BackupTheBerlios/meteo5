@@ -14,12 +14,11 @@ import EventObjects.WeatherEventObject;
 import EventObjects.WindEventObject;
 import InterfaceListener.SaveListener;
 import InterfaceListener.VisibilityListener;
-import InterfaceListener.MetarListener; 
+import InterfaceListener.MetarListener;
 import InterfaceListener.PressureListener;
 import InterfaceListener.TemperatureListener;
 import InterfaceListener.WeatherListener;
 import InterfaceListener.Windlistener;
-
 
 /**
  * @author LE NY Clément
@@ -29,36 +28,35 @@ import InterfaceListener.Windlistener;
  * 
  * Composant gérant le parsage des metar en éléments météo.
  */
-public class Parseur implements Serializable, MetarListener, SaveListener  {
+public class Parseur implements Serializable, MetarListener, SaveListener {
 	private static final long serialVersionUID = 1l;
 
 	/**
 	 * Constructeur vide nécessaire pour créer un composant.
 	 */
 	public Parseur() {
-		
+
 	}
-	
-	
+
 	// ------------------------------------------------------------------------
 	// Récepteur d'évènement Metar : contient une liste de metar à parser
 
 	/**
-	 * Méthode appelée lorsqu'un évènement Metar est reçu.
-	 * Elle consiste à appeler le parsage des metar et
-	 * à appeler à l'envoi des différentes évènements concernant
-	 * les éléments météo.
+	 * Méthode appelée lorsqu'un évènement Metar est reçu. Elle consiste à
+	 * appeler le parsage des metar et à appeler à l'envoi des différentes
+	 * évènements concernant les éléments météo.
 	 * 
-	 * @param e Objet contenant les metars.
+	 * @param e
+	 *            Objet contenant les metars.
 	 */
-	public void handleParse(MetarEventObject e) {		
-		
+	public void handleParse(MetarEventObject e) {
+
 		// Parsage des metars recuperés
 		Vector<Metar> metars = new Vector<Metar>();
-		for(String inf : e.getMetars()) {
+		for (String inf : e.getMetars()) {
 			metars.add(Metar.parse(inf));
 		}
-		
+
 		// Appel de l'envoi des évènements des différents éléments
 		handleTemperature(metars);
 		handlePressure(metars);
@@ -66,10 +64,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 		handleWind(metars);
 		handleVisibility(metars);
 	}
-	
-	
 
-	
 	// ------------------------------------------------------------------------
 	// Source de d'évènement Temperature : temperature a la rosee + temperature
 
@@ -100,7 +95,8 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 	 * Méthode chargée d'envoyer un évènement contenant les informations sur la
 	 * température à tous les composants qui l'écoute.
 	 * 
-	 * @param metar Metar contenant les informations sur la température.
+	 * @param metar
+	 *            Metar contenant les informations sur la température.
 	 */
 	private void handleTemperature(Vector<Metar> metars) {
 
@@ -109,27 +105,26 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 
 		// Récupération des informations voulues
 		Vector<Integer> temps = new Vector<Integer>();
-		Vector<Integer> tempsRosee =new Vector<Integer>();
-		for(Metar m : metars) {
+		Vector<Integer> tempsRosee = new Vector<Integer>();
+		for (Metar m : metars) {
 			temps.add(m.getTemperature());
 			tempsRosee.add(m.getTemperatureRose());
 		}
-		
+
 		// Donner les infos à l'évènement
 		teo.setTemperature(temps);
 		teo.setTemperatureRosee(tempsRosee);
-		
-		// Envoi à tous les écoutant
-		synchronized (this) {
-			Vector<TemperatureListener> l = (Vector<TemperatureListener>) this.temperatureListener.clone();
-			for (TemperatureListener tl : l) {
-				tl.handleCalcul(teo);
-			}
-		}
 
+		// Envoi à tous les auditeurs
+		Vector<TemperatureListener> l;
+		synchronized (this) {
+			l = (Vector<TemperatureListener>) this.temperatureListener.clone();
+		}
+		for (TemperatureListener item : l) {
+			item.handleCalcul(teo);
+		}
 	}
-	
-	
+
 	// ------------------------------------------------------------------------
 	// Source de d'évènement Pressure : pression atmosphérique
 
@@ -160,7 +155,8 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 	 * Méthode chargée d'envoyer un évènement contenant les informations sur la
 	 * pression à tous les composants qui l'écoute.
 	 * 
-	 * @param metar Metar contenant les informations.
+	 * @param metar
+	 *            Metar contenant les informations.
 	 */
 	private void handlePressure(Vector<Metar> metars) {
 
@@ -169,25 +165,23 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 
 		// Récupération des informations voulues
 		Vector<Integer> pres = new Vector<Integer>();
-		for(Metar m : metars) {
+		for (Metar m : metars) {
 			pres.add(m.getQnh());
 		}
-		
+
 		// Donner les infos à l'évènement
 		peo.setPressure(pres);
-		
-		// Envoi à tous les écoutant
-		synchronized (this) {
-			Vector<PressureListener> l = (Vector<PressureListener>) this.pressureListener.clone();
-			for (PressureListener pl : l) {
-				pl.handleCalcul(peo);
-			}
-		}
 
+		// Envoi à tous les écoutant
+		Vector<PressureListener> l;
+		synchronized (this) {
+			l = (Vector<PressureListener>) this.pressureListener.clone();
+		}
+		for (PressureListener pl : l) {
+			pl.handleCalcul(peo);
+		}
 	}
-	
-	
-	
+
 	// ------------------------------------------------------------------------
 	// Source de d'évènement Weather : information sur le temps
 
@@ -218,7 +212,8 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 	 * Méthode chargée d'envoyer un évènement contenant les informations sur la
 	 * température à tous les composants qui l'écoute.
 	 * 
-	 * @param metar Metar contenant les informations sur la température.
+	 * @param metar
+	 *            Metar contenant les informations sur la température.
 	 */
 	private void handleWeather(Vector<Metar> metars) {
 
@@ -227,25 +222,24 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 
 		// Récupération des informations voulues
 		Vector<Boolean> cavOk = new Vector<Boolean>();
-		for(Metar m : metars) {
+		for (Metar m : metars) {
 			cavOk.add(m.isCavok());
 		}
-		
+
 		// Donner les infos à l'évènement
 		weo.setIsCavOk(cavOk);
-		
+
 		// Envoi à tous les écoutant
+		Vector<WeatherListener> l;
 		synchronized (this) {
-			Vector<WeatherListener> l = (Vector<WeatherListener>) this.weatherListener.clone();
-			for (WeatherListener wl : l) {
-				wl.handleCalcul(weo);
-			}
+			l = (Vector<WeatherListener>) this.weatherListener.clone();
+		}
+		for (WeatherListener wl : l) {
+			wl.handleCalcul(weo);
 		}
 
 	}
-	
-	
-	
+
 	// ------------------------------------------------------------------------
 	// Source de d'évènement Wind : informations sur le vent
 
@@ -274,9 +268,10 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 
 	/**
 	 * Méthode chargée d'envoyer un évènement contenant les informations sur la
-	 * température à tous les composants qui l'écoute.
-	 *  wl
-	 * @param metar Metar contenant les informations sur la température.
+	 * température à tous les composants qui l'écoute. wl
+	 * 
+	 * @param metar
+	 *            Metar contenant les informations sur la température.
 	 */
 	private void handleWind(Vector<Metar> metars) {
 
@@ -285,31 +280,29 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 
 		// Récupération des informations voulues
 		Vector<Integer> dir = new Vector<Integer>();
-		Vector<Integer> force =new Vector<Integer>();
-		Vector<Integer> forceMax =new Vector<Integer>();
-		for(Metar m : metars) {
+		Vector<Integer> force = new Vector<Integer>();
+		Vector<Integer> forceMax = new Vector<Integer>();
+		for (Metar m : metars) {
 			dir.add(m.getDir());
 			force.add(m.getForce());
 			forceMax.add(m.getForceMax());
 		}
-		
+
 		// Donner les infos à l'évènement
 		weo.setDirections(dir);
 		weo.setForces(force);
 		weo.setForcesMax(forceMax);
-		
-		// Envoi à tous les écoutant
-		synchronized (this) {
-			Vector<Windlistener> l = (Vector<Windlistener>) this.windListener.clone();
-			for (Windlistener wl : l) {
-				wl.handleCalcul(weo);
-			}
-		}
 
+		// Envoi à tous les écoutant
+		Vector<Windlistener> l;
+		synchronized (this) {
+			l = (Vector<Windlistener>) this.windListener.clone();
+		}
+		for (Windlistener wl : l) {
+			wl.handleCalcul(weo);
+		}
 	}
-	
-	
-	
+
 	// ------------------------------------------------------------------------
 	// Source de d'évènement Visibility
 
@@ -317,8 +310,8 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 	private Vector<VisibilityListener> visibilityListener = new Vector<VisibilityListener>();
 
 	/**
-	 * Ajoute un composant écoutant l'évènement.
-	 * visibility
+	 * Ajoute un composant écoutant l'évènement. visibility
+	 * 
 	 * @param l
 	 *            Composant écoutant l'évènement.
 	 */
@@ -340,7 +333,8 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 	 * Méthode chargée d'envoyer un évènement contenant les informations sur la
 	 * température à tous les composants qui l'écoute.
 	 * 
-	 * @param metar Metar contenant les informations sur la température.
+	 * @param metar
+	 *            Metar contenant les informations sur la température.
 	 */
 	private void handleVisibility(Vector<Metar> metars) {
 
@@ -349,30 +343,29 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 
 		// Récupération des informations voulues
 		Vector<Integer> vis = new Vector<Integer>();
-		for(Metar m : metars) {
+		for (Metar m : metars) {
 			vis.add(m.getVisibilite());
 		}
-		
+
 		// Donner les infos à l'évènement
 		veo.setVisibilites(vis);
-		
-		// Envoi à tous les écoutant
-		synchronized (this) {
-			Vector<VisibilityListener> l = (Vector<VisibilityListener>) this.visibilityListener.clone();
-			for (VisibilityListener wl : l) {
-				wl.handleCalcul(veo);
-			}
-		}
 
+		// Envoi à tous les écoutant
+		Vector<VisibilityListener> l;
+		synchronized (this) {
+			l = (Vector<VisibilityListener>) this.visibilityListener.clone();
+		}
+		for (VisibilityListener wl : l) {
+			wl.handleCalcul(veo);
+		}
 	}
-	
-	
+
 	// ----------------------------------------------------
 	// Récepteur d'évènement Save : sauvegarde du composant
-	
+
 	/**
-	 * Méthode azppelée lorsqu'un évènement Save est reçu.
-	 * Il sauvegarde le composant pour la persistance.
+	 * Méthode azppelée lorsqu'un évènement Save est reçu. Il sauvegarde le
+	 * composant pour la persistance.
 	 * 
 	 * @param e
 	 *            Objet ne contenant pas d'information nécessaire.
@@ -380,28 +373,26 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 	public void handleSave(SaveEventObject e) {
 		try {
 			// Ouverture du fichier de sauvegarde
-			FileOutputStream fichier = new FileOutputStream(this.parseurSaveFile);
-			
+			FileOutputStream fichier = new FileOutputStream(
+					this.parseurSaveFile);
+
 			// Ouverture du stream objet vers le fichier
-			ObjectOutputStream sortie = new  ObjectOutputStream(fichier);
-			
+			ObjectOutputStream sortie = new ObjectOutputStream(fichier);
+
 			// Ecriture de l'objet
 			sortie.writeObject(this);
-			
+
 			sortie.close();
 			fichier.close();
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 
 	}
-	
-	
-	
+
 	// --------------------
 	// Accès aux propriétés
-	
+
 	/** Nom du fichier servant à la persistance du composant. */
 	private String parseurSaveFile = "parseur.ser";
 
@@ -424,6 +415,5 @@ public class Parseur implements Serializable, MetarListener, SaveListener  {
 	public void setAeroVilleSaveFile(String fileName) {
 		this.parseurSaveFile = fileName;
 	}
-	
-	
+
 }

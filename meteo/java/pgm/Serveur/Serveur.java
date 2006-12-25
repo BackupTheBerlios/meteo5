@@ -11,6 +11,7 @@ import EventObjects.SaveEventObject;
 import InterfaceListener.AeroVilleListener;
 import InterfaceListener.MetarListener;
 import InterfaceListener.SaveListener;
+import InterfaceListener.TemperatureListener;
 
 /**
  * @author LE NY Clément
@@ -42,34 +43,29 @@ public class Serveur implements Serializable, AeroVilleListener, SaveListener {
 
 	/** 
 	 * Supression d'un écouteur.
-	 * @param l écouteur à supprimer de la liste des abonnés.
+	 * @param l Ecouteur à supprimer de la liste des abonnés.
 	 */
 	public synchronized void removeMetarListener(MetarListener l) {
 		metarListeners.removeElement(l);
 	}
 
-	// Notifie les ecouteurs d'event Metar
 	/** 
-	 * Méthode qui envoie les metars demandés au parseur.
-	 * @param o: l'évènement que le composant a reçu en entrée.
+	 * Méthode qui envoie un évènements contenant les métars.
+	 * @param list Liste des métars.
 	 */
-	public void envoieMetar(AeroVilleEventObject o) {
-		TestMeteoServer serveurTest = new TestMeteoServer();
-		RealMeteoServer serveurReel = new RealMeteoServer();
-		Vector<String> met = new Vector<String>();
-		if (getTest()) {
-
-			MetarEventObject meo = new MetarEventObject(o);
-			for(int i=0;i<o.getAeroports().size();i++){
-				met.add(serveurTest.getAMetarString(
-						o.getAeroports().firstElement(), 128));
-					o.getAeroports().remove(0);
-				
+	private void handleSendMetars(Vector<String> list) {
+			// Création de l'objet de l'évènement
+			MetarEventObject obj = new MetarEventObject(this);
+			obj.setMetars(list);
+			
+			// Envoi des évènements à tous les auditeurs
+			Vector<MetarListener> l;
+			synchronized (this) {
+				l = (Vector<MetarListener>) this.metarListeners.clone();
 			}
-			meo.setMetars(met);
-		} else {
-			// pas de serveur réel
-		}
+			for (MetarListener item : l) {
+				item.handleParse(obj);
+			}
 	}
 
 	
@@ -79,10 +75,25 @@ public class Serveur implements Serializable, AeroVilleListener, SaveListener {
 	// executer à la réception d'un AeroVilleEventObject
 	/** 
 	 * Méthode éxécutée à la réception d'un évènement AeroVilleEventObject.
-	 * @param o: évènement reçu.
+	 * @param o Evènement reçu.
 	 */
-	public void handleChercherAeroports(EventObjects.AeroVilleEventObject o) {
-		envoieMetar(o);
+	public void handleAeroports(AeroVilleEventObject o) {
+		// Construction de la liste des métars
+		Vector<String> metars = new Vector<String>();
+		
+		if(this.test) { // serveur de test
+			TestMeteoServer serveurTest = new TestMeteoServer();
+			for(String aero : o.getAeroports()) {
+				String met = serveurTest.getAMetarString(aero, 128);
+				metars.add(met);
+			}
+		}
+		else {
+			// pas de serveur réel
+		}
+				
+		// Envoi d'un évènement aux auditeur de metar
+		handleSendMetars(metars);
 	}
 
 		

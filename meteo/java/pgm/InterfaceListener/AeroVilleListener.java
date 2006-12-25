@@ -19,5 +19,5 @@ public interface AeroVilleListener extends EventListener {
 	 * Méthode appelée lors de la réception d'un évènement.
 	 * @param e Objet contenant les informations sur l'évènement.
 	 */
-	void handleChercherAeroports(AeroVilleEventObject e);
+	void handleAeroports(AeroVilleEventObject e);
 }
