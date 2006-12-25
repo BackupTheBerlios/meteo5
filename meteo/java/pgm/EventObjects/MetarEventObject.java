@@ -44,4 +44,25 @@ public class MetarEventObject extends EventObject {
 	}
 	
 	
+	/** Liste des distances entre la ville et l'aéroport. */
+	private Vector<Float> distances = new Vector<Float>();
+	
+	/**
+	 * Obtenir la liste des métars.
+	 * @return La liste des métars.
+	 */
+	public Vector<Float> getDistances(){
+		return this.distances;
+	}
+
+	/**
+	 * Préciser la liste des métars.
+	 * @param metars Liste des métars.
+	 */	
+	public void setDistances(Vector<Float> dst) {
+		this.distances = dst;
+	}
+
+	
+	
 }

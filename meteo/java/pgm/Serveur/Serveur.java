@@ -26,8 +26,7 @@ public class Serveur implements Serializable, AeroVilleListener, SaveListener {
 	private static final long serialVersionUID = 1l;
 
 
-	
-	//-----------------
+	//--------------------------
 	// Source d'évènements Metar
 	
 	/** liste des écouteurs d'évènements Metar */
@@ -52,11 +51,13 @@ public class Serveur implements Serializable, AeroVilleListener, SaveListener {
 	/** 
 	 * Méthode qui envoie un évènements contenant les métars.
 	 * @param list Liste des métars.
+	 * @param dst Distances.
 	 */
-	private void handleSendMetars(Vector<String> list) {
+	private void handleSendMetars(Vector<String> list, Vector<Float> dst) {
 			// Création de l'objet de l'évènement
 			MetarEventObject obj = new MetarEventObject(this);
 			obj.setMetars(list);
+			obj.setDistances(dst);
 			
 			// Envoi des évènements à tous les auditeurs
 			Vector<MetarListener> l;
@@ -69,7 +70,7 @@ public class Serveur implements Serializable, AeroVilleListener, SaveListener {
 	}
 
 	
-	// ----------------------------------------------------
+	// -------------------------------
 	// Récepteur d'évènement AeroVille
 	
 	// executer à la réception d'un AeroVilleEventObject
@@ -78,14 +79,20 @@ public class Serveur implements Serializable, AeroVilleListener, SaveListener {
 	 * @param o Evènement reçu.
 	 */
 	public void handleAeroports(AeroVilleEventObject o) {
-		// Construction de la liste des métars
+		// Construction de la liste des métars et distances
 		Vector<String> metars = new Vector<String>();
+		Vector<Float> distances = new Vector<Float>();
 		
 		if(this.test) { // serveur de test
 			TestMeteoServer serveurTest = new TestMeteoServer();
-			for(String aero : o.getAeroports()) {
+			for(String aeroDst : o.getAeroports()) {
+				String[] infos = aeroDst.split(",");
+				String aero = infos[0];
+				Float dst = new Float(infos[1]);
 				String met = serveurTest.getAMetarString(aero, 128);
+				
 				metars.add(met);
+				distances.add(new Float(dst));
 			}
 		}
 		else {
@@ -93,7 +100,9 @@ public class Serveur implements Serializable, AeroVilleListener, SaveListener {
 		}
 				
 		// Envoi d'un évènement aux auditeur de metar
-		handleSendMetars(metars);
+		if(metars.size() > 0) {
+			handleSendMetars(metars, distances);
+		}
 	}
 
 		
@@ -137,7 +146,7 @@ public class Serveur implements Serializable, AeroVilleListener, SaveListener {
 	private String url;
 
 	/** Vrai si on se sert d'un fichier en guise de serveur. */
-	private boolean test;
+	private boolean test = true;
 
 	/** Emplacement du fichier de sauvegarde du composant. */
 	private String serveurSaveFile = "serveur.ser";

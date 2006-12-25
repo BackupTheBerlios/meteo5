@@ -13,6 +13,7 @@ import EventObjects.ListVilleEventObject;
 import EventObjects.SaveEventObject;
 import EventObjects.SelectedVilleEventObject;
 import EventObjects.TemperatureTraiteEventObject;
+import EventObjects.WindTraiteEventObject;
 
 import InterfaceListener.AffichageListener;
 import InterfaceListener.GetListVilleListener;
@@ -24,7 +25,7 @@ import Affichage.Affichage;
 import Parseur.Parseur;
 import Serveur.Serveur;
 import Temperature.Temperature;
-
+import Wind.Wind;
 
 /**
  * @author LE NY Clément
@@ -32,88 +33,95 @@ import Temperature.Temperature;
  * @author YANG Yitian
  * @author MEHEUT Emmanuel
  * 
- * Composant gérant l'interface graphique.
- * Elle contient également le main chargé de la création des composants.
+ * Composant gérant l'interface graphique. Elle contient également le main
+ * chargé de la création des composants.
  */
-public class Client implements Serializable, ListVilleListener, AffichageListener {
+public class Client implements Serializable, ListVilleListener,
+		AffichageListener {
 	private static final long serialVersionUID = 1l;
-	
 
-	
 	/**
-	 * Création des composants et lancement de l'interface 
-	 * graphique du projet météo.
-	 * @param args Argument passés au programme.
+	 * Création des composants et lancement de l'interface graphique du projet
+	 * météo.
+	 * 
+	 * @param args
+	 *            Argument passés au programme.
 	 */
 	public static void main(String[] args) {
 		try {
-			
+
 			// Instantiation des composants
-			AeroVille avComp = (AeroVille)Beans.instantiate(ClassLoader.getSystemClassLoader(), "AeroVille.AeroVille");
-			Serveur servComp = (Serveur)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Serveur.Serveur");
-			Parseur parsComp = (Parseur)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Parseur.Parseur");
-			Temperature tmpComp = (Temperature)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Temperature.Temperature");		
-			Affichage affComp = (Affichage)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Affichage.Affichage");
-			Client cliComp = (Client)Beans.instantiate(ClassLoader.getSystemClassLoader(), "Client.Client");
-			
+			AeroVille avComp = (AeroVille) Beans.instantiate(ClassLoader
+					.getSystemClassLoader(), "AeroVille.AeroVille");
+			Serveur servComp = (Serveur) Beans.instantiate(ClassLoader
+					.getSystemClassLoader(), "Serveur.Serveur");
+			Parseur parsComp = (Parseur) Beans.instantiate(ClassLoader
+					.getSystemClassLoader(), "Parseur.Parseur");
+			Temperature tmpComp = (Temperature) Beans.instantiate(ClassLoader
+					.getSystemClassLoader(), "Temperature.Temperature");
+			Wind windComp = (Wind) Beans.instantiate(ClassLoader
+					.getSystemClassLoader(), "Wind.Wind");
+			Affichage affComp = (Affichage) Beans.instantiate(ClassLoader
+					.getSystemClassLoader(), "Affichage.Affichage");
+			Client cliComp = (Client) Beans.instantiate(ClassLoader
+					.getSystemClassLoader(), "Client.Client");
+
 			// Liaison aeroVille <-> Client
 			cliComp.addGetListVilleListener(avComp);
 			cliComp.addSelectedVilleListener(avComp);
 			avComp.addListVilleListener(cliComp);
-			
+
 			// Liaison aeroVille <-> Serveur
 			avComp.addAeroVilleListener(servComp);
-			
+
 			// Liaison Serveur <-> Parseur
 			servComp.addMetarListener(parsComp);
-			
+
 			// Liaison Parseur <-> éléments météo
 			parsComp.addTemperatureListener(tmpComp);
-			
+			parsComp.addWindListener(windComp);
+
 			// Liaison éléments météo <-> Affichage
 			try {
-				affComp.getAdaptateur().addTemperature(tmpComp, "handleTemperatureTraite", new Class[] { TemperatureTraiteEventObject.class });
-			}
-			catch(NoSuchMethodException e) {
+				affComp.getAdaptateur().addTemperature(tmpComp,
+						"handleTemperatureTraite",
+						new Class[] { TemperatureTraiteEventObject.class });
+				affComp.getAdaptateur().addWind(windComp,
+						"handleWindTraite",
+						new Class[] { WindTraiteEventObject.class });
+			} catch (NoSuchMethodException e) {
 				e.printStackTrace();
 			}
-			
+
 			// Liaison Affichage <-> Client
 			affComp.addClientListener(cliComp);
-			
+
 			// Lancement général : envoi d'un event GetListVille
 			cliComp.handleGetListVille();
-		}
-		catch(IOException e) {
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		
+
 	}
-	
-		
-	
+
 	/** Interface graphique du client. */
 	private ClientClass ihm = null;
-	
-	
+
 	/**
 	 * Constructeur vide pour le composant.
 	 */
 	public Client() {
 		this.ihm = new ClientClass(this);
 	}
-	
-	
-	//-----------------------------------------------------------------------
+
+	// -----------------------------------------------------------------------
 	// Source de d'évènement SelectedVille : envoi le nom de la ville choisie
-	
+
 	/** Liste des écouteur de l'évènement SelectedVille. */
 	private Vector<SelectedVilleListener> selectedVilletListener = new Vector<SelectedVilleListener>();
-	
-	
+
 	/**
 	 * Ajoute un composant écoutant l'évènement.
 	 * 
@@ -123,8 +131,7 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 	public synchronized void addSelectedVilleListener(SelectedVilleListener l) {
 		this.selectedVilletListener.add(l);
 	}
-	
-	
+
 	/**
 	 * Supprime un composant écoutant l'évènement.
 	 * 
@@ -134,16 +141,16 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 	public synchronized void removeSelectedVilleListener(SelectedVilleListener l) {
 		this.selectedVilletListener.remove(l);
 	}
-	
+
 	/**
-	 * Méthode chargée d'envoyer un évènement la liste des auditeurs
-	 * qui attendent qu'une ville soit sélectionné
+	 * Méthode chargée d'envoyer un évènement la liste des auditeurs qui
+	 * attendent qu'une ville soit sélectionné
 	 */
 	public void handleSelectedVille(String ville) {
 		// Création d'un objet pour l'évènement
 		SelectedVilleEventObject obj = new SelectedVilleEventObject(this);
 		obj.setVille(ville);
-		
+
 		// Envoi à tous les écoutant
 		Vector<SelectedVilleListener> l;
 		synchronized (this) {
@@ -155,10 +162,8 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 		}
 
 	}
-	
-	
-	
-	//------------------------------------------------
+
+	// ------------------------------------------------
 	// Source de d'évènement GetListVille
 
 	/** Liste des écouteur de l'évènement GetListVille. */
@@ -173,7 +178,7 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 	public synchronized void addGetListVilleListener(GetListVilleListener l) {
 		this.getSelectedVilletListener.add(l);
 	}
-	
+
 	/**
 	 * Supprime un composant écoutant l'évènement.
 	 * 
@@ -183,11 +188,10 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 	public synchronized void removeGetListVilleListener(SelectedVilleListener l) {
 		this.getSelectedVilletListener.remove(l);
 	}
-	
-	
+
 	/**
-	 * Méthode chargée d'envoyer un évènement la liste des villes dont
-	 * on peut avoir les informations.
+	 * Méthode chargée d'envoyer un évènement la liste des villes dont on peut
+	 * avoir les informations.
 	 */
 	public void handleGetListVille() {
 		// Création d'un objet pour l'évènement
@@ -203,41 +207,39 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 		}
 
 	}
-	
-	
-	
-	//----------------------------------------------
+
+	// ----------------------------------------------
 	// Réception d'évènements ListVille
-	
+
 	/**
 	 * Méthode lancée lors de la réception d'un évènement ListVille.
-	 * @param e Objet contenant la liste des villes.
+	 * 
+	 * @param e
+	 *            Objet contenant la liste des villes.
 	 */
 	public void handleListVille(ListVilleEventObject e) {
-		this.ihm.setLocations(e.getVilles());		
+		this.ihm.setLocations(e.getVilles());
 	}
-	
-	
-	//----------------------------------------------
+
+	// ----------------------------------------------
 	// Réception d'évènements Affichage
-	
+
 	/**
 	 * Méthode lancée lors de la réception d'un évènement ListVille.
-	 * @param e Objet contenant la liste des villes.
+	 * 
+	 * @param e
+	 *            Objet contenant la liste des villes.
 	 */
 	public void handleAffichage(AffichageEventObject e) {
 		this.ihm.addTexte(e.getTexte());
 	}
-	
-	
-	
-	
+
 	// ----------------------------------------------------
 	// Récepteur d'évènement Save : sauvegarde du composant
-	
+
 	/**
-	 * Méthode azppelée lorsqu'un évènement Save est reçu.
-	 * Il sauvegarde le composant pour la persistance.
+	 * Méthode azppelée lorsqu'un évènement Save est reçu. Il sauvegarde le
+	 * composant pour la persistance.
 	 * 
 	 * @param e
 	 *            Objet ne contenant pas d'information nécessaire.
@@ -246,27 +248,24 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 		try {
 			// Ouverture du fichier de sauvegarde
 			FileOutputStream fichier = new FileOutputStream(this.clientSaveFile);
-			
+
 			// Ouverture du stream objet vers le fichier
-			ObjectOutputStream sortie = new  ObjectOutputStream(fichier);
-			
+			ObjectOutputStream sortie = new ObjectOutputStream(fichier);
+
 			// Ecriture de l'objet
 			sortie.writeObject(this);
-			
+
 			sortie.close();
 			fichier.close();
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 
 	}
-	
-	
-	
+
 	// ---------------------
 	// Propriétés
-	
+
 	/** Nom du fichier servant à la persistance du composant. */
 	private String clientSaveFile = "client.ser";
 
@@ -290,6 +289,4 @@ public class Client implements Serializable, ListVilleListener, AffichageListene
 		this.clientSaveFile = fileName;
 	}
 
-
-	
 }

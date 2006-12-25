@@ -1,6 +1,7 @@
 package EventObjects;
 
 import java.util.EventObject;
+import java.util.Vector;
 
 public class WindTraiteEventObject extends EventObject {
 	private static final long serialVersionUID = 1l;
@@ -74,4 +75,23 @@ public class WindTraiteEventObject extends EventObject {
 		return this.forceMaxTraite;
 	}
 
+	/** Liste des distances par rapport au point de calcul */
+	private Vector<Float> distances = new Vector<Float>();
+	
+	/**
+	 * Préciser la liste des distances.
+	 * @param d Liste des distances.
+	 */
+	public void setDistances(Vector<Float> d) {
+		this.distances = d;
+	}
+	
+	/**
+	 * Obtenir la liste des distances.
+	 * @return La liste des disttances.
+	 */
+	public Vector<Float> getDistances() {
+		return this.distances;
+	}
+	
 }

@@ -56,13 +56,13 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 		for (String inf : e.getMetars()) {
 			metars.add(Metar.parse(inf));
 		}
-
+		
 		// Appel de l'envoi des évènements des différents éléments
-		handleTemperature(metars);
-		handlePressure(metars);
-		handleWeather(metars);
-		handleWind(metars);
-		handleVisibility(metars);
+		handleTemperature(metars, e.getDistances());
+		handlePressure(metars, e.getDistances());
+		handleWeather(metars, e.getDistances());
+		handleWind(metars, e.getDistances());
+		handleVisibility(metars, e.getDistances());
 	}
 
 	// ------------------------------------------------------------------------
@@ -98,7 +98,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 	 * @param metar
 	 *            Metar contenant les informations sur la température.
 	 */
-	private void handleTemperature(Vector<Metar> metars) {
+	private void handleTemperature(Vector<Metar> metars, Vector<Float> distances) {
 
 		// Création d'un objet pour l'évènement
 		TemperatureEventObject teo = new TemperatureEventObject(this);
@@ -114,6 +114,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 		// Donner les infos à l'évènement
 		teo.setTemperature(temps);
 		teo.setTemperatureRosee(tempsRosee);
+		teo.setDistances(distances);
 
 		// Envoi à tous les auditeurs
 		Vector<TemperatureListener> l;
@@ -158,7 +159,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 	 * @param metar
 	 *            Metar contenant les informations.
 	 */
-	private void handlePressure(Vector<Metar> metars) {
+	private void handlePressure(Vector<Metar> metars, Vector<Float> distances) {
 
 		// Création d'un objet pour l'évènement
 		PressureEventObject peo = new PressureEventObject(this);
@@ -171,6 +172,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 
 		// Donner les infos à l'évènement
 		peo.setPressure(pres);
+		peo.setDistances(distances);
 
 		// Envoi à tous les écoutant
 		Vector<PressureListener> l;
@@ -215,7 +217,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 	 * @param metar
 	 *            Metar contenant les informations sur la température.
 	 */
-	private void handleWeather(Vector<Metar> metars) {
+	private void handleWeather(Vector<Metar> metars, Vector<Float> distances) {
 
 		// Création d'un objet pour l'évènement
 		WeatherEventObject weo = new WeatherEventObject(this);
@@ -228,6 +230,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 
 		// Donner les infos à l'évènement
 		weo.setIsCavOk(cavOk);
+		weo.setDistances(distances);
 
 		// Envoi à tous les écoutant
 		Vector<WeatherListener> l;
@@ -273,7 +276,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 	 * @param metar
 	 *            Metar contenant les informations sur la température.
 	 */
-	private void handleWind(Vector<Metar> metars) {
+	private void handleWind(Vector<Metar> metars, Vector<Float> distances) {
 
 		// Création d'un objet pour l'évènement
 		WindEventObject weo = new WindEventObject(this);
@@ -292,6 +295,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 		weo.setDirections(dir);
 		weo.setForces(force);
 		weo.setForcesMax(forceMax);
+		weo.setDistances(distances);
 
 		// Envoi à tous les écoutant
 		Vector<WindListener> l;
@@ -336,7 +340,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 	 * @param metar
 	 *            Metar contenant les informations sur la température.
 	 */
-	private void handleVisibility(Vector<Metar> metars) {
+	private void handleVisibility(Vector<Metar> metars, Vector<Float> distances) {
 
 		// Création d'un objet pour l'évènement
 		VisibilityEventObject veo = new VisibilityEventObject(this);
@@ -349,6 +353,7 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 
 		// Donner les infos à l'évènement
 		veo.setVisibilites(vis);
+		veo.setDistances(distances);
 
 		// Envoi à tous les écoutant
 		Vector<VisibilityListener> l;

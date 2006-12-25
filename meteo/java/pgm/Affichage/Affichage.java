@@ -8,11 +8,9 @@ import java.util.Vector;
 import EventObjects.AffichageEventObject;
 import EventObjects.SaveEventObject;
 import EventObjects.TemperatureTraiteEventObject;
-import InterfaceListener.AeroVilleListener;
+import EventObjects.WindTraiteEventObject;
 import InterfaceListener.AffichageListener;
 import InterfaceListener.SaveListener;
-import InterfaceListener.TemperatureTraiteListener;
-
 
 /**
  * @author LE NY Clément
@@ -35,11 +33,11 @@ public class Affichage implements Serializable, SaveListener {
 	}
 	
 	
-	// ------------------------------------
-	// Réception d'un évènement température
+	// ------------------------------------------
+	// Réception d'un évènement températureTraite
 	
 	/**
-	 * Méthode appelée par l'adaptateur lorsqu'un évènement température
+	 * Méthode appelée par l'adaptateur lorsqu'un évènement temperatureTraite
 	 * est reçu.
 	 * @param e Objet reçu avec l'évènement.
 	 */
@@ -49,6 +47,25 @@ public class Affichage implements Serializable, SaveListener {
 		ret += "La température est de " + e.getTemperatureTraite() + " °C.";
 		handleAffichage(ret);
 	}
+	
+	
+	// -----------------------------------
+	// Réception d'un évènement windTraite
+	
+	/**
+	 * Méthode appelée par l'adaptateur lorsqu'un évènement WindTraite
+	 * est reçu.
+	 * @param e Objet reçu avec l'évènement.
+	 */
+	public void handleWindTraite(WindTraiteEventObject e) {
+		String ret = "";
+		ret = "La vitesse maximale du vent a été de " + e.getForceMaxTraite()
+		+ " km/h.\n";
+		ret += "La vitesse du vent est de " + e.getForceTraite() + " km/h.\n";
+		ret += "La direction du vent vaut " + e.getDirectionTraite() + ".";
+		handleAffichage(ret);
+	}
+
 	
 	
 	// ---------------------------------------------------------------

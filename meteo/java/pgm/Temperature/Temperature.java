@@ -17,7 +17,7 @@ import InterfaceListener.TemperatureTraiteListener;
  * Composant gérant les températures.
  */
 public class Temperature implements Serializable, TemperatureListener {
-	static final long serialVersionUID =1;
+	private static final long serialVersionUID =1;
 
 	public Temperature() {
 		
@@ -75,8 +75,8 @@ public class Temperature implements Serializable, TemperatureListener {
 	 * @param e Objet de l'évènement.
 	 */
 	public void handleCalcul(TemperatureEventObject e) {
-		float temp = calculeTempMoyenne(e);
-		float tempRosee = calculeTempRoseeMoyenne(e);
+		float temp = calcul(e.getTemperature(), e.getDistances());
+		float tempRosee = calcul(e.getTemperatureRosee(), e.getDistances());
 		
 		handleSendTemperature(temp, tempRosee);
 	}
@@ -85,56 +85,29 @@ public class Temperature implements Serializable, TemperatureListener {
 	//--------------------------------------------------------
 	// Fonction de calcul.
 		
-	/** 
-	 * @param e: Evenement reçu.
-	 * @return la température moyenne calculée.
+	/**
+	 * Calcul les informations.
 	 */
-	private float calculeTempMoyenne(TemperatureEventObject e){
-		float tempMoyenne = 0;
-		float coef = 0;
-		for(int i=0; i< e.getDistances().size(); i++){
-			if (e.getDistances().get(i)!= 0){
-				tempMoyenne += e.getTemperature().get(i) * (1 / e.getDistances().get(i));
-			}
-			else{
-				tempMoyenne += e.getTemperature().get(i);
-			}
-//			coef diviseur
-			if (e.getDistances().get(i) != 0) {
-				coef += 1 / e.getDistances().get(i);
+	protected int calcul(Vector<Integer> data, Vector<Float> dst) {
+		float dirMoy = 0.0f;
+		float coef = 0.0f;
+		
+		for (int i = 0; i < data.size(); i++) {
+			if (dst.get(i) != 0) {
+				dirMoy += data.get(i) * (1 / dst.get(i));
+				coef += 1 / dst.get(i);
 			} else {
-				coef += 1;
+				dirMoy += data.get(i);
+				coef++;
 			}
-			tempMoyenne /= coef;
 		}
-		return tempMoyenne;
+
+		dirMoy /= coef;
+
+		return Math.round(dirMoy);
 	}
 	
-	/** 
-	 * @param e: Evenement reçu.
-	 * @return la température à la rosée moyenne calculée.
-	 */
-	private float calculeTempRoseeMoyenne(TemperatureEventObject e){
-		float tempRoseeMoyenne = 0;
-		float coef = 0;
-		for(int i=0; i< e.getDistances().size(); i++){
-			if(e.getDistances().get(i)!=0){
-				tempRoseeMoyenne += e.getTemperatureRosee().get(i) * (1 / e.getDistances().get(i));
-			}
-			else{
-				tempRoseeMoyenne += e.getTemperatureRosee().get(i);
-			}
-			//coef diviseur
-			if (e.getDistances().get(i) != 0) {
-				coef += 1 / e.getDistances().get(i);
-			} else {
-				coef += 1;
-			}
-			tempRoseeMoyenne /= coef;
-		}
-		return tempRoseeMoyenne;
-	}
-	
+
 	
 	
 }
