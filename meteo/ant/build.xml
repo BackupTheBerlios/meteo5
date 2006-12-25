@@ -185,9 +185,9 @@
 	</target>
 	
 	<!-- Creating package jar -->
-	<target name="jar" depends="class" description="Creation archives Jar">
+	<target name="jar" depends="class" description="Creating package Jar">
 		
-		<!-- Copy two files : places, metars -->
+		<!-- Copy two data files : places, metars -->
 		<copy todir="${build.jar.dir}">
 		      <fileset dir="${build.class.dir}" includes="places,metars"/>
 		</copy>
