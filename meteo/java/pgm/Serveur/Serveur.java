@@ -1,17 +1,13 @@
 package Serveur;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+
 import java.io.Serializable;
 import java.util.Vector;
 
 import EventObjects.AeroVilleEventObject;
 import EventObjects.MetarEventObject;
-import EventObjects.SaveEventObject;
 import InterfaceListener.AeroVilleListener;
 import InterfaceListener.MetarListener;
-import InterfaceListener.SaveListener;
-import InterfaceListener.TemperatureListener;
 
 /**
  * @author LE NY Clément
@@ -22,7 +18,7 @@ import InterfaceListener.TemperatureListener;
  * Composant envoyant les metars au parseur.
  */
 
-public class Serveur implements Serializable, AeroVilleListener, SaveListener {
+public class Serveur implements Serializable, AeroVilleListener {
 	private static final long serialVersionUID = 1l;
 
 
@@ -107,35 +103,6 @@ public class Serveur implements Serializable, AeroVilleListener, SaveListener {
 
 		
 	
-	// ----------------------------------------------------
-	// Récepteur d'évènement Save : sauvegarde du composant
-	
-	/**
-	 * Méthode azppelée lorsqu'un évènement Save est reçu.
-	 * Il sauvegarde le composant pour la persistance.
-	 * 
-	 * @param e
-	 *            Objet ne contenant pas d'information nécessaire.
-	 */
-	public void handleSave(SaveEventObject e) {
-		try {
-			// Ouverture du fichier de sauvegarde
-			FileOutputStream fichier = new FileOutputStream(this.serveurSaveFile);
-			
-			// Ouverture du stream objet vers le fichier
-			ObjectOutputStream sortie = new  ObjectOutputStream(fichier);
-			
-			// Ecriture de l'objet
-			sortie.writeObject(this);
-			
-			sortie.close();
-			fichier.close();
-		}
-		catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-	}
 	
 	
 	
@@ -148,31 +115,6 @@ public class Serveur implements Serializable, AeroVilleListener, SaveListener {
 	/** Vrai si on se sert d'un fichier en guise de serveur. */
 	private boolean test = true;
 
-	/** Emplacement du fichier de sauvegarde du composant. */
-	private String serveurSaveFile = "serveur.ser";
-	
-	
-	/**
-	 * Récupérer l'emplacement du fichier servant à la persistance du composant.
-	 * 
-	 * @return L'emplacement du fichier servant à la persistance du composant.
-	 */
-	public String getServeurSaveFile() {
-		return this.serveurSaveFile;
-	}
-
-	/**
-	 * Préciser l'emplacement du fichier servant à la persistance du composant.
-	 * 
-	 * @param fileName
-	 *            L'emplacement du fichier servant à la persistance du
-	 *            composant.
-	 */
-	public void setServeurSaveFile(String fileName) {
-		this.serveurSaveFile = fileName;
-	}
-	
-	
 	/**
 	 * @return Rend vrai si le serveur est un serveur de test.
 	 */

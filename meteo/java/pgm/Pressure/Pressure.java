@@ -1,5 +1,7 @@
 package Pressure;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Vector;
 
@@ -110,5 +112,7 @@ public class Pressure implements Serializable, PressureListener {
 
 		return Math.round(dirMoy);
 	}
+	
+
 	
 }

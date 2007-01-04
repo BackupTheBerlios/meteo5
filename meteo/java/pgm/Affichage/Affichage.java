@@ -1,19 +1,15 @@
 package Affichage;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Vector;
 
 import EventObjects.AffichageEventObject;
 import EventObjects.PressureTraiteEventObject;
-import EventObjects.SaveEventObject;
 import EventObjects.TemperatureTraiteEventObject;
 import EventObjects.VisibilityTraiteEventObject;
 import EventObjects.WeatherTraiteEventObject;
 import EventObjects.WindTraiteEventObject;
 import InterfaceListener.AffichageListener;
-import InterfaceListener.SaveListener;
 
 /**
  * @author LE NY Clément
@@ -24,7 +20,7 @@ import InterfaceListener.SaveListener;
  * Composant traitant les informations pour créer un texte
  * qui pourra être afficher par un client.
  */
-public class Affichage implements Serializable, SaveListener { 
+public class Affichage implements Serializable { 
 	private static final long serialVersionUID = 1l;
 
 	/**
@@ -171,37 +167,6 @@ public class Affichage implements Serializable, SaveListener {
 	}
 	
 	
-
-	// ----------------------------------------------------
-	// Récepteur d'évènement Save : sauvegarde du composant
-	
-	/**
-	 * Méthode azppelée lorsqu'un évènement Save est reçu.
-	 * Il sauvegarde le composant pour la persistance.
-	 * 
-	 * @param e
-	 *            Objet ne contenant pas d'information nécessaire.
-	 */
-	public void handleSave(SaveEventObject e) {
-		try {
-			// Ouverture du fichier de sauvegarde
-			FileOutputStream fichier = new FileOutputStream(this.affichageSaveFile);
-			
-			// Ouverture du stream objet vers le fichier
-			ObjectOutputStream sortie = new  ObjectOutputStream(fichier);
-			
-			// Ecriture de l'objet
-			sortie.writeObject(this);
-			
-			sortie.close();
-			fichier.close();
-		}
-		catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-	}
-	
 	
 	
 	// ---------------------------
@@ -226,29 +191,5 @@ public class Affichage implements Serializable, SaveListener {
 		this.adaptateur = adapt;
 	}
 	
-	/** Nom du fichier servant à la persistance du composant. */
-	private String affichageSaveFile = "affichageVille.ser";
-
-	/**
-	 * Récupérer l'emplacement du fichier servant à la persistance du composant.
-	 * 
-	 * @return L'emplacement du fichier servant à la persistance du composant.
-	 */
-	public String getAffichageSaveFile() {
-		return this.affichageSaveFile;
-	}
-
-	/**
-	 * Préciser l'emplacement du fichier servant à la persistance du composant.
-	 * 
-	 * @param fileName
-	 *            L'emplacement du fichier servant à la persistance du
-	 *            composant.
-	 */
-	public void setAffichageSaveFile(String fileName) {
-		this.affichageSaveFile = fileName;
-	}
-
-
 
 }

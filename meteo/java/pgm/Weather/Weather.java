@@ -108,4 +108,5 @@ public class Weather implements WeatherListener, Serializable {
 	}
 	
 	
+
 }

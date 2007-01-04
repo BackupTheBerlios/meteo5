@@ -108,7 +108,6 @@ public class Temperature implements Serializable, TemperatureListener {
 		return Math.round(dirMoy);
 	}
 	
-
 	
 	
 }

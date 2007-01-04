@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.Vector;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -91,7 +92,11 @@ public class ClientClass implements ActionListener {
 		jf.add(jp_support);
 
 		/* Fermeture de la fenetre */
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.addWindowListener(new java.awt.event.WindowAdapter() {
+		    public void windowClosing(WindowEvent winEvt) {
+		        System.exit(0); 
+		    }
+		});
 
 		listeLocation.addActionListener(this);
 		jmi_Quitter.addActionListener(this);

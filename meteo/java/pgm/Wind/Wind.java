@@ -118,4 +118,6 @@ public class Wind implements Serializable, WindListener {
 		return Math.round(dirMoy);
 	}
 
+	
+	
 }

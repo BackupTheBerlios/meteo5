@@ -5,14 +5,12 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Vector;
 
-import EventObjects.SaveEventObject;
 import EventObjects.VisibilityEventObject;
 import EventObjects.MetarEventObject;
 import EventObjects.PressureEventObject;
 import EventObjects.TemperatureEventObject;
 import EventObjects.WeatherEventObject;
 import EventObjects.WindEventObject;
-import InterfaceListener.SaveListener;
 import InterfaceListener.VisibilityListener;
 import InterfaceListener.MetarListener;
 import InterfaceListener.PressureListener;
@@ -28,7 +26,7 @@ import InterfaceListener.WindListener;
  * 
  * Composant gérant le parsage des metar en éléments météo.
  */
-public class Parseur implements Serializable, MetarListener, SaveListener {
+public class Parseur implements Serializable, MetarListener {
 	private static final long serialVersionUID = 1l;
 
 	/**
@@ -365,60 +363,5 @@ public class Parseur implements Serializable, MetarListener, SaveListener {
 		}
 	}
 
-	// ----------------------------------------------------
-	// Récepteur d'évènement Save : sauvegarde du composant
-
-	/**
-	 * Méthode azppelée lorsqu'un évènement Save est reçu. Il sauvegarde le
-	 * composant pour la persistance.
-	 * 
-	 * @param e
-	 *            Objet ne contenant pas d'information nécessaire.
-	 */
-	public void handleSave(SaveEventObject e) {
-		try {
-			// Ouverture du fichier de sauvegarde
-			FileOutputStream fichier = new FileOutputStream(
-					this.parseurSaveFile);
-
-			// Ouverture du stream objet vers le fichier
-			ObjectOutputStream sortie = new ObjectOutputStream(fichier);
-
-			// Ecriture de l'objet
-			sortie.writeObject(this);
-
-			sortie.close();
-			fichier.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-	}
-
-	// --------------------
-	// Accès aux propriétés
-
-	/** Nom du fichier servant à la persistance du composant. */
-	private String parseurSaveFile = "parseur.ser";
-
-	/**
-	 * Récupérer l'emplacement du fichier servant à la persistance du composant.
-	 * 
-	 * @return L'emplacement du fichier servant à la persistance du composant.
-	 */
-	public String getAeroVilleSaveFile() {
-		return this.parseurSaveFile;
-	}
-
-	/**
-	 * Préciser l'emplacement du fichier servant à la persistance du composant.
-	 * 
-	 * @param fileName
-	 *            L'emplacement du fichier servant à la persistance du
-	 *            composant.
-	 */
-	public void setAeroVilleSaveFile(String fileName) {
-		this.parseurSaveFile = fileName;
-	}
 
 }

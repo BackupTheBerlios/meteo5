@@ -1,17 +1,15 @@
 package Client;
 
 import java.beans.Beans;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Vector;
+
 
 import EventObjects.AffichageEventObject;
 import EventObjects.GetListVilleEventObject;
 import EventObjects.ListVilleEventObject;
 import EventObjects.PressureTraiteEventObject;
-import EventObjects.SaveEventObject;
 import EventObjects.SelectedVilleEventObject;
 import EventObjects.TemperatureTraiteEventObject;
 import EventObjects.VisibilityTraiteEventObject;
@@ -47,6 +45,8 @@ public class Client implements Serializable, ListVilleListener,
 		AffichageListener {
 	private static final long serialVersionUID = 1l;
 
+	private static AeroVille avComp;
+	
 	/**
 	 * Création des composants et lancement de l'interface graphique du projet
 	 * météo.
@@ -58,7 +58,7 @@ public class Client implements Serializable, ListVilleListener,
 		try {
 
 			// Instantiation des composants
-			AeroVille avComp = (AeroVille) Beans.instantiate(ClassLoader
+			avComp = (AeroVille) Beans.instantiate(ClassLoader
 					.getSystemClassLoader(), "AeroVille.AeroVille");
 			Serveur servComp = (Serveur) Beans.instantiate(ClassLoader
 					.getSystemClassLoader(), "Serveur.Serveur");
@@ -72,7 +72,7 @@ public class Client implements Serializable, ListVilleListener,
 					.getSystemClassLoader(), "Weather.Weather");
 			Visibility visComp = (Visibility) Beans.instantiate(ClassLoader
 					.getSystemClassLoader(), "Visibility.Visibility");
-			Pressure presCom = (Pressure)Beans.instantiate(ClassLoader
+			Pressure presCom = (Pressure) Beans.instantiate(ClassLoader
 					.getSystemClassLoader(), "Pressure.Pressure");
 			Affichage affComp = (Affichage) Beans.instantiate(ClassLoader
 					.getSystemClassLoader(), "Affichage.Affichage");
@@ -80,10 +80,9 @@ public class Client implements Serializable, ListVilleListener,
 					.getSystemClassLoader(), "Client.Client");
 
 			// Non utilisé
-			//Prevision prevComp = (Prevision) Beans.instantiate(ClassLoader
-				//	.getSystemClassLoader(), "Prevision.Prevision");
-			
-			
+			// Prevision prevComp = (Prevision) Beans.instantiate(ClassLoader
+			// .getSystemClassLoader(), "Prevision.Prevision");
+
 			// Liaison aeroVille <-> Client
 			cliComp.addGetListVilleListener(avComp);
 			cliComp.addSelectedVilleListener(avComp);
@@ -124,7 +123,7 @@ public class Client implements Serializable, ListVilleListener,
 
 			// Liaison Affichage <-> Client
 			affComp.addClientListener(cliComp);
-
+			
 			// Lancement général : envoi d'un event GetListVille
 			cliComp.handleGetListVille();
 		} catch (IOException e) {
@@ -227,15 +226,16 @@ public class Client implements Serializable, ListVilleListener,
 		GetListVilleEventObject obj = new GetListVilleEventObject(this);
 
 		// Envoi à tous les écoutant
+		Vector<GetListVilleListener> l;
 		synchronized (this) {
-			Vector<GetListVilleListener> l = (Vector<GetListVilleListener>) this.getSelectedVilletListener
+			l = (Vector<GetListVilleListener>) this.getSelectedVilletListener
 					.clone();
-			for (GetListVilleListener avl : l) {
-				avl.handleGetListVille(obj);
-			}
 		}
-
+		for (GetListVilleListener avl : l) {
+			avl.handleGetListVille(obj);
+		}
 	}
+
 
 	// ----------------------------------------------
 	// Réception d'évènements ListVille
@@ -263,59 +263,5 @@ public class Client implements Serializable, ListVilleListener,
 		this.ihm.addTexte(e.getTexte());
 	}
 
-	// ----------------------------------------------------
-	// Récepteur d'évènement Save : sauvegarde du composant
-
-	/**
-	 * Méthode azppelée lorsqu'un évènement Save est reçu. Il sauvegarde le
-	 * composant pour la persistance.
-	 * 
-	 * @param e
-	 *            Objet ne contenant pas d'information nécessaire.
-	 */
-	public void handleSave(SaveEventObject e) {
-		try {
-			// Ouverture du fichier de sauvegarde
-			FileOutputStream fichier = new FileOutputStream(this.clientSaveFile);
-
-			// Ouverture du stream objet vers le fichier
-			ObjectOutputStream sortie = new ObjectOutputStream(fichier);
-
-			// Ecriture de l'objet
-			sortie.writeObject(this);
-
-			sortie.close();
-			fichier.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-	}
-
-	// ---------------------
-	// Propriétés
-
-	/** Nom du fichier servant à la persistance du composant. */
-	private String clientSaveFile = "client.ser";
-
-	/**
-	 * Récupérer l'emplacement du fichier servant à la persistance du composant.
-	 * 
-	 * @return L'emplacement du fichier servant à la persistance du composant.
-	 */
-	public String getAeroVilleSaveFile() {
-		return this.clientSaveFile;
-	}
-
-	/**
-	 * Préciser l'emplacement du fichier servant à la persistance du composant.
-	 * 
-	 * @param fileName
-	 *            L'emplacement du fichier servant à la persistance du
-	 *            composant.
-	 */
-	public void setAeroVilleSaveFile(String fileName) {
-		this.clientSaveFile = fileName;
-	}
 
 }

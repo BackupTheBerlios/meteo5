@@ -2,18 +2,14 @@ package Affichage;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.Vector;
 
-import EventObjects.AffichageEventObject;
 import EventObjects.PressureTraiteEventObject;
 import EventObjects.TemperatureTraiteEventObject;
-import EventObjects.VisibilityEventObject;
 import EventObjects.VisibilityTraiteEventObject;
 import EventObjects.WeatherTraiteEventObject;
 import EventObjects.WindTraiteEventObject;
 import InterfaceListener.PressureTraiteListener;
 import InterfaceListener.TemperatureTraiteListener;
-import InterfaceListener.VisibilityListener;
 import InterfaceListener.VisibilityTraiteListener;
 import InterfaceListener.WeatherTraiteListener;
 import InterfaceListener.WindTraiteListener;

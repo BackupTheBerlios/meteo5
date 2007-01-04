@@ -1,19 +1,15 @@
 package AeroVille;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Vector;
 
 import EventObjects.AeroVilleEventObject;
 import EventObjects.GetListVilleEventObject;
 import EventObjects.ListVilleEventObject;
-import EventObjects.SaveEventObject;
 import EventObjects.SelectedVilleEventObject;
 import InterfaceListener.AeroVilleListener;
 import InterfaceListener.GetListVilleListener;
 import InterfaceListener.ListVilleListener;
-import InterfaceListener.SaveListener;
 import InterfaceListener.SelectedVilleListener;
 
 /**
@@ -26,7 +22,7 @@ import InterfaceListener.SelectedVilleListener;
  */
 
 public class AeroVille implements Serializable, SelectedVilleListener,
-		GetListVilleListener, SaveListener {
+		GetListVilleListener {
 	private static final long serialVersionUID = 1l;
 
 	/**
@@ -169,35 +165,6 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 		handleListVille();
 	}
 
-	// ----------------------------------------------------
-	// Récepteur d'évènement Save : sauvegarde du composant
-
-	/**
-	 * Méthode azppelée lorsqu'un évènement Save est reçu. Il sauvegarde le
-	 * composant pour la persistance.
-	 * 
-	 * @param e
-	 *            Objet ne contenant pas d'information nécessaire.
-	 */
-	public void handleSave(SaveEventObject e) {
-		try {
-			// Ouverture du fichier de sauvegarde
-			FileOutputStream fichier = new FileOutputStream(
-					this.aeroVilleSaveFile);
-
-			// Ouverture du stream objet vers le fichier
-			ObjectOutputStream sortie = new ObjectOutputStream(fichier);
-
-			// Ecriture de l'objet
-			sortie.writeObject(this);
-
-			sortie.close();
-			fichier.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-	}
 
 	// ---------------------------------------------
 	// Propriétés
@@ -226,29 +193,6 @@ public class AeroVille implements Serializable, SelectedVilleListener,
 	 */
 	public void setAeroVilleFile(String fileName) {
 		this.aeroVilleFile = fileName;
-	}
-
-	/** Nom du fichier servant à la persistance du composant. */
-	private String aeroVilleSaveFile = "aeroVille.ser";
-
-	/**
-	 * Récupérer l'emplacement du fichier servant à la persistance du composant.
-	 * 
-	 * @return L'emplacement du fichier servant à la persistance du composant.
-	 */
-	public String getAeroVilleSaveFile() {
-		return this.aeroVilleSaveFile;
-	}
-
-	/**
-	 * Préciser l'emplacement du fichier servant à la persistance du composant.
-	 * 
-	 * @param fileName
-	 *            L'emplacement du fichier servant à la persistance du
-	 *            composant.
-	 */
-	public void setAeroVilleSaveFile(String fileName) {
-		this.aeroVilleSaveFile = fileName;
 	}
 
 }
