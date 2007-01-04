@@ -7,7 +7,6 @@ import EventObjects.WindEventObject;
 import EventObjects.WindTraiteEventObject;
 import InterfaceListener.WindListener;
 import InterfaceListener.WindTraiteListener;
-import Parseur.Metar;
 
 /**
  * @author LE NY Clément
@@ -27,7 +26,7 @@ public class Wind implements Serializable, WindListener {
 	// --------------------------------------
 	// Source d'évènements WindTraite
 
-	/** liste des écouteurs d'évènements Metar */
+	/** liste des écouteurs d'évènements WindTraite */
 	private Vector<WindTraiteListener> windTraiteListeners = new Vector<WindTraiteListener>();
 
 	/**

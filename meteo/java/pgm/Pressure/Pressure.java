@@ -1,12 +1,12 @@
-package Visibility;
+package Pressure;
 
 import java.io.Serializable;
 import java.util.Vector;
 
-import EventObjects.VisibilityEventObject;
-import EventObjects.VisibilityTraiteEventObject;
-import InterfaceListener.VisibilityListener;
-import InterfaceListener.VisibilityTraiteListener;
+import EventObjects.PressureEventObject;
+import EventObjects.PressureTraiteEventObject;
+import InterfaceListener.PressureListener;
+import InterfaceListener.PressureTraiteListener;
 
 /**
  * @author LE NY Clément
@@ -14,21 +14,22 @@ import InterfaceListener.VisibilityTraiteListener;
  * @author YANG Yitian
  * @author MEHEUT Emmanuel
  * 
- * Composant gérant la visibilité.
+ * Composant gérant la pression atmosphérique.
  */
-public class Visibility implements Serializable, VisibilityListener {
+public class Pressure implements Serializable, PressureListener {
 	private static final long serialVersionUID = 1;
 	
 	/** Constructeur vide pour un composnant. */
-	public Visibility() {
+	public Pressure() {
 	
 	}
 	
+	
 	// --------------------------------------
-	// Source d'évènements VisibilityTraite
+	// Source d'évènements PressureTraite
 
 	/** liste des écouteurs d'évènements Metar */
-	private Vector<VisibilityTraiteListener> visibilyTraiteListener = new Vector<VisibilityTraiteListener>();
+	private Vector<PressureTraiteListener> pressureTraiteListener = new Vector<PressureTraiteListener>();
 
 	/**
 	 * Ajout d'un écouteur.
@@ -36,8 +37,8 @@ public class Visibility implements Serializable, VisibilityListener {
 	 * @param l
 	 *            Ecouteur à ajouter à la liste des abbonnés.
 	 */
-	public synchronized void addVisibilityTraiteListener(VisibilityTraiteListener l) {
-		this.visibilyTraiteListener.addElement(l);
+	public synchronized void addPressureTraiteListener(PressureTraiteListener l) {
+		this.pressureTraiteListener.addElement(l);
 	}
 
 	/**
@@ -46,26 +47,25 @@ public class Visibility implements Serializable, VisibilityListener {
 	 * @param l
 	 *            Ecouteur à supprimer de la liste des abbonnés.
 	 */
-	public synchronized void removeVisibilityTraiteListener(
-			VisibilityTraiteListener l) {
-		this.visibilyTraiteListener.removeElement(l);
+	public synchronized void removePressureTraiteListener(
+			PressureTraiteListener l) {
+		this.pressureTraiteListener.removeElement(l);
 	}
 
 	/**
 	 * Méthode qui envoie un évènements contenant les infos sur le vent.
 	 */
-	private void handleSendVisibility(int vis) {
+	private void handleSendPressureTraite(int pres) {
 		// Création de l'objet de l'évènement
-		VisibilityTraiteEventObject obj = new VisibilityTraiteEventObject(this);
-
-		obj.setVisibility(vis);
+		PressureTraiteEventObject obj = new PressureTraiteEventObject(this);
+		obj.setPressureTraite(pres);
 
 		// Envoi des évènements à tous les auditeurs
-		Vector<VisibilityTraiteListener> l;
+		Vector<PressureTraiteListener> l;
 		synchronized (this) {
-			l = (Vector<VisibilityTraiteListener>) this.visibilyTraiteListener.clone();
+			l = (Vector<PressureTraiteListener>) this.pressureTraiteListener.clone();
 		}
-		for (VisibilityTraiteListener item : l) {
+		for (PressureTraiteListener item : l) {
 			item.handleTraite(obj);
 		}
 	}
@@ -80,9 +80,9 @@ public class Visibility implements Serializable, VisibilityListener {
 	 * @param e
 	 *            Objet de l'évènement.
 	 */
-	public void handleCalcul(VisibilityEventObject e) {
-		int vis = calcul(e.getVisibilites(), e.getDistances());
-		handleSendVisibility(vis);
+	public void handleCalcul(PressureEventObject e) {
+		int pr = calcul(e.getPressure(), e.getDistances());
+		handleSendPressureTraite(pr);
 	}
 
 	
@@ -110,6 +110,5 @@ public class Visibility implements Serializable, VisibilityListener {
 
 		return Math.round(dirMoy);
 	}
-	
 	
 }

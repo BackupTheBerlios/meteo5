@@ -10,10 +10,12 @@ import java.util.Vector;
 import EventObjects.AffichageEventObject;
 import EventObjects.GetListVilleEventObject;
 import EventObjects.ListVilleEventObject;
+import EventObjects.PressureTraiteEventObject;
 import EventObjects.SaveEventObject;
 import EventObjects.SelectedVilleEventObject;
 import EventObjects.TemperatureTraiteEventObject;
 import EventObjects.VisibilityTraiteEventObject;
+import EventObjects.WeatherTraiteEventObject;
 import EventObjects.WindTraiteEventObject;
 
 import InterfaceListener.AffichageListener;
@@ -27,7 +29,10 @@ import Parseur.Parseur;
 import Serveur.Serveur;
 import Temperature.Temperature;
 import Visibility.Visibility;
+import Weather.Weather;
 import Wind.Wind;
+import Pressure.Pressure;
+import Prevision.Prevision;
 
 /**
  * @author LE NY Clément
@@ -63,13 +68,22 @@ public class Client implements Serializable, ListVilleListener,
 					.getSystemClassLoader(), "Temperature.Temperature");
 			Wind windComp = (Wind) Beans.instantiate(ClassLoader
 					.getSystemClassLoader(), "Wind.Wind");
+			Weather weatherComp = (Weather) Beans.instantiate(ClassLoader
+					.getSystemClassLoader(), "Weather.Weather");
 			Visibility visComp = (Visibility) Beans.instantiate(ClassLoader
 					.getSystemClassLoader(), "Visibility.Visibility");
+			Pressure presCom = (Pressure)Beans.instantiate(ClassLoader
+					.getSystemClassLoader(), "Pressure.Pressure");
 			Affichage affComp = (Affichage) Beans.instantiate(ClassLoader
 					.getSystemClassLoader(), "Affichage.Affichage");
 			Client cliComp = (Client) Beans.instantiate(ClassLoader
 					.getSystemClassLoader(), "Client.Client");
 
+			// Non utilisé
+			//Prevision prevComp = (Prevision) Beans.instantiate(ClassLoader
+				//	.getSystemClassLoader(), "Prevision.Prevision");
+			
+			
 			// Liaison aeroVille <-> Client
 			cliComp.addGetListVilleListener(avComp);
 			cliComp.addSelectedVilleListener(avComp);
@@ -85,18 +99,25 @@ public class Client implements Serializable, ListVilleListener,
 			parsComp.addTemperatureListener(tmpComp);
 			parsComp.addWindListener(windComp);
 			parsComp.addVisibilityListener(visComp);
+			parsComp.addWeatherListener(weatherComp);
+			parsComp.addPressureListener(presCom);
 
 			// Liaison éléments météo <-> Affichage
 			try {
 				affComp.getAdaptateur().addTemperature(tmpComp,
 						"handleTemperatureTraite",
 						new Class[] { TemperatureTraiteEventObject.class });
-				affComp.getAdaptateur().addWind(windComp,
-						"handleWindTraite",
+				affComp.getAdaptateur().addWind(windComp, "handleWindTraite",
 						new Class[] { WindTraiteEventObject.class });
 				affComp.getAdaptateur().addVisibility(visComp,
 						"handleVisibilityTraite",
 						new Class[] { VisibilityTraiteEventObject.class });
+				affComp.getAdaptateur().addWeather(weatherComp,
+						"handleWeatherTraite",
+						new Class[] { WeatherTraiteEventObject.class });
+				affComp.getAdaptateur().addPressure(presCom,
+						"handlePressureTraite",
+						new Class[] { PressureTraiteEventObject.class });
 			} catch (NoSuchMethodException e) {
 				e.printStackTrace();
 			}

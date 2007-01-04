@@ -58,7 +58,7 @@ public class PressureEventObject extends EventObject {
 	 * Obtenir la pression.
 	 * @return La pression.
 	 */
-	public Vector<Integer> setTemperatureRosee() {
+	public Vector<Integer> getPressure() {
 		return this.pressure;
 	}
 	

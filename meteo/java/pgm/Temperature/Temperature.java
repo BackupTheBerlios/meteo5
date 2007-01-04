@@ -19,6 +19,7 @@ import InterfaceListener.TemperatureTraiteListener;
 public class Temperature implements Serializable, TemperatureListener {
 	private static final long serialVersionUID =1;
 
+	/** Constructeur vide pour un composant. */
 	public Temperature() {
 		
 	}

@@ -6,9 +6,11 @@ import java.io.Serializable;
 import java.util.Vector;
 
 import EventObjects.AffichageEventObject;
+import EventObjects.PressureTraiteEventObject;
 import EventObjects.SaveEventObject;
 import EventObjects.TemperatureTraiteEventObject;
 import EventObjects.VisibilityTraiteEventObject;
+import EventObjects.WeatherTraiteEventObject;
 import EventObjects.WindTraiteEventObject;
 import InterfaceListener.AffichageListener;
 import InterfaceListener.SaveListener;
@@ -70,7 +72,7 @@ public class Affichage implements Serializable, SaveListener {
 	
 	
 	// -----------------------------------
-	// Réception d'un évènement windTraite
+	// Réception d'un évènement visibilityTraite
 	
 	/**
 	 * Méthode appelée par l'adaptateur lorsqu'un évènement WindTraite
@@ -80,6 +82,40 @@ public class Affichage implements Serializable, SaveListener {
 	public void handleVisibilityTraite(VisibilityTraiteEventObject e) {
 		String ret = "";
 		ret += "La visibilité est de " + e.getVisibility() + " mètre(s).";
+		handleAffichage(ret);
+	}
+	
+	
+	// --------------------------------------
+	// Réception d'un évènement weatherTraite
+	
+	/**
+	 * Méthode appelée par l'adaptateur lorsqu'un évènement weatherTraite
+	 * est reçu.
+	 * @param e Objet reçu avec l'évènement.
+	 */
+	public void handleWeatherTraite(WeatherTraiteEventObject e) {
+		String ret = "";
+		if (e.getIsCavOkTraite()) {
+			ret = "Le temps est clair.";
+		} else {
+			ret = "Le temps n'est pas clair, ce référer à la visibilité.";
+		}
+		handleAffichage(ret);
+	}
+	
+	
+	// ---------------------------------------
+	// Réception d'un évènement pressureTraite
+	
+	/**
+	 * Méthode appelée par l'adaptateur lorsqu'un évènement pressureTraite
+	 * est reçu.
+	 * @param e Objet reçu avec l'évènement.
+	 */
+	public void handlePressureTraite(PressureTraiteEventObject e) {
+		String ret = "";
+		ret = "La pression atmosphérique au sol est de " + e.getPressureTraite() + ".";
 		handleAffichage(ret);
 	}
 	

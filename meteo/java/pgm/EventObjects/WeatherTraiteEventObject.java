@@ -38,7 +38,7 @@ public class WeatherTraiteEventObject extends EventObject {
 	 * Savoir si le temps est clair..
 	 * @return True si le temps est clair.
 	 */
-	public boolean setIsCavOkTraite() {
+	public boolean getIsCavOkTraite() {
 		return this.isCavOkTraite;
 	}
 	
