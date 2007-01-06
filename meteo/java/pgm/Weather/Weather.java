@@ -94,6 +94,9 @@ public class Weather implements WeatherListener, Serializable {
 
 	/**
 	 * Calcul les informations.
+	 * 
+	 * @param data valeur de cavok environnante relevées
+	 * @param dst distances entre le point recherché et les points de mesure.
 	 */
 	protected boolean calcul(Vector<Boolean> data, Vector<Float> dst) {
 		boolean cavOk = false;

@@ -52,7 +52,10 @@ public class Visibility implements Serializable, VisibilityListener {
 	}
 
 	/**
-	 * Méthode qui envoie un évènements contenant les infos sur le vent.
+	 * Méthode qui envoie un évènements contenant les infos
+	 * sur la visibilité.
+	 * 
+	 * @param vis valeur de la visibilité à envoyer.
 	 */
 	private void handleSendVisibility(int vis) {
 		// Création de l'objet de l'évènement
@@ -91,6 +94,9 @@ public class Visibility implements Serializable, VisibilityListener {
 
 	/**
 	 * Calcul les informations.
+	 * 
+	 * @param data valeurs environnantes relevées
+	 * @param dst distances entre le point recherché et les points de mesure.
 	 */
 	protected int calcul(Vector<Integer> data, Vector<Float> dst) {
 		float dirMoy = 0.0f;

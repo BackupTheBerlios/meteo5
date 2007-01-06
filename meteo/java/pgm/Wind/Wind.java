@@ -98,6 +98,9 @@ public class Wind implements Serializable, WindListener {
 
 	/**
 	 * Calcul les informations.
+	 * 
+	 * @param data valeurs environnantes relevées
+	 * @param dst distances entre le point recherché et les points de mesure.
 	 */
 	protected int calcul(Vector<Integer> data, Vector<Float> dst) {
 		float dirMoy = 0.0f;

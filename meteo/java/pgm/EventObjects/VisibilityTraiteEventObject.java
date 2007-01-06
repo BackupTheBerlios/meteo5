@@ -28,7 +28,7 @@ public class VisibilityTraiteEventObject extends EventObject {
 	private int visibility = 0; 
 		
 	/**
-	 * Préciser l'humidités d'air.
+	 * Préciser la visibilité.
 	 * @param vis Visibilité.
 	 */
 	public void setVisibility(int vis) {

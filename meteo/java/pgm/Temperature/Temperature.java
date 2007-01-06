@@ -27,7 +27,7 @@ public class Temperature implements Serializable, TemperatureListener {
 	//--------------------------------------
 	// Source d'évènements TemperatureTraite
 	
-	/** liste des écouteurs d'évènements Metar */
+	/** liste des écouteurs d'évènements Temperature */
 	private Vector<TemperatureTraiteListener> temperatureTraiteListeners = new Vector<TemperatureTraiteListener>();
 	
 	/** 
@@ -88,6 +88,9 @@ public class Temperature implements Serializable, TemperatureListener {
 		
 	/**
 	 * Calcul les informations.
+	 * 
+	 * @param data valeurs environnantes relevées
+	 * @param dst distances entre le point recherché et les points de mesure.
 	 */
 	protected int calcul(Vector<Integer> data, Vector<Float> dst) {
 		float dirMoy = 0.0f;
