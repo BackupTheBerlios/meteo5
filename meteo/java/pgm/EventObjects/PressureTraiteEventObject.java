@@ -23,20 +23,20 @@ public class PressureTraiteEventObject extends EventObject {
 	}
 	
 	
-	/** Températures à la rosée. */
+	/** Pression moyenne. */
 	private int pressureTraite = 0; 
 		
 	/**
-	 * Préciser la température à la rosée.
-	 * @param tRosee Température à la rosée.
+	 * Préciser la pression moyenne.
+	 * @param p pression moyenne.
 	 */
 	public void setPressureTraite(int p) {
 		this.pressureTraite = p;
 	}
 	
 	/**
-	 * Obtenir la température à la rosée.
-	 * @return La température à la rosée.
+	 * Obtenir la pression moyenne.
+	 * @return La pression moyenne.
 	 */
 	public float getPressureTraite() {
 		return this.pressureTraite;

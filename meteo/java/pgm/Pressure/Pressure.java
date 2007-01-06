@@ -55,7 +55,7 @@ public class Pressure implements Serializable, PressureListener {
 	}
 
 	/**
-	 * Méthode qui envoie un évènements contenant les infos sur le vent.
+	 * Méthode qui envoie un évènements contenant les infos sur la pression.
 	 */
 	private void handleSendPressureTraite(int pres) {
 		// Création de l'objet de l'évènement
@@ -74,10 +74,10 @@ public class Pressure implements Serializable, PressureListener {
 	
 	
 	// --------------------------------------
-	// Réception d'évènement Visibility
+	// Réception d'évènement Pression
 
 	/**
-	 * Méthode exécutée lors de la réception d'un évènement Visibility.
+	 * Méthode exécutée lors de la réception d'un évènement Pression.
 	 * 
 	 * @param e
 	 *            Objet de l'évènement.
@@ -95,22 +95,22 @@ public class Pressure implements Serializable, PressureListener {
 	 * Calcul les informations.
 	 */
 	protected int calcul(Vector<Integer> data, Vector<Float> dst) {
-		float dirMoy = 0.0f;
+		float presMoy = 0.0f;
 		float coef = 0.0f;
 		
 		for (int i = 0; i < data.size(); i++) {
 			if (dst.get(i) != 0) {
-				dirMoy += data.get(i) * (1 / dst.get(i));
+				presMoy += data.get(i) * (1 / dst.get(i));
 				coef += 1 / dst.get(i);
 			} else {
-				dirMoy += data.get(i);
+				presMoy += data.get(i);
 				coef++;
 			}
 		}
 
-		dirMoy /= coef;
+		presMoy /= coef;
 
-		return Math.round(dirMoy);
+		return Math.round(presMoy);
 	}
 	
 
