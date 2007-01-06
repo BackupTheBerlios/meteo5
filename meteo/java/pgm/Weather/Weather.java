@@ -53,14 +53,11 @@ public class Weather implements WeatherListener, Serializable {
 	}
 
 	/**
-	 * Méthode qui envoie un évènements contenant les infos sur le vent.
+	 * Méthode qui envoie un évènements
+	 * contenant les infos sur le temps global.
 	 * 
-	 * @param dir
-	 *            Direction du vent en degré.
-	 * @param fmax
-	 *            Force maximale du vent.
-	 * @param f
-	 *            Force actuelle du vent.
+	 * @param cav
+	 *            temps clair?
 	 */
 	private void handleSendWeather(boolean cav) {
 		// Création de l'objet de l'évènement
