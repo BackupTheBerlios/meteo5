@@ -56,6 +56,8 @@ public class Pressure implements Serializable, PressureListener {
 
 	/**
 	 * Méthode qui envoie un évènements contenant les infos sur la pression.
+	 * 
+	 * @param pres pression à envoyer.
 	 */
 	private void handleSendPressureTraite(int pres) {
 		// Création de l'objet de l'évènement
@@ -93,6 +95,9 @@ public class Pressure implements Serializable, PressureListener {
 
 	/**
 	 * Calcul les informations.
+	 * 
+	 * @param data Valeur des pressions reçues
+	 * @param dst Distances entre les points de mesure et le point voulu.
 	 */
 	protected int calcul(Vector<Integer> data, Vector<Float> dst) {
 		float presMoy = 0.0f;
