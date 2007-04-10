@@ -1,0 +1,85 @@
+#!/bin/bash
+#
+#       javacst:  launcher for the STclass-java preprocessor
+#
+#       $Id: runtest.sh 46 2006-11-09 08:16:56Z deveaux $
+#
+#  Copyright (c) 2000-06 - Daniel Deveaux - U.B.S. - VALORIA
+#
+# =========================================================================
+#  This file is part of STclass.
+#
+#  STclass is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License.
+#
+#  STclass is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with STclass; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+# =========================================================================
+#
+#  verify the STclass framework setup
+if [ "${STCLASS_HOME:-none}" == "none" ]; then
+    echo "ERROR: STclass framework does not seem initialized:"
+    echo "         run 'source ....etc/setup.bash' first"
+    exit 1
+fi
+
+#  define correct environment
+
+jarlib=${STCLASS_HOME}/lib/stclass/jar
+
+# set arguments values and options
+args=''
+#include=''
+cpDef='./build/tclass/:../build/tclass:./build/class:../build/class'
+cp=''
+jvm_option=''
+#outxml=''
+#outhtml=''
+option=0
+# is there any element to test ?
+testElement=$1
+shift
+echo $@
+if [ "$testElement" = "" ]; then
+        echo "No element to test !"
+        exit 0
+fi
+
+# get options
+for arg in $@; do
+    case "$arg" in
+        -stat*)
+            jvm_option="-javaagent:${jarlib}/profile.jar -Dprofile.properties=${jarlib}/stclass-profile.properties"
+            args="$args $arg"
+            ;;
+        *)
+            args="$args $arg"
+            ;;
+    esac
+done
+
+
+# add the wanted path to java classpath
+export CLASSPATH=${cp}:${cpDef}:${CLASSPATH}
+        
+# check JAVA_HOME
+if [ -n $JAVA_HOME ]; then
+        java="${JAVA_HOME}/bin/java"
+else
+        java="java"
+fi
+
+# finally the test execution
+$java -Dstclass.home=${STCLASS_HOME} ${jvm_option} $testElement $args
+
+# and launch the reports generation
+$java -Dstclass.home=${STCLASS_HOME} \
+      org.stclass.runtime.ReportsMaker $testElement $args
+

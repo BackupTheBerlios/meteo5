@@ -1,0 +1,631 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+<!--  oopml.dtd - A DTD for documented and self-testable classes	-->
+<!--  Pre-version 0.3  - maj	2000/07/10				-->
+<!--  Author : D. Deveaux						-->
+<!--  Copyright (c) 1999-2000 - UBS (VALORIA) / Univ Montréal (GELO)	-->
+<!--									-->
+<!--  Standard FPI :							-->
+<!--		-//UBS-AGLAE//DTD oopml Software Project Documents//FR	-->
+<!--									-->
+<!--  This DTD not allows figures or mathematical expressions inclusion	-->
+<!--  in textual areas; source code of methods is stored as CDATA.	-->
+<!--  The meta-data description and text paragraph structure is under 	-->
+<!--  development.							-->
+<!--									-->
+<!--  In fact, this DTD is a first prototype for research only.		-->
+
+<!-- <!DOCTYPE o2cm SYSTEM '../dtd/o2cm.dtd'> -->
+
+<!--  ................................................................	-->
+
+<!-- Character entities ..............................................	-->
+
+<!--  General use attributs ..........................................	-->
+
+<!ENTITY % att.lang 	"xml:lang (fr|en|de) #IMPLIED" >
+
+<!--  Etat d'un document : exp, alpha, beta, valid			-->
+<!ENTITY % level.st	"(exp|alpha|beta|valid) 'exp'" >
+<!ENTITY % att.st		"state %level.st;">
+
+<!--  Block edition state: stable, new, modified, obsolete		-->
+<!ENTITY % level.ed	"(st|new|modif|obs) #IMPLIED" >
+<!ENTITY % att.eds		"edstate %level.ed;">
+
+<!-- Block visibility: public, package, to children, private or test	--> 
+<!ENTITY % level.vis  "(public|package|child|private|test) " > 
+<!ENTITY % att.vis    "visibility %level.vis; #IMPLIED">
+<!ENTITY % att.visreq "visibility %level.vis; 'public'">
+
+<!--  Features categories: constructor, modifier, accessor,
+			       services, test services, implemenntation -->
+<!ENTITY % level.cat	"(constructor|modificator|accessor|service|test_serv|implementor|initializer) 'modificator'" >
+<!ENTITY % att.cat		"category %level.cat;">
+
+<!--  Arguments direction: in, out, io					-->
+<!ENTITY % level.arg	"(in|out|io|const) 'in'" >
+<!ENTITY % att.arg		"dir  %level.arg;">
+
+<!--  Type modifiers: reference or array (1, 2 or 3 dimensions)		-->
+<!ENTITY % level.type	"(ref|1|2|3)" >
+<!ENTITY % att.type		"modif  %level.type; #IMPLIED">
+
+<!--  Attributes of elements with required ID				--> 
+<!ENTITY % att.idreq
+		"id	ID	#REQUIRED
+		%att.lang;
+		%att.vis;
+		%att.eds;"> 
+
+<!--  Attributes of elements with optionnal ID				--> 
+<!ENTITY % att.idopt
+		"id	ID	#IMPLIED
+		%att.lang;
+		%att.vis;
+		%att.eds;"> 
+
+<!--  Date attribute in ISO format (eg 2000-06-11)			-->
+<!ENTITY % att.dates 
+		'code-date  NMTOKEN    "ISO"
+		val	CDATA	#REQUIRED' >
+
+
+<!-- Line number for code, contracts, declarations...                   -->
+<!ENTITY % att.lNum "line CDATA #REQUIRED">
+<!ENTITY % att.lNumOpt "line CDATA #IMPLIED">
+
+<!-- Number Line for beginning ({) end (}) of bloc (class and method)   -->
+<!ENTITY % st.startEnd "Start, End" >
+
+<!ELEMENT Start		 EMPTY>
+<!ATTLIST Start		 %att.lNum;>
+
+<!ELEMENT End            EMPTY>
+<!ATTLIST End		 %att.lNum;>
+	
+<!ENTITY % att.startEnd 
+				'start CDATA #REQUIRED
+				end CDATA #REQUIRED'>
+	
+<!--  End of attributes definition ...................................	-->
+
+		
+<!--  Used containers structure is defined first as entities		-->
+<!--  This definition allows a redefintion of elements structure in	-->
+<!--  document itself							-->
+
+<!--  ................................................................	-->
+
+<!--  Class general structure (level 1) ..............................	-->
+
+<!ENTITY % st.clsd	"MetaData, TrtCommands, ClsPackage, Class" >
+
+
+<!ELEMENT o2cm (%st.clsd;) >
+<!ATTLIST o2cm 
+          name ID #REQUIRED
+          %att.eds; %att.lang;
+          generator CDATA #IMPLIED
+          %att.st; >
+
+<!--  Meta-data block							-->
+
+<!ENTITY % st.hdr  "Title, AuthorGroup, Abstract?, RevHistory?, LegalNotice" >
+
+<!ELEMENT MetaData (%st.hdr;) >
+
+<!ELEMENT Title          ANY >
+<!ELEMENT AuthorGroup    ANY >
+<!ELEMENT Abstract	 ANY >
+<!ELEMENT RevHistory     ANY >
+<!ELEMENT LegalNotice    ANY >
+
+<!--  Document processing commands definition block			-->
+
+<!ELEMENT TrtCommands (Exec*) >
+
+<!ELEMENT Exec EMPTY>
+<!ATTLIST Exec 
+          name ID #REQUIRED
+          comment CDATA #REQUIRED
+          require CDATA #IMPLIED
+          target  CDATA #IMPLIED
+          command CDATA #REQUIRED
+          options CDATA #IMPLIED>
+
+<!--  Class defintion itself						-->
+
+<!ELEMENT ClsPackage EMPTY >
+<!ATTLIST ClsPackage 
+          name CDATA #REQUIRED>
+
+<!--  Class structure							-->
+<!--  interface	part							-->
+<!ENTITY % st.inter	"Ident, ClsGenDoc, ClsSign" >
+<!--  implementation part						-->
+<!ENTITY % st.impl	"ImplDesc, ClsLinks, Features+" >
+<!--  entire class with its self-test					-->
+<!ENTITY % st.cls	"%st.inter;, %st.impl;, Test?" >
+
+<!ELEMENT Class (%st.cls;) >
+<!ATTLIST Class %att.idreq;
+				%att.startEnd;
+				isInterface (yes|no) #IMPLIED >
+
+<!--  End of level 1 structure .......................................	-->
+
+<!--  ................................................................	-->
+
+<!--  Class general documentation ....................................	-->
+
+<!ENTITY % st.gendoc	
+	   "Description, Principles, Customisation?, Files?, Examples?" >
+
+<!ELEMENT ClsGenDoc (%st.gendoc;) >
+
+<!ELEMENT Customisation  (Para|Example)+ >
+<!ATTLIST Customisation      %att.idopt; >
+<!ELEMENT Files		 (Para|Example)+ >
+<!ATTLIST Files		     %att.idopt; >
+
+<!--  End of class general documentation .............................	-->
+
+<!--  ................................................................	-->
+
+<!--  Class signature ................................................	-->
+
+<!ENTITY % st.csign	"Visibility?, Qualifiers?, Invariant?, PLangList" >
+
+<!ELEMENT ClsSign   (%st.csign;) >
+<!ATTLIST ClsSign   %att.lNum;>
+
+<!ELEMENT Qualifiers     (Qualifier+) >
+
+<!ELEMENT Qualifier      EMPTY >
+<!ATTLIST Qualifier          value	NMTOKEN  #REQUIRED
+          		     %att.eds; >
+
+<!ELEMENT Visibility     EMPTY >
+<!ATTLIST Visibility         %att.visreq;
+          		     %att.eds; >
+
+<!ELEMENT Invariant       (Invar+) >
+
+<!ELEMENT Invar          (Assertion?)>
+<!ATTLIST Invar          assid  CDATA #IMPLIED  
+                         %att.idopt; >
+
+<!ELEMENT PLangList      (PLang)+ >
+<!ATTLIST PLangList          default    NMTOKEN  #REQUIRED >
+
+<!ELEMENT PLang          EMPTY >
+<!ATTLIST PLang              id         NMTOKEN  #REQUIRED
+	                     compiler   CDATA  #IMPLIED >
+
+<!--  End of class signature .........................................	-->
+
+<!--  ................................................................	-->
+
+<!--  Implementation textual description .............................	-->
+
+<!ELEMENT ImplDesc (Para|Example)+ >
+<!ATTLIST ImplDesc 	     %att.idopt; >
+
+<!--  End of implementation textual description ......................	-->
+
+<!--  ................................................................	-->
+
+<!--  Class dependence links .........................................	-->
+<!--  provisonnal implementation: should be tested with `XLink` engines -->
+
+<!ENTITY % st.cllnk	"Suppliers?, Inherit?, Implements?" >
+
+<!ELEMENT ClsLinks (%st.cllnk;) >
+
+<!ELEMENT Suppliers      (Supplier+) >
+<!ELEMENT Inherit        (Parent+) >
+<!ELEMENT Implements     (Parent+) >
+
+<!ELEMENT Supplier       (#PCDATA) >
+<!ATTLIST Supplier           id    CDATA  #REQUIRED
+			     role  CDATA  #REQUIRED
+			     plang NMTOKEN  #IMPLIED
+			     href  CDATA  #IMPLIED >
+
+<!ELEMENT Parent         (#PCDATA) >
+<!ATTLIST Parent             id    ID  #REQUIRED
+			     role  CDATA  #REQUIRED
+			     href  CDATA  #IMPLIED >
+
+<!--  End of class dependence links ..................................	-->
+
+<!--  ................................................................	-->
+
+<!--  Features blocks ................................................	-->
+
+<!ELEMENT Features (Method|Variable|StaticInit)+ >
+<!ATTLIST Features 	     %att.cat; %att.lang; %att.visreq; %att.eds;
+		  	     comment  CDATA #IMPLIED >
+
+
+<!--  Method structure	 						-->
+
+<!ELEMENT StaticInit (BlocCode)>
+<!ATTLIST StaticInit %att.startEnd;>
+
+<!ENTITY % st.meth	"Ident, Description, MethSign, Contracts?, BlocCode*" >
+
+<!ELEMENT Method        (%st.meth;) >
+<!ATTLIST Method             %att.idopt;
+							%att.startEnd;
+                             family     NMTOKEN  #IMPLIED   
+			     begin      CDATA    #IMPLIED
+			     end        CDATA    #IMPLIED
+                             >
+
+<!--  method signature description					-->
+<!ENTITY % st.mtsgn	"(Visibility?, Qualifiers?, Type?, Arguments?)" >
+
+<!ELEMENT MethSign       ( %st.mtsgn; ) >
+<!ATTLIST MethSign	 %att.lNum;>
+
+<!ELEMENT Type           EMPTY >
+<!ATTLIST Type               value  CDATA #REQUIRED
+                             %att.type;
+			     %att.eds; >
+			     
+<!ELEMENT Arguments      (Arg+) >
+<!ELEMENT Arg            (Ident, Type) >
+<!ATTLIST Arg                %att.arg;
+			     %att.eds;> 
+
+<!--  method contracts description					-->
+
+<!ELEMENT Contracts      ((Require | Ensure)+, InheritedContracts?) >
+
+<!ELEMENT InheritedContracts ((Require | Ensure)+, InheritedContracts?) >
+<!ATTLIST InheritedContracts class CDATA #REQUIRED>
+
+<!ELEMENT Require        (Assertion)* >
+<!ATTLIST Require         assid  CDATA #IMPLIED  
+                          %att.idopt; >
+
+<!ELEMENT Ensure         (Assertion)* >
+<!ATTLIST Ensure          assid  CDATA #IMPLIED  
+						  %att.idopt; >
+			  
+<!ELEMENT Assertion		(CodeContract)>
+<!ATTLIST Assertion		%att.lNum;
+						assid  CDATA #REQUIRED>
+
+<!ELEMENT CodeContract	(Expression | PreValueHolders)*>
+
+<!ELEMENT ReturnExpr	EMPTY>
+<!ATTLIST ReturnExpr	%att.lNum;>
+
+<!ELEMENT PreValueHolders (PreValue)>
+<!ELEMENT PreValue		EMPTY>
+<!ATTLIST PreValue		type CDATA #REQUIRED
+						name CDATA #REQUIRED>
+<!--  BlocCode element							-->
+<!--  In this version, inner code of method is implemented as CDATA	-->
+<!--  in next versions this structure will be extended with syntactic	-->
+<!--  and expressions structures suport.				-->
+
+<!ELEMENT BlocCode       ( Slist) >
+<!ATTLIST BlocCode           %att.idopt;
+			     plang      NMTOKEN  #IMPLIED >
+
+<!ELEMENT Comment	 (Para|Example)* >
+
+<!ELEMENT Slist		 (Stat)* >
+<!ATTLIST Slist		 %att.lNumOpt;>
+
+<!ELEMENT Stat		 (TypeDef | VariableDef |  Expression | Label | If | For | While | Do | Break | Continue | Return | Switch | Throw | Synchronized | TryBlock | Slist | EmptyStat) >
+<!ATTLIST Stat		 %att.lNum;>
+
+<!ELEMENT TypeDef	 (Class) >
+<!ATTLIST TypeDef	 lNumBegin CDATA #IMPLIED>
+<!ATTLIST TypeDef	 lNumEnd CDATA #IMPLIED>
+
+<!ELEMENT VariableDef	 (Modifiers?, VarInit?)>
+<!ATTLIST VariableDef	 %att.lNum;>
+<!ATTLIST VariableDef	 name CDATA #REQUIRED>
+<!ATTLIST VariableDef	 type CDATA #REQUIRED>
+
+<!ELEMENT Modifiers	(Modifier)+ >
+<!ATTLIST Modifiers	 %att.lNum;>
+
+<!ELEMENT Modifier	 EMPTY>
+<!ATTLIST Modifier	 name (private|public|protected|static|transient|final|abstract|native|synchronized|threadsafe|const|volatile|strictfp) #REQUIRED>
+<!ATTLIST Modifier	 %att.lNum;>
+
+<!ELEMENT VarInit	 (Expression | ArrayInit)>
+<!ATTLIST VarInit	 %att.lNum;>
+
+<!ELEMENT ArrayInit	 (VarInit)*>
+<!ATTLIST ArrayInit	 %att.lNum;>
+
+<!ELEMENT Expression		(TernaryExpression|BinaryExpression|UnaryExpression|PrimaryExpression)>
+<!ATTLIST Expression		 %att.lNum;>
+
+<!-- QuestionExpr devrait devenir TernaryExpr -->
+<!ELEMENT TernaryExpression   (Expression, Expression, Expression)>
+<!ATTLIST TernaryExpression   %att.lNum;>
+<!ATTLIST TernaryExpression	type (question) #REQUIRED>
+
+<!ELEMENT BinaryExpression    (Expression, Expression)>
+<!ATTLIST BinaryExpression	 %att.lNum;>
+<!ATTLIST BinaryExpression	 type ( assign
+                              | plusAssign | minusAssign | starAssign  | divAssign | modAssign 
+			      | srAssign | bsrAssign | slAssign
+			      | bandAssign | bxorAssign | borAssign
+			      | lor | land | bor | bxor | band
+			      | equal | notEqual | lt | gt | le | ge
+			      | sl | sr | bsr
+			      | plus | minus | div | mod | star
+			      | instanceof | implies | dot
+			      ) #REQUIRED>
+
+<!ELEMENT UnaryExpression     (Expression)>
+<!ATTLIST UnaryExpression	 %att.lNum;
+							id CDATA #IMPLIED>
+<!ATTLIST UnaryExpression	 type ( inc | dec
+                              | postInc | postDec
+			      | bnot | lnot
+			      | unaryMinus | unaryPlus | pre
+			      ) #REQUIRED>
+
+<!ELEMENT PrimaryExpression     (Identifier | BuiltInExpr | ArrayIndex | MethodCall | NewExpr | Constant | TypeCast | Forall | Exists | ReturnExpr)>
+<!ATTLIST PrimaryExpression	 %att.lNum;>
+
+<!ELEMENT Identifier	     (#PCDATA)>
+<!ATTLIST Identifier		 %att.lNum;>
+
+<!ELEMENT BuiltInExpr	 EMPTY>
+<!ATTLIST BuiltInExpr	 %att.lNum;>
+<!ATTLIST BuiltInExpr	 type (super|true|false|this|null|class) #REQUIRED>
+
+<!ELEMENT Constant	 (#PCDATA)>
+<!ATTLIST Constant	 %att.lNum;>
+<!ATTLIST Constant	 type (NumInt|Char|String|NumFloat|NumDouble|NumLong) #REQUIRED>
+
+<!ELEMENT MethodCall	 (Expression, ExpressionList)>
+<!ATTLIST MethodCall	 %att.lNum;>
+
+<!ELEMENT TypeCast	 (Expression)>
+<!ATTLIST TypeCast	 %att.lNum;>
+<!ATTLIST TypeCast	 type CDATA #REQUIRED>
+
+<!ELEMENT ArrayIndex	 (Expression, Expression)>
+<!ATTLIST ArrayIndex	 %att.lNum;>
+
+<!--<!ELEMENT NewExpr	 (NewArrayDecl, ArrayInit?, ExpressionList, Slist?)>
+<!ATTLIST NewExpr	 %att.lNum;>
+<!ATTLIST NewExpr	 type CDATA #REQUIRED>
+
+<!ELEMENT NewArrayDecl	 (NewArrayDecl?, Expr?)>
+<!ATTLIST NewArrayDecl	 %att.lNum;>-->
+
+<!ELEMENT NewExpr	(NewArrayDecl|NewObjectDecl) >
+<!ATTLIST NewExpr	%att.lNum;>
+<!ATTLIST NewExpr	type CDATA #REQUIRED>
+
+<!ELEMENT NewArrayDecl	(ArrayDecl , ArrayInit?)>
+<!ATTLIST NewArrayDecl	%att.lNum;>
+
+<!ELEMENT ArrayDecl		(ArrayDecl?, Expression?)>
+<!ATTLIST ArrayDecl		%att.lNum;>
+
+<!ELEMENT NewObjectDecl		(ExpressionList, Features*)>
+<!ATTLIST NewObjectDecl		%att.lNum;>
+
+<!ELEMENT Forall		(Enumeration, Expression)>
+<!ATTLIST Forall	%att.lNum;>
+
+<!ELEMENT Exists		(Enumeration, Expression)>
+<!ATTLIST Exists	%att.lNum;>
+
+<!ELEMENT Enumeration	(Expression)>
+<!ATTLIST Enumeration	type CDATA #REQUIRED
+						name CDATA #REQUIRED	
+						%att.lNum;>
+
+
+<!ELEMENT ExpressionList	(Expression)*>
+<!ATTLIST ExpressionList	%att.lNum;>
+
+<!ELEMENT Label		(Stat)>
+<!ATTLIST Label		name CDATA #IMPLIED>
+<!ATTLIST Label		%att.lNum;>
+
+<!ELEMENT EmptyStat		EMPTY>
+<!ATTLIST EmptyStat		%att.lNum;>
+
+<!ELEMENT If	         (Expression, Stat, Stat?)>
+<!ATTLIST If		 %att.lNum;>
+
+<!ELEMENT For	         (ForInit, ForCond, ForIter, Stat)>
+<!ATTLIST For		 %att.lNum;>
+
+<!ELEMENT ForInit        (VariableDef | ExpressionList)?>
+<!ATTLIST ForInit	 %att.lNum;>
+
+<!ELEMENT ForCond        (Expression?)>
+<!ATTLIST ForCond	 %att.lNum;>
+
+<!ELEMENT ForIter        (ExpressionList?)>
+<!ATTLIST ForIter	 %att.lNum;>
+
+<!ELEMENT While	         (Expression, Stat)>
+<!ATTLIST While		 %att.lNum;>
+
+<!ELEMENT Do	         (Stat, Expression)>
+<!ATTLIST Do		 lNumBegin CDATA #IMPLIED>
+<!ATTLIST Do		 lNumEnd CDATA #IMPLIED>
+
+<!ELEMENT Return         (Expression?)>
+<!ATTLIST Return	 %att.lNum;>
+
+<!ELEMENT Throw		 (Expression)>
+<!ATTLIST Throw		 %att.lNum;>
+
+<!ELEMENT Synchronized	 (Expression, Slist)>
+<!ATTLIST Synchronized	 %att.lNum;>
+
+<!ELEMENT Break	     EMPTY>
+<!ATTLIST Break		 label	CDATA #IMPLIED>
+<!ATTLIST Break		 %att.lNum;>
+
+<!ELEMENT Continue       EMPTY>
+<!ATTLIST Break		 label	CDATA #IMPLIED>
+<!ATTLIST Continue	 %att.lNum;>
+
+<!ELEMENT TryBlock       (Slist, Handler*, Slist?)>
+<!ATTLIST TryBlock	 %att.lNum;>
+
+<!ELEMENT Handler        (VariableDef, Slist)>
+<!ATTLIST Handler	 %att.lNum;>
+
+<!ELEMENT Switch         (Expression, CaseGroup*)>
+<!ATTLIST Switch	 %att.lNum;>
+
+<!ELEMENT CaseGroup	 ((Case | DefaultCase)+, Slist)>
+<!ATTLIST CaseGroup	 %att.lNum;>
+
+<!ELEMENT Case		(Expression)>
+<!ATTLIST Case		%att.lNum;>
+
+<!ELEMENT DefaultCase    EMPTY>
+<!ATTLIST DefaultCase	 %att.lNum;>
+
+<!ENTITY % st.var	"Ident, Description, VarSign" >
+
+<!ELEMENT Variable       ( %st.var; ) >
+
+<!ATTLIST Variable           %att.idopt; >
+
+<!--  Variables and constant signature					-->
+
+<!ENTITY % st.vasgn	"(Visibility?, Qualifiers?, Type, Value?)" >
+
+<!ELEMENT VarSign        ( %st.vasgn; ) >
+<!ATTLIST VarSign        %att.lNum;>
+
+<!ELEMENT Value          (Expression) >
+
+<!--  End of features block ..........................................	-->
+
+<!--  ................................................................	-->
+
+<!--  The TEST section ...............................................	-->
+
+<!ELEMENT Role			(#PCDATA)>
+<!ATTLIST Role			%att.lNum;>
+
+<!ENTITY % st.test		"TestCreate?, (TestUnit|TestCase|TestSuite)*, TestLaunch?" >
+
+<!ELEMENT Test	(%st.test;)>
+<!ATTLIST Test	%att.lNum;>
+
+<!ELEMENT TestCreate	(Expression) >
+<!ATTLIST TestCreate	%att.lNum;>
+
+<!ENTITY % st.testBlocDecl "Ident, Role?, Description">
+
+<!--an id of a testUnit ot testCase or testSuite is format like this :-->
+<!-- long name of class + "." + name of the testbloc-->
+<!ELEMENT TestUnit		(%st.testBlocDecl; , BlocCode)>
+<!ATTLIST TestUnit		%att.lNum;
+						mode CDATA #REQUIRED
+						forecast CDATA #REQUIRED
+						id ID #REQUIRED
+						inheritedFromClass CDATA #IMPLIED>
+
+<!ELEMENT TestCase		((%st.testBlocDecl;), (TestCreate)?,(Preambule)?, (Postambule)?, List)>
+<!ATTLIST TestCase		%att.lNum;
+						id ID #REQUIRED>
+
+<!ELEMENT TestSuite		((%st.testBlocDecl;), List)>
+<!ATTLIST TestSuite		%att.lNum;
+						id ID #REQUIRED>
+
+<!ELEMENT Preambule		(BlocCode)>
+<!ATTLIST Preambule		%att.lNum;>
+
+<!ELEMENT Postambule	(BlocCode)>
+<!ATTLIST Postambule	%att.lNum;>
+
+<!ELEMENT List			(TUnitRef | TCaseRef | TSuiteRef)* >
+<!ATTLIST List			%att.lNum;>
+
+<!ELEMENT TUnitRef      EMPTY >
+<!ATTLIST TUnitRef      %att.lNum; 
+						item CDATA #REQUIRED>
+
+<!ELEMENT TCaseRef      EMPTY >
+<!ATTLIST TCaseRef      %att.lNum;
+						item CDATA #REQUIRED >
+
+<!ELEMENT TSuiteRef     EMPTY >
+<!ATTLIST TSuiteRef     %att.lNum;
+						item CDATA #REQUIRED >
+
+<!--Tsuite Forced list tsuite which must be executed for each test-->
+<!ELEMENT TsuiteForced	(List)>
+
+<!ENTITY % st.tstlch	"Description, TrtCommands" >
+
+<!ELEMENT TestLaunch  ( %st.tstlch; ) >
+
+<!--  End of TEST section ............................................	-->
+
+<!--  ................................................................	-->
+
+<!--  ................................................................	-->
+
+<!--  Generic elements used at different levels ......................  -->
+
+<!--  Basic structural entities (ULink and Para)			-->
+
+<!ENTITY % st.ul  	"#PCDATA|Emphasis|Highlights|VarName" >
+<!ENTITY % st.para	"%st.ul;|ULink" >
+
+<!--  A standard identification (name and role)				-->
+<!ELEMENT Ident          EMPTY >
+<!ATTLIST Ident		     name NMTOKEN #REQUIRED
+			     role CDATA #REQUIRED
+			     %att.idreq;> 
+                             
+<!--  Standard text named sentences					-->
+<!ELEMENT Description    (Para|Example)+ >
+<!ATTLIST Description       %att.idopt; 
+							%att.lNumOpt;>
+<!ELEMENT Principles     (Para|Example)+ >
+<!ATTLIST Principles         %att.idopt; >
+<!ELEMENT Examples       (Para|Example)+ >
+<!ATTLIST Examples           %att.idopt; >
+
+<!--  Standard text with links and style emphasis			-->
+<!--	Actually, very poor definition: should be extended		-->
+
+<!ELEMENT Para   ANY >
+	
+<!--  Styles : emphasis, bold, variables and commands names		-->
+<!ELEMENT Emphasis       ANY >
+<!ELEMENT Highlights     ANY >
+<!ELEMENT VarName        ANY >
+	
+<!--  VERBATIM text with space preserve					-->
+<!ELEMENT Example	 ANY >
+<!ATTLIST Example	     xml:space (default|preserve) 'preserve'
+			     %att.idopt; >
+
+<!--  HTML style links [not yet defined as XLinks]			-->
+<!ELEMENT ULink  ANY >
+<!ATTLIST ULink              href       CDATA  #REQUIRED >
+
+<!--  End of generic elements  .......................................  -->
+
+<!--  ................................................................	-->

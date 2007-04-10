@@ -1,0 +1,107 @@
+STclass 4.0 Installation
+========================
+
+  $Id$
+
+  Copyright (c) 2000-06 - Daniel Deveaux - U.B.S. - VALORIA
+
+ _______________________________________________________________________________
+  This file is part of STclass.
+
+  STclass is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License.
+
+  STclass is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with STclass; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ _______________________________________________________________________________
+
+
+  STclass is a development environment for Java. It has been tested under Linux
+  and Mac Os-X with Sun jdk 1.5.
+  
+  This document assumes you have some experience with shell commands, text 
+  editors (such as GNU-emacs or Jedit) and a basic knowledge of the Java 
+  development process
+  .
+  Requirements
+  ------------
+  
+    To use STclass, you should have jdk (1.5 or later) installed on your 
+    computer. You can freely download this piece of software:
+      * jdk : [[http://java.sun.com/javase/downloads]]
+
+    The scripts needed tu use STclass are written using Unix shell language. A
+    Windows compatible version of STclass 4.0 might be released later.
+
+    The STclass distribution contains also a copy of **JiP** (The Java 
+    Interactive Profiler) ; not any download is needed, you can consult his 
+    documentation on the JiP site (http://jiprof.sourceforge.net/).
+
+
+  Installation
+  ------------
+
+    A tar-gzipped archive (or ziped archive for windows) is downloadable at the
+    URL:
+      http://stclass.tigris.org/servlets/ProjectDocumentList
+
+    In this kit you should find the 'javacst' preprocessor, the 'stclass.jar'
+    library, the Java source examples we cite in this paper, and templates of 
+    self-testable classes. 
+
+    Under Linux, Mac Os-X or any Unix
+    ---------------------------------
+
+      The installation process is made in a terminal window :
+        1. - Expand the archive with ''tar'' or ''unzip'' in any directory 
+	  (named ''<install_dir>'' in the example commands),
+        2. - run the command
+	  
+  ..> sh <install_dir>/etc/pkg_install.sh jhome=<path_to_your_java_home>
+  
+          that modify the ''setup'' files according to the <install_dir> 
+	  directory and the 'JAVA_HOME' on our computer.
+
+      At each working session beginning, the command
+        'source <install_dir>/etc/setup.bash' or
+	'source <install_dir>/etc/setup.tcsh''
+      that will set the right ''PATH'' and ''CLASSPATH'' in our environment, 
+      must be launched in your workspace. A good idea is to define an alias 
+      'init_stclass' in our ''.profile'' or ''.cshrc'' file that launch this 
+      command automaticaly.
+
+    Under Windows
+    -------------
+
+      The setup and launch scripts for Windows have not been updated in the 
+      4.0-rc version; they will be distributed in the next release.
+
+    Installation verification
+    -------------------------
+
+      To verify our installation:
+        1. - go to a temp directory,
+        2. - copy (recursively) the 'example' project ('share/example' in the
+	   <install_dir>) in this temp directory,
+        3. - change dir ('cd') to example/ww,
+        4. - launch the command
+	
+	    ..> javacst ../java/test/SetOfIntegers.java
+	    
+           the compilation should be performed without error,
+        5. - launch the command
+	
+	    ..> runtest test.SetOfIntegers
+	    
+           the test should pass with success.
+	   
+      To continue the experimentation of STclass, consult the dynamic 
+      documentation on the web: 
+      http://www-valoria.univ-ubs.fr/stclass/wiki/doku.php

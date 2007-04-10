@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="hangman"	default="class" basedir="..">
+	
+	<!-- Working directory -->
+	<property name="working.dir" location="${basedir}/ww/" />
+
+	<!-- Java source directory -->
+	<property name="src.java.dir" location="${basedir}/java/" />
+
+	<!-- Documentation source directory -->
+	<property name="src.doc.dir" location="${basedir}/docs/" />
+	
+	<!-- Build directory -->
+	<property name="build.dir" location="${basedir}/build/" />
+
+	<!-- Java class build directory -->
+	<property name="build.class.dir" location="${build.dir}/class/" />
+		
+	<!-- Web directory -->
+	<property name="build.web.dir" location="${build.dir}/web/" />
+	
+	<!-- Javadoc build directory -->
+	<property name="build.web.javadoc.dir" location="${build.web.dir}/api/" />
+	
+	<!-- Javancss report build directory -->
+	<property name="build.web.javancss.dir" location="${build.web.dir}/javancss/" />
+	
+	<!-- JDepend report build directory -->
+	<property name="build.web.jdepend.dir" location="${build.web.dir}/jdepend/" />
+	
+	<!-- Test report build directory -->
+	<property name="build.web.test.dir" location="${build.web.dir}/test-report/" />
+	
+	<!-- Checkstyle report build directory -->
+	<property name="build.web.checkstyle.dir" location="${build.web.dir}/checkstyle/"/>
+	
+	<!-- Checkstyle jar -->
+	<property name="checkstyle.jar" value="checkstyle-all-4.3.jar"/>
+	
+	<!-- Directory of instrumented files -->
+	<property name="build.instr.dir" location="${build.dir}/instr/"/>
+	
+	<!-- Directory of compilated instrumented files -->
+	<property name="build.instr-compile.dir" location="${build.dir}/tclass"/>
+	
+	<!-- Get environment variables -->
+	<property environment="env" />
+	
+	<!-- STclass directory -->
+	<property name="stc.home" location="${env.STCLASS_HOME}" /> 
+	
+	<!-- STclass lib directory -->
+	<property name="stclib.dir" location="${stc.home}/lib/stclass" />
+		
+	
+	<path id="test.classpath">
+	   	<pathelement path="${build.dir}/tclass" />
+	    <pathelement path="${build.dir}/class" />
+	    <fileset dir="${stclib.dir}">
+	   		<include name="**/*.jar" />
+	    </fileset>
+	</path>
+	<pathconvert property="test.cp" refid="test.classpath" />
+	  
+	<path id="compile.classpath">
+	  	<fileset dir="${stclib.dir}">
+	    	<include name="**/*.jar" />
+	  	</fileset>
+	 	<dirset dir="${build.dir}">
+	    	<include name="class" />
+	 	</dirset>
+	</path>
+	<pathconvert property="compile.cp" refid="compile.classpath" />
+	
+	<!-- Control properties values -->
+	<target name="control" description="To control properties values">
+	  	<echo message="basedir = ${basedir}" />
+		<echo message="stc.home = ${stc.home}" />
+	    <echo message="test.cp = ${test.cp}" />
+	    <echo message="compile.cp = ${compile.cp}" />
+	</target>
+	
+	
+	<!-- Execute all compilation -->
+	<target name="all" depends="clean,class,javadoc,javancss,jdepend,checkstyle"
+			description="Execute all compilation" />
+	
+	
+	<!-- Delete all generated files -->
+	<target name="clean" depends="clean-class,clean-javadoc,clean-javancss,clean-jdepend,clean-checkstyle,clean-test"
+			description="Delete all generated files" >
+		<delete dir="${working.dir}" />
+	</target>
+		
+	
+	<!-- Initialisation -->
+	<target name="init" description="Create directory">
+		<echo message="Running ant for project '${ant.project.name}'" />
+		<tstamp />
+		<mkdir dir="${build.class.dir}" />
+		<mkdir dir="${build.instr-compile.dir}" />
+		<mkdir dir="${build.instr.dir}" />
+		<mkdir dir="${build.web.javadoc.dir}" />
+		<mkdir dir="${build.web.test.dir}" />
+		<mkdir dir="${build.web.javancss.dir}" />
+		<mkdir dir="${build.web.jdepend.dir}" />
+		<mkdir dir="${build.web.checkstyle.dir}" />
+		<mkdir dir="${working.dir}" />
+	</target>
+	
+	
+	<!-- Default target : Sources compiling -->
+	<target name="class" depends="init" description="Sources compiling">
+		<javac srcdir="${src.java.dir}" destdir="${build.class.dir}" debug="true" classpath="${compile.cp}" />
+	</target>
+	
+	<!-- Delete Sources compiling -->
+	<target name="clean-class" description="Delete class files">
+		<delete dir="${build.class.dir}" />
+	</target>
+		
+	
+	<!-- Javadoc creation -->
+	<target name="javadoc" depends="init" description="Javadoc creation">
+		<javadoc sourcepath="${src.java.dir}" packagenames="*.*"
+				destdir="${build.web.javadoc.dir}"
+				author="true" version="true" use="true" private="false"
+				windowtitle="Hangman">
+			<tag name="pre" scope="all" description="Precondition: " />
+			<tag name="post" scope="all" description="Postcondition: " />
+			<tag name="invariant" scope="all" description="invariant: " />
+			<doctitle><![CDATA[<h1>Hangman</h1>]]></doctitle>
+			<bottom><![CDATA[<i>Copyright &copy; 2007 Catric - Meheut.</i>]]></bottom>
+			<header><![CDATA[<meta HTTP-EQUIV='content-type' CONTENT='text/html; charset=UTF-8'>]]></header>
+		</javadoc>
+	</target>
+
+	<!-- Delete Javadoc generated -->
+	<target name="clean-javadoc" description="Delete javadoc files">
+		<delete dir="${build.web.javadoc.dir}" />
+	</target>
+	
+	
+	<!-- JavaNCSS report : (HTML and XML) -->
+	<taskdef name="javancss" classname="javancss.JavancssAntTask" classpath="ant/lib/javancss.jar;ant/lib/ccl.jar;ant/lib/jhbasic.jar"/>
+	<target name="javancss" depends="init" description="Analyse JavaNCSS">
+		<!-- analyse -->
+		<javancss srcdir="${src.java.dir}" abortOnFail="false" includes="**/**/*.java" 
+					generateReport="true" outputfile="${build.web.javancss.dir}/javancss_metrics.xml" format="xml" />
+		<!-- transformation XSL pour générer une page HTML -->
+		<xslt basedir="${build.web.javancss.dir}" destdir="${build.web.javancss.dir}" 
+					includes="javancss_metrics.xml" style="ant/etc/javancss2html.xsl" />
+	</target>
+	
+	<!-- Delete Javancss generated -->
+	<target name="clean-javancss" description="Delete javadoc files">
+		<delete dir="${build.web.javancss.dir}" />
+	</target>
+	
+
+	<!-- JDepend report : (HTML) -->
+	<target name="jdepend" depends="class" description="JDepend report">
+		<jdepend outputfile="${working.dir}/jdepend-report.xml" format="xml">
+			<classespath>
+				<pathelement location="${build.class.dir}" />
+			</classespath>
+		</jdepend>
+		<xslt basedir="${working.dir}"
+				destdir="${build.web.jdepend.dir}"
+				style="ant/etc/jdepend.xsl"
+				force="true" />
+		<delete>
+			<fileset dir="${working.dir}" includes="*" />
+		</delete>
+	</target>
+
+	<!-- Delete JDepend report -->
+	<target name="clean-jdepend" description="Delete jdepend report">
+		<delete dir="${build.web.jdepend.dir}" />
+	</target>
+	
+
+	<!-- Checkstyle report : (HTML and XML) -->
+	<target name="checkstyle" description="Checks the style of the sources and reports issues.">
+	    <taskdef resource="checkstyletask.properties" classpath="${basedir}/ant/lib/${checkstyle.jar}" />
+
+	    <checkstyle config="${basedir}/ant/etc/sun_checks.xml" failOnViolation="false">
+	      <fileset dir="${src.java.dir}" includes="**/*.java" />
+	      <formatter type="xml" tofile="${working.dir}/checkstyle.xml"/>
+	    </checkstyle>
+		
+		<copyfile dest="${build.web.checkstyle.dir}/checkstyle.xml" src="${working.dir}/checkstyle.xml"/>
+	    <xslt basedir="${working.dir}" destdir="${build.web.checkstyle.dir}" 
+	    	  style="${basedir}/ant/etc/checkstyle/checkstyle-noframes.xsl" force="true"/>
+		
+		<delete>
+			<fileset dir="${working.dir}" includes="*"/>
+		</delete>
+	</target>
+	
+	<!-- Delete Checkstyle report -->
+	<target name="clean-checkstyle" description="Delete checkstyle report">
+		<delete dir="${build.web.checkstyle.dir}"/>
+	</target>
+	
+	
+	<!-- hangman package : STclass compilation -->
+	<target name="compile-STclass-hangman" depends="init" description="compilation with Verification-Validation">
+		<property name="js" value="../java/hangman" />
+		<java jar="${stclib.dir}/jar/javacst.jar" fork="true" dir="${working.dir}" classpath="${test.cp}">
+		    	<sysproperty key="stclass.home" value="${stc.home}/lib/stclass" />
+		    	<sysproperty key="classpath" value="${test.cp}" />
+		   	<arg line="	${js}/ToStringAlgo.java 
+		   				${js}/GuessCharAlgo.java
+		   				${js}/IsAllVisibleAlgo.java 
+		   				${js}/AWordState.java 
+		   				${js}/InvisibleState.java 
+		   		${js}/IWord.java
+		   		${js}/IEmptyWord.java
+		   		${js}/EmptyWord.java
+		   		${js}/WordFactory.java
+		   				 " />
+		</java>
+	</target>
+	
+	<!-- hangman package : Run test STclass -->
+	<target name="runtest-hangman" depends="compile-STclass-hangman">
+		  <java classname="hangman.WordFactory" fork="true" dir="${working.dir}" classpath="${test.cp}">
+		      <sysproperty key="stclass.home" value="${stc.home}" />
+		      <sysproperty key="classpath" value="${test.cp}" />
+		      <arg value="-val"/>
+		      <arg value="-html"/>
+	    </java>
+
+	</target>
+	
+	
+	  <!-- test package compiling task -->
+	  <target name="vv-compile-test" depends="init"
+	          description="compilation with Verification-Validation ('test' package only)">
+	    <java jar="${stclib.dir}/jar/javacst.jar" fork="true" dir="${working.dir}" classpath="${test.cp}">
+	      <sysproperty key="stclass.home" value="${stc.home}/lib/stclass" />
+	      <sysproperty key="classpath" value="${test.cp}" />
+	      <arg value="../java/test/SetOfIntegers.java" />
+	    </java>
+	  </target>
+	
+	  <!-- run TestOfIntegers.java -->
+	  <target name="runtest-test" depends="vv-compile-test">
+	    <java classname="test.SetOfIntegers" fork="true" dir="${working.dir}" classpath="${test.cp}">
+	      <sysproperty key="stclass.home" value="${stc.home}" />
+	      <sysproperty key="classpath" value="${test.cp}" />
+	      <arg value="-val"/>
+	      <arg value="-html"/>
+	    </java>
+	    <java classname="org.stclass.runtime.ReportsMaker" fork="true" dir="${working.dir}" classpath="${test.cp}">
+	      <sysproperty key="stclass.home" value="${stc.home}" />
+	      <sysproperty key="classpath" value="${test.cp}" />
+	      <arg value="struct.Stack"/>
+	      <arg value="-val"/>
+	      <arg value="-html"/>
+	    </java>
+	  	<delete dir="${build.dir}/xml-reports/" />
+	  </target>
+	
+	
+	
+	<!-- Delete test report -->
+	<target name="clean-test" description="Delete test report">
+		<delete dir="${build.instr-compile.dir}" />
+		<delete dir="${build.web.test.dir}"/>
+		<delete dir="${build.instr.dir}"/>
+	</target>
+	
+</project>

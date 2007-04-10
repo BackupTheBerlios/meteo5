@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+<!ELEMENT Plugin (Identity, Ressources, Options) >
+<!ATTLIST Plugin state CDATA (on|off)>
+
+<!ELEMENT Identity (Ident, Properties, Description)>
+		
+<!ELEMENT Ident EMPTY>
+<!ATTLIST Ident
+		name CDATA #REQUIRED
+		id CDATA #REQUIRED
+		role CDATA #REQUIRED>
+
+<!ELEMENT Properties EMPTY>
+<!ATTLIST Properties 
+		language CDATA #REQUIRED
+		type CDATA #REQUIRED><!-- replace #REQUIRED by (allClasses|allFiles ....) -->
+		
+<!ELEMENT Description (#PCDATA)>
+
+<!ELEMENT Ressources (SourcePath)+>
+<!ATTLIST Ressources mainClass CDATA #REQUIRED>
+
+<!ELEMENT SourcePath EMPTY>
+<!ATTLIST SourcePath url CDATA #REQUIRED>
+
+<!ELEMENT Options (Option)*>
+
+<!ELEMENT Option (Value, Description) >
+<!ATTLIST Option name CDATA #REQUIRED>
+
+<!ELEMENT Value EMPTY>
+<!ATTLIST Value
+		type CDATA #REQUIRED
+		default CDATA #REQUIRED>

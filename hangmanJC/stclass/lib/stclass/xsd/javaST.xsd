@@ -1,0 +1,1828 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:hfp="http://www.w3.org/2001/XMLSchema-hasFacetAndProperty">
+  <!--
+  xs:include schemaLocation="javacstTest.xsd" /xs:include
+-->
+
+  <xs:group name="firstElementInPostfixExpression">
+    <xs:choice>
+      <xs:group ref="identifier"></xs:group>
+
+      <xs:element ref="INDEX_OP"></xs:element>
+
+      <xs:element ref="METHOD_CALL"></xs:element>
+
+      <xs:element ref="LITERAL_new"></xs:element>
+
+      <xs:element ref="NUM_INT"></xs:element>
+
+      <xs:element ref="CHAR_LITERAL"></xs:element>
+
+      <xs:element ref="STRING_LITERAL"></xs:element>
+
+      <xs:element ref="NUM_FLOAT"></xs:element>
+
+      <xs:element ref="LITERAL_super"></xs:element>
+
+      <xs:element ref="LITERAL_true"></xs:element>
+
+      <xs:element ref="LITERAL_false"></xs:element>
+
+      <xs:element ref="LITERAL_this"></xs:element>
+
+      <xs:element ref="LITERAL_null"></xs:element>
+    </xs:choice>
+  </xs:group>
+
+  <xs:group name="firstElementInExpression">
+    <xs:choice>
+      <xs:element ref="ASSIGN"></xs:element>
+
+      <xs:element ref="PLUS_ASSIGN"></xs:element>
+
+      <xs:element ref="MINUS_ASSIGN"></xs:element>
+
+      <xs:element ref="STAR_ASSIGN"></xs:element>
+
+      <xs:element ref="DIV_ASSIGN"></xs:element>
+
+      <xs:element ref="MOD_ASSIGN"></xs:element>
+
+      <xs:element ref="SR_ASSIGN"></xs:element>
+
+      <xs:element ref="BSR_ASSIGN"></xs:element>
+
+      <xs:element ref="SL_ASSIGN"></xs:element>
+
+      <xs:element ref="BAND_ASSIGN"></xs:element>
+
+      <xs:element ref="BXOR_ASSIGN"></xs:element>
+
+      <xs:element ref="BOR_ASSIGN"></xs:element>
+
+      <xs:element ref="QUESTION"></xs:element>
+
+      <xs:element ref="LOR"></xs:element>
+
+      <xs:element ref="LAND"></xs:element>
+
+      <xs:element ref="BOR"></xs:element>
+
+      <xs:element ref="BXOR"></xs:element>
+
+      <xs:element ref="BAND"></xs:element>
+
+      <xs:element ref="EQUAL"></xs:element>
+
+      <xs:element ref="NOT_EQUAL"></xs:element>
+
+      <xs:element ref="LT"></xs:element>
+
+      <xs:element ref="GT"></xs:element>
+
+      <xs:element ref="LE"></xs:element>
+
+      <xs:element ref="GE"></xs:element>
+
+      <xs:element ref="LITERAL_instanceof"></xs:element>
+
+      <xs:element ref="SL"></xs:element>
+
+      <xs:element ref="BSR"></xs:element>
+
+      <xs:element ref="SR"></xs:element>
+
+      <xs:element ref="PLUS"></xs:element>
+
+      <xs:element ref="MINUS"></xs:element>
+
+      <xs:element ref="STAR"></xs:element>
+
+      <xs:element ref="DIV"></xs:element>
+
+      <xs:element ref="MOD"></xs:element>
+
+      <xs:element ref="UNARY_PLUS"></xs:element>
+
+      <xs:element ref="UNARY_MINUS"></xs:element>
+
+      <xs:element ref="INC"></xs:element>
+
+      <xs:element ref="DEC"></xs:element>
+
+      <xs:element ref="LNOT"></xs:element>
+
+      <xs:element ref="BNOT"></xs:element>
+
+      <xs:element ref="TYPECAST"></xs:element>
+
+      <xs:element ref="POST_INC"></xs:element>
+
+      <xs:element ref="POST_DEC"></xs:element>
+
+      <xs:element ref="EXISTS"></xs:element>
+
+      <xs:element ref="FORALL"></xs:element>
+
+      <xs:element ref="IMPLIES"></xs:element>
+
+      <xs:element ref="PRE"></xs:element>
+
+      <xs:element ref="LITERAL_return"></xs:element>
+
+      <xs:group ref="firstElementInPostfixExpression"></xs:group>
+    </xs:choice>
+  </xs:group>
+
+  <xs:group name="firstElementInStatement">
+    <xs:choice>
+      <xs:element ref="SLIST"></xs:element>
+
+      <xs:element ref="CLASS_DEF"></xs:element>
+
+      <xs:element ref="VARIABLE_DEF"></xs:element>
+
+      <xs:element ref="EXPR"></xs:element>
+
+      <xs:element ref="LABELED_STAT"></xs:element>
+
+      <xs:element ref="EMPTY_STAT"></xs:element>
+
+      <xs:element ref="LITERAL_if"></xs:element>
+
+      <xs:element ref="LITERAL_for"></xs:element>
+
+      <xs:element ref="LITERAL_while"></xs:element>
+
+      <xs:element ref="LITERAL_do"></xs:element>
+
+      <xs:element ref="LITERAL_break"></xs:element>
+
+      <xs:element ref="LITERAL_continue"></xs:element>
+
+      <xs:element ref="LITERAL_return"></xs:element>
+
+      <xs:element ref="LITERAL_switch"></xs:element>
+
+      <xs:element ref="LITERAL_synchronized"></xs:element>
+
+      <xs:element ref="LITERAL_finally"></xs:element>
+
+      <xs:element ref="LITERAL_throw"></xs:element>
+
+      <xs:element ref="LITERAL_try"></xs:element>
+    </xs:choice>
+  </xs:group>
+
+  <xs:group name="types">
+    <xs:choice>
+      <xs:group ref="identifier"></xs:group>
+
+      <xs:element ref="ARRAY_DECLARATOR"></xs:element>
+
+      <xs:element ref="LITERAL_void"></xs:element>
+
+      <xs:element ref="LITERAL_boolean"></xs:element>
+
+      <xs:element ref="LITERAL_byte"></xs:element>
+
+      <xs:element ref="LITERAL_char"></xs:element>
+
+      <xs:element ref="LITERAL_short"></xs:element>
+
+      <xs:element ref="LITERAL_int"></xs:element>
+
+      <xs:element ref="LITERAL_float"></xs:element>
+
+      <xs:element ref="LITERAL_long"></xs:element>
+
+      <xs:element ref="LITERAL_double"></xs:element>
+    </xs:choice>
+  </xs:group>
+
+  <xs:group name="identifier">
+    <xs:choice>
+      <xs:element ref="DOT"></xs:element>
+
+      <xs:element ref="IDENT"></xs:element>
+    </xs:choice>
+  </xs:group>
+
+  <xs:element name="FILE">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="PACKAGE_DEF"></xs:element>
+
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="IMPORT"></xs:element>
+
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:element ref="CLASS_DEF"></xs:element>
+
+          <xs:element ref="INTERFACE_DEF"></xs:element>
+
+        </xs:choice>
+      </xs:sequence>
+
+      <xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="MODIFIERS">
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="LITERAL_private"></xs:element>
+
+        <xs:element ref="LITERAL_public"></xs:element>
+
+        <xs:element ref="LITERAL_protected"></xs:element>
+
+        <xs:element ref="LITERAL_static"></xs:element>
+
+        <xs:element ref="LITERAL_transient"></xs:element>
+
+        <xs:element ref="LITERAL_final"></xs:element>
+
+        <xs:element ref="LITERAL_abstract"></xs:element>
+
+        <xs:element ref="LITERAL_native"></xs:element>
+
+        <xs:element ref="LITERAL_threadsafe"></xs:element>
+
+        <xs:element ref="LITERAL_volatile"></xs:element>
+
+        <xs:element ref="LITERAL_synchronized"></xs:element>
+
+        <xs:element ref="LITERAL_const"></xs:element>
+
+        <xs:element ref="FINAL"></xs:element>
+
+        <xs:element ref="ABSTRACT"></xs:element>
+      </xs:choice>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="PACKAGE_DEF">
+    <xs:complexType mixed="true">
+      <xs:group ref="identifier"></xs:group>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="IMPORT">
+    <xs:complexType mixed="true">
+      <xs:group ref="identifier"></xs:group>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="FINAL">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ABSTRACT">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CONTRACTS">
+   <xs:complexType mixed="true">
+    <xs:sequence>
+     <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="INVARIANT"></xs:element>
+      <xs:element ref="REQUIRE"></xs:element>
+      <xs:element ref="ENSURE"></xs:element>
+     </xs:choice>
+    </xs:sequence>
+   </xs:complexType>
+  </xs:element>
+
+  <xs:element name="INVARIANT">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="EXPR"></xs:element>
+
+        <xs:element ref="SL_COMMENT"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="REQUIRE">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="EXPR"></xs:element>
+
+        <xs:element ref="SL_COMMENT"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ENSURE">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="EXPR"></xs:element>
+
+        <xs:element ref="SL_COMMENT"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="EXISTS">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="ENUMERATION"></xs:element>
+
+        <xs:element ref="EXPR"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="FORALL">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="ENUMERATION"></xs:element>
+
+        <xs:element ref="EXPR"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="IMPLIES">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="firstElementInExpression" minOccurs="2" maxOccurs="2"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="PRE">
+    <xs:complexType mixed="true">
+     <xs:sequence>
+	<xs:choice>
+	 <xs:element ref="METHOD_CALL"></xs:element>
+	 <xs:element ref="IDENT"></xs:element>
+        </xs:choice>
+     </xs:sequence>
+     <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="SL_COMMENT">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CLASS_DEF">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+	<xs:element ref="CONTRACTS"></xs:element>
+
+        <xs:element ref="MODIFIERS"></xs:element>
+
+        <xs:element ref="IDENT"></xs:element>
+
+        <xs:element ref="EXTENDS_CLAUSE"></xs:element>
+
+        <xs:element ref="IMPLEMENTS_CLAUSE"></xs:element>
+
+        <xs:element ref="OBJBLOCK"></xs:element>
+
+        <xs:element ref="TEST" minOccurs="0"></xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="INTERFACE_DEF">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+	<xs:element ref="CONTRACTS"></xs:element>
+
+        <xs:element ref="MODIFIERS"></xs:element>
+
+        <xs:element ref="IDENT"></xs:element>
+
+        <xs:element ref="EXTENDS_CLAUSE"></xs:element>
+
+        <xs:element ref="OBJBLOCK"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_private">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_public">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_protected">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_static">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_transient">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_final">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_const">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_abstract">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_native">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_threadsafe">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_volatile">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="EXTENDS_CLAUSE">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group minOccurs="0" maxOccurs="unbounded" ref="identifier"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="IMPLEMENTS_CLAUSE">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="identifier"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="OBJBLOCK">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="LCURLY"></xs:element>
+
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="CTOR_DEF"></xs:element>
+
+            <xs:element ref="METHOD_DEF"></xs:element>
+
+            <xs:element ref="VARIABLE_DEF"></xs:element>
+
+            <xs:element ref="STATIC_INIT"></xs:element>
+
+            <xs:element ref="INSTANCE_INIT"></xs:element>
+
+            <xs:element ref="CLASS_DEF"></xs:element>
+
+            <xs:element ref="INTERFACE_DEF"></xs:element>
+          </xs:choice>
+
+        <xs:element ref="RCURLY"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LCURLY">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="RCURLY">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CTOR_DEF">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+	<xs:element ref="CONTRACTS"></xs:element>
+
+        <xs:element ref="MODIFIERS"></xs:element>
+
+        <xs:element ref="IDENT"></xs:element>
+
+        <xs:element ref="PARAMETERS"></xs:element>
+
+        <xs:element minOccurs="0" ref="LITERAL_throws"></xs:element>
+
+        <xs:element ref="SLIST"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="METHOD_DEF">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+	<xs:element ref="CONTRACTS" minOccurs="0"></xs:element>
+
+        <xs:element ref="MODIFIERS"></xs:element>
+
+        <xs:element ref="TYPE"></xs:element>
+
+        <xs:element ref="IDENT"></xs:element>
+
+        <xs:element ref="PARAMETERS"></xs:element>
+
+        <xs:element minOccurs="0" ref="LITERAL_throws"></xs:element>
+
+        <xs:element minOccurs="0" ref="SLIST"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="VARIABLE_DEF">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="MODIFIERS"></xs:element>
+
+        <xs:element ref="TYPE"></xs:element>
+
+        <xs:element ref="IDENT"></xs:element>
+
+        <xs:element minOccurs="0" ref="ASSIGN"></xs:element>
+      </xs:sequence>
+
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="STATIC_INIT">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="SLIST"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="INSTANCE_INIT">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="SLIST"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="PARAMETERS">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="PARAMETER_DEF"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="PARAMETER_DEF">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="MODIFIERS"></xs:element>
+
+        <xs:element ref="TYPE"></xs:element>
+
+        <xs:element ref="IDENT"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="SLIST">
+    <xs:complexType mixed="true">
+      <xs:group maxOccurs="unbounded" minOccurs="0" ref="firstElementInStatement"></xs:group>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="EXPR">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LABELED_STAT">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="IDENT"></xs:element>
+
+        <xs:group ref="firstElementInStatement"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="EMPTY_STAT">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_if">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="EXPR"></xs:element>
+
+        <xs:group maxOccurs="2" minOccurs="1" ref="firstElementInStatement"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_for">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="FOR_INIT"></xs:element>
+
+        <xs:element ref="FOR_CONDITION"></xs:element>
+
+        <xs:element ref="FOR_ITERATOR"></xs:element>
+
+        <xs:group ref="firstElementInStatement"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="FOR_INIT">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0">
+        <xs:element ref="VARIABLE_DEF"></xs:element>
+
+        <xs:element minOccurs="0" ref="ELIST"></xs:element>
+      </xs:choice>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="FOR_CONDITION">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="EXPR"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="FOR_ITERATOR">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ELIST"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ELIST">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="EXPR"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_while">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="EXPR"></xs:element>
+
+        <xs:group ref="firstElementInStatement"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_do">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="firstElementInStatement"></xs:group>
+
+        <xs:element ref="EXPR"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_break">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IDENT"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_continue">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IDENT"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_return">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="EXPR"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_switch">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="EXPR"></xs:element>
+
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="CASE_GROUP"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CASE_GROUP">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="LITERAL_default"></xs:element>
+
+          <xs:element ref="LITERAL_case"></xs:element>
+        </xs:choice>
+
+        <xs:element ref="SLIST"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_case">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="EXPR"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_default">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_synchronized">
+    <xs:complexType mixed="true">
+      <xs:sequence minOccurs="0">
+        <xs:element ref="EXPR"></xs:element>
+
+        <xs:element ref="SLIST"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_throw">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="EXPR"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_finally">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="LITERAL_try"></xs:element>
+
+        <xs:element ref="SLIST"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_try">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="SLIST"></xs:element>
+
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="LITERAL_catch"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_catch">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="PARAMETER_DEF"></xs:element>
+
+        <xs:element ref="SLIST"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_throws">
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="DOT"></xs:element>
+
+        <xs:element ref="IDENT"></xs:element>
+      </xs:choice>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="TYPE">
+    <xs:complexType mixed="true">
+      <xs:group ref="types"></xs:group>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ARRAY_DECLARATOR">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:group ref="types"></xs:group>
+
+          <xs:element ref="EXPR"></xs:element>
+        </xs:choice>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_void">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_boolean">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_byte">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_char">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_short">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_int">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_float">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_long">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_double">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="DOT">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="inDot"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="INDEX_OP">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="firstElementInExpression"></xs:group>
+
+        <xs:element ref="EXPR"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="METHOD_CALL">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="firstElementInPostfixExpression"></xs:group>
+
+        <xs:element ref="ELIST"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_new">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="types"></xs:group>
+
+        <xs:choice>
+          <xs:sequence>
+            <xs:element ref="ARRAY_DECLARATOR"></xs:element>
+
+            <xs:element minOccurs="0" ref="ARRAY_INIT"></xs:element>
+          </xs:sequence>
+
+          <xs:sequence>
+            <xs:element ref="ELIST"></xs:element>
+
+            <xs:element minOccurs="0" ref="OBJBLOCK"></xs:element>
+          </xs:sequence>
+        </xs:choice>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ARRAY_INIT">
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="ARRAY_INIT"></xs:element>
+
+        <xs:element ref="EXPR"></xs:element>
+      </xs:choice>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="NUM_INT">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CHAR_LITERAL">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="STRING_LITERAL">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="NUM_FLOAT">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_super">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_true">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_false">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_this">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_null">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ASSIGN">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:choice>
+          <xs:element ref="EXPR"></xs:element>
+
+          <xs:element ref="ARRAY_INIT"></xs:element>
+
+          <xs:sequence>
+            <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+          </xs:sequence>
+        </xs:choice>
+
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="PLUS_ASSIGN">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="MINUS_ASSIGN">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="STAR_ASSIGN">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="DIV_ASSIGN">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="MOD_ASSIGN">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="SR_ASSIGN">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="BSR_ASSIGN">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="SL_ASSIGN">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="BAND_ASSIGN">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="BXOR_ASSIGN">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="BOR_ASSIGN">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="QUESTION">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="3" minOccurs="3" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LOR">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LAND">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="BOR">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="BXOR">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="BAND">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="EQUAL">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="NOT_EQUAL">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LT">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="GT">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LE">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="GE">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_instanceof">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="firstElementInExpression"></xs:group>
+
+        <xs:choice>
+          <xs:element ref="TYPE"></xs:element>
+
+          <xs:element ref="ARRAY_DECLARATOR"></xs:element>
+
+          <xs:group ref="identifier"></xs:group>
+        </xs:choice>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="SL">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="SR">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="BSR">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="PLUS">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="MINUS">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="STAR">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="0" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="DIV">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="MOD">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="2" minOccurs="2" ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="UNARY_PLUS">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="UNARY_MINUS">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="INC">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="DEC">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LNOT">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="BNOT">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="TYPECAST">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="TYPE"></xs:element>
+
+        <xs:group ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="POST_INC">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="POST_DEC">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group ref="firstElementInExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LITERAL_class">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LPAREN">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="RPAREN">
+    <xs:complexType mixed="true">
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:group name="inDot">
+    <xs:choice>
+      <xs:element ref="INDEX_OP"></xs:element>
+
+      <xs:element ref="ELIST"></xs:element>
+
+      <xs:element ref="LPAREN"></xs:element>
+
+      <xs:element ref="RPAREN"></xs:element>
+
+      <xs:element ref="NUM_INT"></xs:element>
+
+      <xs:element ref="CHAR_LITERAL"></xs:element>
+
+      <xs:element ref="STRING_LITERAL"></xs:element>
+
+      <xs:element ref="NUM_FLOAT"></xs:element>
+
+      <xs:element ref="ASSIGN"></xs:element>
+
+      <xs:element ref="PLUS_ASSIGN"></xs:element>
+
+      <xs:element ref="MINUS_ASSIGN"></xs:element>
+
+      <xs:element ref="STAR_ASSIGN"></xs:element>
+
+      <xs:element ref="DIV_ASSIGN"></xs:element>
+
+      <xs:element ref="MOD_ASSIGN"></xs:element>
+
+      <xs:element ref="SR_ASSIGN"></xs:element>
+
+      <xs:element ref="BSR_ASSIGN"></xs:element>
+
+      <xs:element ref="SL_ASSIGN"></xs:element>
+
+      <xs:element ref="BAND_ASSIGN"></xs:element>
+
+      <xs:element ref="BXOR_ASSIGN"></xs:element>
+
+      <xs:element ref="BOR_ASSIGN"></xs:element>
+
+      <xs:element ref="METHOD_CALL"></xs:element>
+
+      <xs:element ref="ARRAY_DECLARATOR"></xs:element>
+
+      <xs:element ref="LITERAL_this"></xs:element>
+
+      <xs:element ref="LITERAL_class"></xs:element>
+
+      <xs:element ref="LITERAL_super"></xs:element>
+
+      <xs:element ref="LITERAL_true"></xs:element>
+
+      <xs:element ref="LITERAL_false"></xs:element>
+
+      <xs:element ref="LITERAL_null"></xs:element>
+
+      <xs:element ref="LITERAL_new"></xs:element>
+
+      <xs:element ref="LITERAL_return"></xs:element>
+
+      <xs:group ref="identifier"></xs:group>
+
+      <xs:element ref="STAR"></xs:element>
+
+      <xs:element ref="TYPECAST"></xs:element>
+    </xs:choice>
+  </xs:group>
+
+  <xs:element name="ENUMERATION">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+      
+        <xs:element ref="TYPE"></xs:element>
+      
+        <xs:element ref="IDENT"></xs:element>
+
+        <xs:group ref="firstElementInPostfixExpression"></xs:group>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <!--ajout temporaire de javacstTest -->
+
+  <xs:element name="TEST">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="TCREATE"></xs:element>
+
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="TUNIT"></xs:element>
+
+          <xs:element ref="TSUITE"></xs:element>
+
+          <xs:element ref="TCASE"></xs:element>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="TCREATE">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="EXPR" maxOccurs="1"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int" use="required"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="TUNIT">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="WAY"></xs:element>
+
+        <xs:element minOccurs="0" ref="PHI"></xs:element>
+
+        <xs:element ref="IDENT"></xs:element>
+
+        <xs:element ref="ROLE"></xs:element>
+
+        <xs:element minOccurs="0" ref="COMMENT"></xs:element>
+
+        <xs:element ref="CODE_BLOC"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int" use="required"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="WAY" type="xs:string"></xs:element>
+
+  <xs:element name="PHI" type="xs:string"></xs:element>
+
+  <xs:element name="TCASE">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="IDENT"></xs:element>
+
+        <xs:element ref="ROLE"></xs:element>
+
+        <xs:element minOccurs="0" ref="COMMENT"></xs:element>
+
+        <xs:element minOccurs="0" ref="TCREATE"></xs:element>
+
+        <xs:choice maxOccurs="3" minOccurs="1">
+          <xs:element minOccurs="0" ref="PREAMB"></xs:element>
+
+          <xs:element minOccurs="0" ref="POSTAMB"></xs:element>
+
+          <xs:element ref="LIST"></xs:element>
+        </xs:choice>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int" use="required"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="TSUITE">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="PHI"></xs:element>
+
+        <xs:element ref="IDENT"></xs:element>
+
+        <xs:element ref="ROLE"></xs:element>
+
+        <xs:element minOccurs="0" ref="COMMENT"></xs:element>
+
+        <xs:element ref="LIST"></xs:element>
+      </xs:sequence>
+
+      <xs:attribute name="line" type="xs:int" use="required"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="PREAMB">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="CODE_BLOC"></xs:element>
+      </xs:sequence>
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="POSTAMB">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="CODE_BLOC"></xs:element>
+      </xs:sequence>
+      <xs:attribute name="line" type="xs:int"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LIST">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:group maxOccurs="unbounded" ref="identifier"></xs:group>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CODE_BLOC">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+	<xs:group ref="firstElementInStatement" minOccurs="0" maxOccurs="unbounded"></xs:group>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ROLE" type="xs:string"></xs:element>
+
+  <xs:element name="COMMENT" type="xs:string"></xs:element>
+
+  <xs:element name="IDENT">
+    <xs:complexType mixed="true">
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="line" type="xs:int"></xs:attribute>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
+
+
+
+
+
+

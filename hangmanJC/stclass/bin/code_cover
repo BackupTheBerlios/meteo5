@@ -1,0 +1,78 @@
+#!/bin/bash
+#
+#       code_cover:  performs a code-coverage test on classes
+#       $Id: runtest.sh 46 2006-11-09 08:16:56Z deveaux $
+#
+#  Copyright (c) 2000-06 - Daniel Deveaux - U.B.S. - VALORIA
+#
+# =========================================================================
+#  This file is part of STclass.
+#
+#  STclass is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License.
+#
+#  STclass is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with STclass; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+# =========================================================================
+#
+#  verify the STclass framework setup
+if [ "${STCLASS_HOME:-none}" == "none" ]; then
+    echo "ERROR: STclass framework does not seem initialized:"
+    echo "         run 'source ....etc/setup.bash' first"
+    exit 1
+fi
+
+#  define correct environment
+
+jarlib=${STCLASS_HOME}/lib/stclass/jar
+emmalib=${STCLASS_HOME}/lib/stclass/emma
+instrdir=../build/instr
+
+all_clss=""
+main_cls=$1
+# get arguments
+for arg in $@; do
+    case "$arg" in
+        -help)
+            help_function
+            exit 0
+            ;;
+        *)
+            acls=`echo "$arg" | sed -e 's:\.:/:g'`
+            acls="${acls}.java"
+            ldir=`dirname ${acls}`
+            if [ ! -d $ldir ]; then
+                mkdir -p $ldir
+            fi
+            if [ -r "$instrdir/$acls" ]; then
+                grep -v "/\*cc" "../build/instr/$acls" > $acls
+                all_clss="${all_clss} ${acls}"
+            else
+                echo "Warning: '$acls' have not be compiled in vv-mode, recompile it"
+            fi
+            ;;
+    esac
+done
+
+
+# compile instrumented sources with only tests
+if [ ! -d ../build/cc-class ]; then
+    mkdir -p ../build/cc-class
+fi
+local_classpath=../build/cc-class:$CLASSPATH
+
+javac -g -cp $local_classpath -d ../build/cc-class $all_clss
+        
+
+# and launch the report generation
+java -cp ${emmalib}/emma.jar -Dstclass.home=$STCLASS_HOME emmarun \
+     -cp $local_classpath -r html,xml -sp . \
+     -ix "-org.stclass.*,-org.apache.*" $main_cls -val
+

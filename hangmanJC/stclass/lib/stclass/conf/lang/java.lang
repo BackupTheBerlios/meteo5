@@ -1,0 +1,3 @@
+<language idLang="java">
+	<processingClass name="org.stclass.javacst.JavaStclass"></processingClass>
+</language>
