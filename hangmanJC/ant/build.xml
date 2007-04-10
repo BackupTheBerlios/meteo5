@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="hangman"	default="class" basedir="..">
+<project name="hangmanJC"	default="class" basedir="..">
 	
 	<!-- Working directory -->
 	<property name="working.dir" location="${basedir}/ww/" />
