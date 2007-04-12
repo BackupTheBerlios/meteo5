@@ -53,9 +53,9 @@ public class GuessCharAlgo implements IWordAlgo {
 	 */
 	public Object visibleCase(INEWord host, Object param) {
 		if (host.getFirst() == ((Character) param).charValue()) {
-			return (new Boolean(true) || ((Boolean) host.getRest().execute(this, param)));
+			return ((Boolean) host.getRest().execute(this, param));
 		} else {
-			return (new Boolean(false) || ((Boolean) host.getRest().execute(this, param)));
+			return ((Boolean) host.getRest().execute(this, param));
 		}
 	}
 
@@ -76,9 +76,9 @@ public class GuessCharAlgo implements IWordAlgo {
 	public Object invisibleCase(INEWord host, Object param) {
 		if (host.getFirst() == ((Character) param).charValue()) {
 			host.toggleState();
-			return (new Boolean(true) || ((Boolean) host.getRest().execute(this, param)));
+			return ((Boolean) host.getRest().execute(this, param));
 		} else {
-			return (new Boolean(false) || ((Boolean) host.getRest().execute(this, param)));
+			return ((Boolean) host.getRest().execute(this, param));
 		}
 	}
 	
