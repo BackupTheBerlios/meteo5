@@ -1,69 +1,50 @@
 package hangman;
 
-
 /**
- * Classe correspond à l'état invisible d'un objet NEWord.
+ * Cette classe correspond à l'état invisible d'un NEWord
  * 
- * @author Jerome Catric & Emmanuel Meheut 
+ * @author Jérôme Catric & Emmanuel Meheut
+ * @since 10 Avril 2007
+ * 
  */
 public class InvisibleState extends AWordState {
 
 	/**
-	 * Singleton InvisibleState.
+	 * Singleton représentant une instance unique d'un objet InvisibleState.
 	 */
 	public static final InvisibleState Singleton = new InvisibleState();
 
 	/**
-	 * Constructeur de la classe InvisibleState.
+	 * Constructeur privé de la classe InvisibleState.
 	 */
 	private InvisibleState() {
+		// your code here
 	}
 
 	/**
-	 * Change l'état de l'objet d'invisible à visible.
+	 * Méthode permettant de modifier l'état du NEWord.
+	 * Le NEWord passe de l'état invisible à celui de visible.
 	 * 
-	 * @param host l'objet NEWord dont on doit changer l'état
+	 * @param host le NEWord dont l'état sera modifié.
 	 * 
-	 * @post this.getClass().getName().endsWith("VisibleState") //l'état après modification doit être "visible".
+	 * @pre host!=null // le NEWord ne doit pas être null.
 	 */
 	public void toggleState(NEWord host) {
 		host.setWordState(VisibleState.Singleton);
 	}
 
 	/**
-	 * Effectue l'algorithme spécifique à l'état invisible.
+	 * Méthode exécutant l'algorithme spécifique pour l'état invisible de l'objet NEWord.
 	 * 
-	 * @param host objet sur lequel l'algorithme est appliqué
-	 * @param algo algorithme à appliquer
-	 * @param inp paramètre éventuel de l'agorithme
+	 * @param host le NEWord sur lequel l'algorithme sera appliqué.
+	 * @param algo l'algorithme qui sera appliquer sur le NEWord.
+	 * @param param un paramètre quelconque
+	 * @return le résultat issu suite à l'algorithme.
 	 * 
-	 * @return résultat de l'algorithme.
+	 * @pre host!=null // le NEWord doit être non null.
+	 * @pre algo!=null // l'algorithme appliquer sur le NEWord doit être définie (non null).
 	 */
-	public Object execute(INEWord host, IWordAlgo algo, Object inp) {
-		return algo.invisibleCase(host, inp);
+	public Object execute(INEWord host, IWordAlgo algo, Object param) {
+		return algo.invisibleCase(host, param);
 	}
-
-	/*
-	 * -----------------------------------------------------------------
-	 * 
-	 * Test de la classe
-	 * 
-	 * Configuration de test
-	 * 
-	 * Constructeur de la classe de test : 
-	 * @tcreate InvisibleState.Singleton
-	 * 
-	 * @tunit TST_create() : test que le méthode toggleState modifie l'état de
-	 * visibilité d'un objet NEWord
-	 * 
-	 * @tunitcode
-	 * { 
-	 * NEWord word=new NEWord('d',new NEWord('a',new NEWord('v',null)));
-	 * testCheck("Visible ? :", word.getState().getClass().equals(VisibleState.getClass() );
-	 * word.toggleState();
-	 * testCheck("Visible ? :",
-	 * word.getState().getClass().equals(InvisibleState.getClass() );
-	 * }
-	 */
 }
-

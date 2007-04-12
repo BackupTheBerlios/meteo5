@@ -1,97 +1,114 @@
 package hangman;
 
-
 /**
- * Cette classe permet d'afficher l'expression qui doit apparaitre selon 
- * les caractères trouvés en parcourant l'objet IWord.
+ * Classe permettant d'afficher la chaine caractère du mot a trouver avec les
+ * caractères cachées et les caractères invisibles.
  * 
  * @author Jérôme Catric & Emmanuel Meheut
+ * @since 10 Avril 2007
+ * 
  */
 public class ToStringAlgo implements IWordAlgo {
 
 	/**
-	 * Singleton ToStringAlgo.
+	 * Singleton représentant une instance unique d'un objet ToStringAlgo.
 	 */
 	public static final ToStringAlgo Singleton = new ToStringAlgo();
 
 	/**
-	 * Constructeur de la classe ToStringAlgo.
+	 * Constructeur privé de la classe ToStringAlgo.
 	 */
 	private ToStringAlgo() {
+		// your code here
 	}
 
 	/**
-	 * Cette fonction n'effectue aucun traitement.
-	 * (les EmptyWord ne sont pas affiché)
+	 * Méthode utiliser quand les objets IEmptyWord
 	 * 
-	 * @param host objet IEmptyWord
-	 * @param inp non utilisé.
+	 * @param host le EmptyWord sur lequel l'algorithme est appliqué.
+	 * @param param un caractère.
+	 * @return une chaine de caractère.
 	 * 
-	 * @return une chaine vide.
+	 * @pre host!=null // le IEmptyWord doit être non null.
 	 */
-	public Object emptyCase(IEmptyWord host, Object inp) {
-		return "";
+	public Object emptyCase(IEmptyWord host, Object param) {
+		if (param == null) {
+			param="";
+		}
+		return param;
 	}
 
 	/**
-	 * Méthode retournant le caractère stocké par l'objet INEWord 
-	 * entré en paramètre.
+	 * Méthode affichant les caractères visibles.
 	 * 
-	 * @param host objet INEWord
-	 * @param inp non utilisé
+	 * @param host le INEWord sur lequel l'algorithme est appliqué.
+	 * @param param un caractère.
+	 * @return une chaine de caractère.
 	 * 
-	 * @return le caractère disponible dans host
+	 * @pre host!=null // le NEWord doit être non null.
 	 */
-	public Object visibleCase(INEWord host, Object inp) {
-		return new Character(host.getFirst());
+	public Object visibleCase(INEWord host, Object param) {
+		String tmp = "";
+		if (param != null) {
+			tmp = (String) param;
+		}
+		tmp += Character.toString(host.getFirst());
+		return (host.getRest()).execute(this, tmp);
 	}
 
 	/**
-	 * Méthode retournant le caractère '-' qui se substitue
-	 * à  un caractère non trouvé.
+	 * Méthode substituant les caractères invisible par le caractère "-".
 	 * 
-	 * @param host objet INEWord
-	 * @param inp non utilisé
+	 * @param host le INEWord sur lequel l'algorithme est appliqué.
+	 * @param param un caractère.
+	 * @return une chaine de caractère.
 	 * 
-	 * @return le caractère '-'
+	 * @pre host!=null // le NEWord doit être non null.
 	 */
-	public Object invisibleCase(INEWord host, Object inp) {
-		return new Character('-');
-	}
+	public Object invisibleCase(INEWord host, Object param) {
+		String tmp = "";
+		if (param != null) {
+			tmp = (String) param;
+		}
+		tmp += "-";
 
-	/*
-	  * @tstart
-	 * 		@tcreate ToStringAlgo.Singleton
-	 * 		@tunit defaultConstructor : default constructor and accessors
-	 *   	@tustart
-     *    		testMsg("object created");
-     *    		NEWord word = new NEWord('d',new NEWord('a',new NEWord('v',null)));
-     *    		testCheck("Chaine='---' :", ( (String) invisibleCase(word, null)).equals("---") );
-     * 		@tuend
-	 * @tend
-	 */
+		return (host.getRest()).execute(this, tmp);
+	}
+	
 	/*
 	 * -----------------------------------------------------------------
-	 * 
-	 * Test de la classe
-	 * 
-	 * Configuration de test
-	 * 
-	 * Constructeur de la classe de test : @tcreate ToStringAlgo.Singleton
+	 * Test de la classe ToStringAlgo
+	 * -----------------------------------------------------------------
 	 * 
 	 * @tstart
-	 * 		
-	 * 		@tcreate new ToStringAlgo()
-	 * 		@tunit defaultConstructor : default constructor and accessors
+	 * 	@tcreate ToStringAlgo.Singleton
+	 * 	@tunit test1 : Test de la methode emptyCase()
 	 * 		@tustart
-	 * 			NEWord word = new NEWord('d',new NEWord('a',new NEWord('v',null)));
-	 * 			testCheck("Chaine='---' :", ( (String) invisibleCase(word, null)).equals("---") ); 
-	 * 			word.execute(GuessCharAlgo.Singleton, 'a');
-	 * 			testCheck("Chaine='-a-' :", ( (String) visibleCase(word, null)).equals("-a-") ); 
-	 * 			testCheck("Chaine='' :", ( (String) emptyCase(EmptyWord.Singleton, null) ) == "" );
+	 * 	 		testMsg("Test sur du mot vide"); 
+	 * 			testCheck("Mot vide :", ((String) emptyCase(EmptyWord.Singleton,null)).equals(""));
+	 * 		@tuend
+	 * @tunit test2 : Test de la methode invisibleCase()
+	 * 		@tustart
+	 * 	 		testMsg("Creation du mot : toc"); 
+	 * 			IWord myWord = WordFactory.Singleton.makeWord("toc");
+	 * 			NEWord myNEWord = (NEWord)myWord;
+	 * 			testMsg("mot totalement invisible ?"); 
+	 * 			testCheck("invisible ?", ((String) invisibleCase(myNEWord, null)).equals("---"));
+	 * 			testMsg("mot partiellement invisible ?");
+	 * 			myWord.execute(GuessCharAlgo.Singleton, new Character('o'));
+	 * 			testCheck("invisible ?", ((String) invisibleCase(myNEWord, null)).equals("-o-"));
+	 * 		@tuend
+	 * @tunit test3 : Test de la methode visibleCase()
+	 * 		@tustart
+	 * 	 		testMsg("Creation du mot : toc"); 
+	 * 			IWord myWord1 = WordFactory.Singleton.makeWord("toc");
+	 * 			NEWord myNEWord1 = (NEWord)myWord1;
+	 * 			testMsg("mot partiellement visible ?");
+	 * 			myWord1.execute(GuessCharAlgo.Singleton, new Character('t'));
+	 * 			myWord1.execute(GuessCharAlgo.Singleton, new Character('c'));
+	 * 			testCheck("visible ?", ((String) visibleCase(myNEWord1, null)).equals("t-c"));
 	 * 		@tuend
 	 * @tend
+	 * -----------------------------------------------------------------
 	 */
-
 }
-

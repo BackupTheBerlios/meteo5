@@ -1,23 +1,26 @@
 package hangman;
 
 /**
- * Interface des classes permettant de construire et gérer l'expression à trouver. 
- * Elle permet aussi d'indiquer au modèle quand la partie est gagnée, 
- * car tous ses caractères sont alors visibles.
+ * Interface représentant un mot abstrait.
+ * Elle permet de construire et gérer l'expression à trouver. 
  * 
- * @author Jerome Catric & Emmanuel Meheut 
+ * @author Jérôme Catric & Emmanuel Meheut
+ * @since 10 Avril 2007
+ * 
  */
 public interface IWord {
-	
+
 	/**
-	 * Permet d'exécuter une actions spécifiques sur un objet. 
+	 * Méthode acceptant le visiteur algo sur l'objet. 
+	 * Elle permet d'exécuter une action spécifique sur un objet.
 	 * 
-	 * @param algo objet IWordAlgo
-	 * @param imp paramètre quelconque.
-	 *            
-	 * @return le résultat de l'algorithme
+	 * @param algo algorithme utiliser.
+	 * @param param paramètre pouvant être utiliser par l'algorithme. 
+	 * @return le résultat obtenu suite à l'algorithme.
 	 * 
-	 * @pre algo != null // algo doit être non null
+	 * @pre algo!=null // l'algorithme que l'on souhaite appliquer doit avoir été choisi.
 	 */
-	public Object execute(IWordAlgo algo, Object imp);
+    public Object execute(IWordAlgo algo, Object param);
 }
+
+

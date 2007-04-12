@@ -1,23 +1,21 @@
 package hangman;
 
-
 /**
- * Interface modélisant la fabrication d'un IWord.
+ * Interface fournisant la méthode de fabrication de IWord.
  * 
- * @author Jerome Catric & Emmanuel Meheut
+ * @author Jérôme Catric & Emmanuel Meheut
+ * @since 10 Avril 2007
+ * 
  */
 public interface IWordFactory {
 	
 	/**
-	 * Méthode permettant de fabriquer un IWord à partir d'une chaîne entrée
-	 * en paramètre, en créant des objets IWord en suivant l'ordre des caractères
-	 * de la chaîne w. Si la chaine w est "", retourne un IEmptyWord.
+	 * Méthode permettant de construire un IWord a partir d'une chaine de caractères.
+	 *
+	 * @param s la chaine de caractère.
+	 * @return le IWord construit a partir de la chaine de caractère.
 	 * 
-	 * @param w chaine de caractère.
-	 * 
-	 * @return IEmptyWord si la chaine de caractère est "", sinon un INEWord.
-	 * 
-	 * @pre w!=null // La chaine de caractère ne peut être null
+	 * @pre s!=null // La chaine de caractère doit être non null.
 	 */
-	public IWord makeWord(String w);
+	public IWord makeWord(String s);
 }

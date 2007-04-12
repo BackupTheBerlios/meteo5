@@ -1,108 +1,124 @@
 package hangman;
 
-
 /**
- * Cette classe permet de savoir si un caractère est contenu dans l'expression 
- * à trouver. On va rechercher le caractère dans l'objet IWord qui est passée en
- * paramètre aux différentes méthodes. A chaque fois que le caractère est trouvé 
- * on le rent visible et on retourne true, sinon false.
+ * Classe permettant de verifier si le caractère saisi par l'utilisateur est
+ * présent dans le mot (IWord) que l'on recherche. Si le caractère est présent,
+ * on le rend visible a chaque fois que l'on le trouve et on renvoie true, sinon
+ * false.
  * 
- * @author Jerome Catric & Emmanuel Meheut
- * 
+ * @author Jérôme Catric & Emmanuel Meheut
+ * @since 10 Avril 2007
  */
 public class GuessCharAlgo implements IWordAlgo {
 
 	/**
-	 * Singleton GuessCharAlgo.
+	 * Singleton représentant une instance unique d'un objet GuessCharAlgo.
 	 */
 	public static final GuessCharAlgo Singleton = new GuessCharAlgo();
 
 	/**
-	 * Constructeur de la classe GuessCharAlgo.
+	 * Constructeur privé de la classe GuessCharAlgo.
 	 */
 	private GuessCharAlgo() {
+		// your code here
 	}
 
 	/**
-	 * Méthode ne faisant rien car un EmptyWord ne contient aucun caractère.
+	 * Fonction ne faisant rien, car un EmptyWord ne contient aucun caractères.
 	 * 
-	 * @param host un objet
-	 * @param inp un caractère
+	 * @param host l'objet IEmptyWord sur lequel on effectue la recherche
+	 * @param param le caractère a recherché.
+	 * @return false car l'objet EmptyWord ne contient aucun caractères.
 	 * 
-	 * @return un boolean ayant la valeur false.
+	 * @pre host!=null // le IEmptyWord doit être non null.
+	 * @pre param!= null // le paramètre doit être non null.
+	 * @pre param.getClass().equals(Character.class) // Le paramètre doit être un caractère.
 	 */
-	public Object emptyCase(IEmptyWord host, Object inp) {
-		return new Boolean(Boolean.FALSE);
+	public Object emptyCase(IEmptyWord host, Object param) {
+		return new Boolean(false);
 	}
 
 	/**
-	 * Méthode permettant de verifier si le caractère saisie est présent dans l'objet NEWord.
-	 * Si oui, on retourne true, sinon on retourne false.
+	 * Fonction verifiant si le caractère saisi est présent (une ou plusieur
+	 * fois) dans le NEWord, Si oui, on retourne true, sinon false.
 	 * 
-	 * @param host objet NEWord
-	 * @param inp un caractère
-	 * 
-	 * @return booléen indiquant si le caractère saisie est présent dans le NEWord
-	 * 
-	 * @pre inp.getClass().equals(Character.class) // Le type de inp doit être Character.
+	 * @param host le INEWord sur lequel on effectue la recherche.
+	 * @param param le caractère a recherché.
+	 * @return le résultat de la recherche. true si le caractère est présent
+	 *         dans le mot, false sinon.
+	 *         
+	 * @pre host!=null // le INEWord doit être non null.
+	 * @pre param!= null // le paramètre doit être non null.
+	 * @pre param.getClass().equals(Character.class) // Le paramètre doit être un caractère.
 	 */
-	public Object visibleCase(INEWord host, Object inp) {
-		if (host.getFirst() == ((Character) inp).charValue())
-			return (new Boolean(Boolean.TRUE) || ((Boolean) host.getRest()
-					.execute(this, inp)));
-		else
-			return (new Boolean(Boolean.FALSE) || ((Boolean) host.getRest()
-					.execute(this, inp)));
-	}
-
-	/**
-	 * Méthode permettant de verifier si le caractère saisie est présent dans l'objet NEWord.
-	 * Si c'est le cas on le rend visible et on retourne true, sinon on retourne false.
-	 * 
-	 * @param host objet NEWord
-	 * @param inp un caractère
-	 * 
-	 * @return booléen indiquant si le caractère saisie est présent dans le NEWord
-	 * 
-	 * @pre inp.getClass().equals(Character.class) // Le type de inp doit être Character.
-	 */
-	public Object invisibleCase(INEWord host, Object inp) {
-		if (host.getFirst() == ((Character) inp).charValue()) {
-			host.toggleState();
-			return (new Boolean(Boolean.TRUE) || ((Boolean) host.getRest()
-					.execute(this, inp)));
+	public Object visibleCase(INEWord host, Object param) {
+		if (host.getFirst() == ((Character) param).charValue()) {
+			return (new Boolean(true) || ((Boolean) host.getRest().execute(this, param)));
+		} else {
+			return (new Boolean(false) || ((Boolean) host.getRest().execute(this, param)));
 		}
-		return (new Boolean(Boolean.FALSE) || ((Boolean) host.getRest()
-				.execute(this, inp)));
 	}
 
+	/**
+	 * Fonction verifiant si le caractère saisi est présent (une ou plusieur
+	 * fois) dans le NEWord, Si oui, on change l'état du caractère à chaque fois
+	 * que l'on le trouve dans le mot, puis, on retourne true, sinon false.
+	 * 
+	 * @param host le INEWord sur lequel on effectue la recherche.
+	 * @param param le caractère a recherché.
+	 * @return le résultat de la recherche. true si le caractère est présent
+	 *         dans le mot, false sinon.
+	 *         
+	 * @pre host!=null // le INEWord doit être non null.
+	 * @pre param!= null // le paramètre doit être non null.
+	 * @pre param.getClass().equals(Character.class) // Le paramètre doit être un caractère.      
+	 */
+	public Object invisibleCase(INEWord host, Object param) {
+		if (host.getFirst() == ((Character) param).charValue()) {
+			host.toggleState();
+			return (new Boolean(true) || ((Boolean) host.getRest().execute(this, param)));
+		} else {
+			return (new Boolean(false) || ((Boolean) host.getRest().execute(this, param)));
+		}
+	}
+	
 	/*
 	 * -----------------------------------------------------------------
+	 * Test de la classe GuessCharAlgo
+	 * -----------------------------------------------------------------
 	 * 
-	 * Test definition
-	 * 
-	 * @tcreate GuessCharAlgo.Singleton
-	 * 
-	 * @tunit TST_create() : default constructor and basic accessors
-	 * 
-	 * This unit tests the default constructor and the algorythm
-	 * 
-	 * @tunitcode 
-	 * {
-	 * 
-	 * NEWord word = new NEWord('d',new NEWord('a',new NEWord('v',null)));
-	 * 
-	 * testCheck("Caractere b ?", ( (Boolean) invisibleCase(word, new Character('b')) ).booleanValue() == false); 
-	 * testCheck("Caractere d ?", ( (Boolean) invisibleCase(word, new Character('d')) ).booleanValue() == true); 
-	 * testCheck("d visible ?", ( (Boolean) visibleCase(word, null)).booleanValue() == true); 
-	 * testCheck("Caractere a ?", ( (Boolean) visibleCase(word, new Character('a')) ).booleanValue() == true);
-	 * testCheck("Caractere w ?", ( (Boolean) visibleCase(word, new
-	 * Character('w')) ).booleanValue() == false); 
-	 * testCheck("Caractere d ?", ((Boolean) emptyCase(EmptyWord.Singleton, new Character('d'))).booleanValue() == false);
-	 * 
-	 * }
-	 * 
+	 * @tstart
+	 * 	@tcreate GuessCharAlgo.Singleton
+	 * 	@tunit test1 : Test de la methode emptyCase()
+	 * 		@tustart
+	 * 	 		testMsg("Test sur du mot vide"); 
+	 * 			testCheck("Mot vide :", ((Boolean) emptyCase(EmptyWord.Singleton,new Character('u'))).booleanValue() == false);
+	 * 		@tuend
+	 * @tunit test2 : Test de la methode invisibleCase()
+	 * 		@tustart
+	 * 	 		testMsg("Creation du mot : laval"); 
+	 * 			IWord myWord = WordFactory.Singleton.makeWord("laval");
+	 * 			NEWord myNEWord = (NEWord)myWord;
+	 * 			testMsg("lettre v ?"); 
+	 * 			testCheck("lettre v ?", ((Boolean) invisibleCase(myNEWord, new Character('v'))).booleanValue() == true);
+	 * 			testMsg("lettre b ?"); 
+	 * 			testCheck("lettre b ?", ((Boolean) invisibleCase(myNEWord, new Character('b'))).booleanValue() == false);
+	 * 			testMsg("lettre a ?"); 
+	 * 			testCheck("lettre a ?", ((Boolean) invisibleCase(myNEWord, new Character('a'))).booleanValue() == true);
+	 * 		@tuend
+	 * @tunit test3 : Test de la methode visibleCase()
+	 * 		@tustart
+	 * 	 		testMsg("Creation du mot : laval"); 
+	 * 			IWord myWord = WordFactory.Singleton.makeWord("laval");
+	 * 			NEWord myNEWord = (NEWord)myWord;
+	 * 			testMsg("lettre v ?"); 
+	 * 			testCheck("lettre v ?", ((Boolean) visibleCase(myNEWord, new Character('v'))).booleanValue() == true);
+	 * 			testMsg("lettre b ?"); 
+	 * 			testCheck("lettre b ?", ((Boolean) visibleCase(myNEWord, new Character('b'))).booleanValue() == false);
+	 * 			testMsg("lettre a ?"); 
+	 * 			testCheck("lettre a ?", ((Boolean) visibleCase(myNEWord, new Character('a'))).booleanValue() == true);
+	 * 		@tuend
+	 * @tend
+	 * -----------------------------------------------------------------
 	 */
-
-
 }

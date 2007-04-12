@@ -1,57 +1,70 @@
 package hangman;
 
-
 /**
- * Classe permettant la fabrication de IWord.
- * 
  * @author Jérôme Catric & Emmanuel Meheut
+ * @since 10 Avril 2007
+ * 
  */
 public class WordFactory implements IWordFactory {
 
 	/**
-	 * Singleton WordFactory
+	 * Singleton représentant une instance unique d'un objet WordFactory.
 	 */
 	public static final WordFactory Singleton = new WordFactory();
 
 	/**
-	 * Contructeur de la classe WordFactory.
+	 * Constructeur privé de la classe WordFactory.
 	 */
 	private WordFactory() {
+		// your code here
 	}
 
 	/**
-	 * Méthode permettnat la fabrication d'un IWord à partir de la chaîne de caractères
-	 * placé en paramètre, en créant des objets IWord en suivant l'ordre des caractères
-	 * de la chaîne w.
+	 * Méthode permettant de construire un IWord a partir d'une chaine de caractères.
+	 *
+	 * @param s la chaine de caractère.
+	 * @return le IWord construit a partir de la chaine de caractère.
 	 * 
-	 * @param w la chaine de caractère.
-	 * 
-	 * @return le mot IWord ou EmptyWord si la chaine w est "".
-	 * 
-	 * @pre w!=null // La chaine de caractère ne peut être un objet vide
+	 * @pre s!=null // La chaine de caractère doit être non null.
 	 */
-	public IWord makeWord(String w) {
+	public IWord makeWord(String s) {
 		IWord wordList = EmptyWord.Singleton;
-		for (int i = w.length() - 1; i >= 0; i--) {
-			wordList = new NEWord(w.charAt(i), wordList);
+		for (int i = s.length() - 1; i >= 0; i--) {
+			wordList = new NEWord(s.charAt(i), wordList);
 		}
 		return wordList;
 	}
 
-
-	
 	
 	/*
+	 * -----------------------------------------------------------------
 	 * Test de la classe WordFactory
-	 * --------------------------------
+	 * -----------------------------------------------------------------
 	 * 
 	 * @tstart
 	 * 	@tcreate WordFactory.Singleton
-	 * 	@tunit makeWord : test de fabrication de mot
+	 * 	@tunit makeWord : Test de fabrication d'un mot
 	 * 		@tustart
-	 * 		testMsg("création d'un mot vide"); 
+	 * 	 		testMsg("Création du mot voiture"); 
+	 * 			IWord myWord = makeWord("voiture");
+	 * 			testCheck("------- ?", ((String) myWord.execute(ToStringAlgo.Singleton, null)).equals("-------"));
+	 * 			myWord.execute(GuessCharAlgo.Singleton, new Character('v'));
+	 * 			myWord.execute(GuessCharAlgo.Singleton, new Character('o'));
+	 * 			myWord.execute(GuessCharAlgo.Singleton, new Character('i'));
+	 * 			myWord.execute(GuessCharAlgo.Singleton, new Character('t'));
+	 * 			myWord.execute(GuessCharAlgo.Singleton, new Character('u'));
+	 * 			myWord.execute(GuessCharAlgo.Singleton, new Character('r'));
+	 * 			myWord.execute(GuessCharAlgo.Singleton, new Character('e'));
+	 * 			testCheck("voiture ?", ((String) myWord.execute(ToStringAlgo.Singleton, null)).equals("voiture"));
+	 * 			testMsg("Création du mot vide"); 
+	 * 			IWord myWord2 = makeWord("");
+	 * 			testCheck("mot vide ?", ((String) myWord2.execute(ToStringAlgo.Singleton, null)).equals(""));
 	 * 		@tuend
 	 * @tend
+	 * 
+	 * -----------------------------------------------------------------
 	 */
-
+	
+	
+	
 }

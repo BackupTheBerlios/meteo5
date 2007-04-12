@@ -1,33 +1,31 @@
 package hangman;
 
-
 /**
- * Interface représentant la notion abstraite d'un mot non vide dont le 
- * premier est un caractère et le rest est un IWord. Elle a également 
- * deux états : visible et invisible. Et elle peut basculer entre ses 
- * deux états.
- *  
- * @author Jerome Catric & Emmanuel Meheut 
+ * Interface listant les méthodes disponibles pour un mot non vide. Un NEWord se
+ * compose d'un char et d'un IWord.
+ * 
+ * @author Jérôme Catric & Emmanuel Meheut
+ * @since 10 Avril 2007
+ * 
  */
 public interface INEWord extends IWord {
 
 	/**
-	 * Méthode retournant le premier caractère.
+	 * Méthode permettant de récuperer le premier caractère d'un NEWord.
 	 * 
-	 * @return le premier caractère de ce INEWord
+	 * @return le premier caractère d'un NEWord.
 	 */
 	public char getFirst();
 
 	/**
-	 * Méthode retournant le rest de IWord.
+	 * Méthode retournant la dernière partie d'un NEWord, soit un IWord.
 	 * 
-	 * @return le rest de IWord.
+	 * @return le reste de l'expression.
 	 */
 	public IWord getRest();
 
 	/**
-	 * Méthode permettant de changer l'état.
-	 * (visible ou invisble)
+	 * Méthode permettant de modifier l'état d'un NEWord. (visible/invisible)
 	 */
 	public void toggleState();
 }

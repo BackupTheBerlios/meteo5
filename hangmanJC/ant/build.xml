@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="hangmanJC"	default="class" basedir="..">
+<project name="hangman"	default="class" basedir="..">
 	
 	<!-- Working directory -->
 	<property name="working.dir" location="${basedir}/ww/" />
@@ -215,20 +215,21 @@
 		   				${js}/IsAllVisibleAlgo.java 
 		   				${js}/AWordState.java 
 		   				${js}/InvisibleState.java 
-		   		${js}/IWord.java
-		   		${js}/IEmptyWord.java
-		   		${js}/EmptyWord.java
-		   		${js}/WordFactory.java
+		   				${js}/IWord.java
+		   				
+		   				${js}/EmptyWord.java
+		   				${js}/WordFactory.java
 		   				 " />
 		</java>
 	</target>
 	
 	<!-- hangman package : Run test STclass -->
 	<target name="runtest-hangman" depends="compile-STclass-hangman">
-		  <java classname="hangman.WordFactory" fork="true" dir="${working.dir}" classpath="${test.cp}">
+		  <java classname="hangman.ToStringAlgo" fork="true" dir="${working.dir}" classpath="${test.cp}">
 		      <sysproperty key="stclass.home" value="${stc.home}" />
 		      <sysproperty key="classpath" value="${test.cp}" />
-		      <arg value="-val"/>
+		      <arg value="-ver"/>
+		  	  <!--arg value="-val"/-->
 		      <arg value="-html"/>
 	    </java>
 

@@ -1,52 +1,45 @@
 package hangman;
 
-
 /**
- * Interface permettant de modéliser les différents algorithmes pouvant être
- * employer sur les éléments IWord. Un élément IWord peut être sous trois 
- * états différents : visible, invisible ou vide. Trois algorithmes sont 
- * donc spécifiés dans cette interface.
+ * Interface donnant accès aux différentes méthodes pouvant être utiliser sur
+ * les objets de type IWord.
  * 
- * @author Jerome Catric & Emmanuel Meheut 
+ * @author Jérôme Catric & Emmanuel Meheut
+ * @since 10 Avril 2007
+ * 
  */
 public interface IWordAlgo {
 	
 	/**
-	 * Méthode permettant d'éxécutet un algorithme sur des éléments de type
-	 * EmptyWord.
+	 * Cette méthode sera utiliser sur les objets de type IEmptyWord.
 	 * 
-	 * @param host objet IEmptyWord
-	 * @param inp paramètre quelconque
-	 * 
-	 * @return objet de retour de la méthode
-	 * 
-	 * @pre host != null // l'objet ne doit pas être null
+	 * @param host l'objet IEmptyWord qui sera utilisé.
+	 * @param param un caractère quelconque pouvant être utiliser ou pas.
+	 * @return le résultat issue de cette méthode qui est un objet.
+	 *  
+	 * @pre host!=null // le IEmptyWord doit être non null.
 	 */
-	public Object emptyCase(IEmptyWord host, Object inp);
+	public Object emptyCase(IEmptyWord host, Object param);
 
 	/**
-	 * Méthode permettant de d'exécuter un algorithme sur des éléments dont
-	 * l'état est visible.
+	 * Méthode utiliser sur les objet INEWord qui on l'état visible.
 	 * 
-	 * @param host objet INEWord
-	 * @param inp paramètre quelconque
-	 * 
-	 * @return objet de retour de la méthode
-	 * 
-	 * @pre host != null // l'objet ne doit pas être null
+	 * @param host le INEWord qui sera utilisé.
+	 * @param param un caractère quelconque pouvant être utiliser ou pas.
+	 * @return le résulta issue de cette méthode qui est un objet.
+	 *         
+	 * @pre host!=null // le INEWord doit être non null.
 	 */
-	public Object visibleCase(INEWord host, Object inp);
+	public Object visibleCase(INEWord host, Object param);
 
 	/**
-	 * Méthode permettant de d'exécuter un algorithme sur des éléments dont
-	 * l'état est invisible.
+	 * Méthode utiliser sur les objet INEWord qui on l'état invisible.
 	 * 
-	 * @param host objet INEWord
-	 * @param inp paramètre quelconque
-	 * 
-	 * @return objet de retour de la méthode
-	 * 
-	 * @pre host != null // l'objet ne doit pas être null
+	 * @param host le INEWord qui sera utilisé.
+	 * @param param un caractère quelconque pouvant être utiliser ou pas.
+	 * @return le résulta issue de cette méthode qui est un objet.
+	 *         
+	 * @pre host!=null // le INEWord doit être non null.
 	 */
-	public Object invisibleCase(INEWord host, Object inp);
+	public Object invisibleCase(INEWord host, Object param);
 }
