@@ -48,4 +48,27 @@ public class VisibleState extends AWordState {
     public Object execute(INEWord host, IWordAlgo algo, Object param) {        
         return algo.visibleCase(host, param);
     } 
+    
+	/*
+	 * -----------------------------------------------------------------
+	 * Test de la classe VisibleState
+	 * -----------------------------------------------------------------
+	 * 
+	 * *@tstart
+	 * 	*@tcreate VisibleState.Singleton
+	 * 	*@tunit toggleState : Test de la methode toggleState()
+	 * 		*@tustart
+	 * 	 		*testMsg("Creation d'un NEWord et mise a l'état visible");
+	 *				*NEWord myWord=new NEWord('t',new NEWord('o',new NEWord('c',null)));
+	 *				*myWord.setWordState(VisibleState.Singleton);
+	 *				*testMsg("Avant la méthode toggleState, vérification que l'état du NEWord soit visible");
+	 *				*testCheck("visible ? :", myWord.getState().getClass().equals(VisibleState.getClass()); 
+	 *				*myWord.toggleState();
+	 *				*testMsg("Après la méthode toggleState, vérification que l'état du NEWord soit toujours visible");
+	 *				*testCheck("visible ? :", myWord.getState().getClass().equals(VisibleState.getClass());
+	 * 		*@tuend
+	 * *@tend
+	 * -----------------------------------------------------------------
+	 */
+    
  }

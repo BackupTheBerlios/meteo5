@@ -31,7 +31,7 @@
     #  Settings adjusted by pkg_install.sh
     #
     jhome=/usr/lib/jvm/java-1.5.0-sun
-    bdir=/home/tanuki/workspace/hangman/stclass
+    bdir=/home/tanuki/workspace/hangmanJC/stclass
     ver=$(cat ${bdir}/etc/Version)
     
 

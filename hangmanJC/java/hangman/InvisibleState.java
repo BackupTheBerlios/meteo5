@@ -47,4 +47,24 @@ public class InvisibleState extends AWordState {
 	public Object execute(INEWord host, IWordAlgo algo, Object param) {
 		return algo.invisibleCase(host, param);
 	}
+	
+	/*
+	 * -----------------------------------------------------------------
+	 * Test de la classe InvisibleState
+	 * -----------------------------------------------------------------
+	 * 
+	 * *@tstart
+	 * 	*@tcreate InvisibleState.Singleton
+	 * 	*@tunit toggleState : Test de la methode toggleState()
+	 * 		*@tustart
+	 * 	 		*testMsg("Creation d'un NEWord");
+	 *			*NEWord myWord=new NEWord('t',new NEWord('o',new NEWord('c',null)));
+	 *			*testCheck("invisible ? :", myWord.getState().getClass().equals(InvisibleState.getClass()); 
+	 *			*myWord.toggleState();
+	 *			*testCheck("visible ? :", myWord.getState().getClass().equals(VisibleState.getClass());
+	 * 		*@tuend
+	 * *@tend
+	 * -----------------------------------------------------------------
+	 */
+	
 }

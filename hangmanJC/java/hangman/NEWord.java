@@ -101,10 +101,18 @@ public class NEWord implements INEWord {
 	 * 
 	 * @tstart
 	 * 	@tcreate new NEWord('t',new NEWord('o',new NEWord('c',null)));
-	 * 	@tunit test1 : Test du constructeur
+	 * 	@tunit newordConstructor : Test du constructeur
 	 * 		@tustart
-	 * 	 		testMsg("Test sur le construteur"); 
-	 * 			//testCheck("lettre t ?", getFirst()=='t');
+	 * 	 		testMsg("Test Methode getFirst"); 
+	 * 			testCheck("lettre t ?", getFirst()=='t');
+	 * 			testMsg("Test Methode getWordState"); 
+	 * 			testCheck("invisible ?", getWordState().equals(InvisibleState.Singleton));
+	 * 			testMsg("Test Methode toggleState"); 
+	 * 			toggleState();
+	 * 			testCheck("visible ?", getWordState().equals(VisibleState.Singleton))
+	 * 			testMsg("Test Methode setWordState")
+	 * 			setWordState(InvisibleState.Singleton);
+	 * 			testCheck("invisible ?", getWordState().equals(InvisibleState.Singleton));
 	 * 		@tuend
 	 * @tend
 	 */ 

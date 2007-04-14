@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="hangman"	default="class" basedir="..">
+<project name="hangmanJC"	default="all" basedir="..">
 	
 	<!-- Working directory -->
 	<property name="working.dir" location="${basedir}/ww/" />
@@ -51,7 +51,9 @@
 	
 	<!-- STclass lib directory -->
 	<property name="stclib.dir" location="${stc.home}/lib/stclass" />
-		
+	
+	<!-- Definition of the classpath-->
+	<property name="classpath.dir" location="${build.class.dir}"/>
 	
 	<path id="test.classpath">
 	   	<pathelement path="${build.dir}/tclass" />
@@ -82,7 +84,7 @@
 	
 	
 	<!-- Execute all compilation -->
-	<target name="all" depends="clean,class,javadoc,javancss,jdepend,checkstyle"
+	<target name="all" depends="clean,class,javadoc,javancss,jdepend,checkstyle,runtest-hangman"
 			description="Execute all compilation" />
 	
 	
@@ -208,62 +210,78 @@
 	<target name="compile-STclass-hangman" depends="init" description="compilation with Verification-Validation">
 		<property name="js" value="../java/hangman" />
 		<java jar="${stclib.dir}/jar/javacst.jar" fork="true" dir="${working.dir}" classpath="${test.cp}">
-		    	<sysproperty key="stclass.home" value="${stc.home}/lib/stclass" />
-		    	<sysproperty key="classpath" value="${test.cp}" />
-		   	<arg line="	${js}/ToStringAlgo.java 
+			<sysproperty key="stclass.home" value="${stc.home}/lib/stclass" />
+		    <sysproperty key="classpath" value="${test.cp}" />
+		   	<arg line="	${js}/ToStringAlgo.java
 		   				${js}/GuessCharAlgo.java
 		   				${js}/IsAllVisibleAlgo.java 
-		   				${js}/AWordState.java 
+		   				${js}/WordFactory.java 
 		   				${js}/InvisibleState.java 
-		   				${js}/IWord.java
-		   				
-		   				${js}/EmptyWord.java
-		   				${js}/WordFactory.java
-		   				 " />
+		   				${js}/VisibleState.java
+		   				" />
 		</java>
 	</target>
 	
 	<!-- hangman package : Run test STclass -->
 	<target name="runtest-hangman" depends="compile-STclass-hangman">
-		  <java classname="hangman.ToStringAlgo" fork="true" dir="${working.dir}" classpath="${test.cp}">
-		      <sysproperty key="stclass.home" value="${stc.home}" />
-		      <sysproperty key="classpath" value="${test.cp}" />
-		      <arg value="-ver"/>
-		  	  <!--arg value="-val"/-->
-		      <arg value="-html"/>
-	    </java>
+		<java classname="hangman.ToStringAlgo" fork="true" dir="${working.dir}" classpath="${test.cp}">
+			<sysproperty key="stclass.home" value="${stc.home}" />
+		 	<sysproperty key="classpath" value="${test.cp}" />
+		    <!--arg value="-ver"/-->
+		  	<arg value="-val"/>
+		    <arg value="-html"/>
+	 	</java>
+		<java classname="hangman.GuessCharAlgo" fork="true" dir="${working.dir}" classpath="${test.cp}">
+			<sysproperty key="stclass.home" value="${stc.home}" />
+			<sysproperty key="classpath" value="${test.cp}" />
+			<!--arg value="-ver"/-->
+			<arg value="-val"/>
+			<arg value="-html"/>
+		</java>
+		<java classname="hangman.IsAllVisibleAlgo" fork="true" dir="${working.dir}" classpath="${test.cp}">
+			<sysproperty key="stclass.home" value="${stc.home}" />
+			<sysproperty key="classpath" value="${test.cp}" />
+			<!--arg value="-ver"/-->
+			<arg value="-val"/>
+			<arg value="-html"/>
+		</java>
+		<java classname="hangman.WordFactory" fork="true" dir="${working.dir}" classpath="${test.cp}">
+			<sysproperty key="stclass.home" value="${stc.home}" />
+			<sysproperty key="classpath" value="${test.cp}" />
+		    <!--arg value="-ver"/-->
+		  	<arg value="-val"/>
+		    <arg value="-html"/>
+		</java>
 
+		<!--java classname="hangman.InvisibleState" fork="true" dir="${working.dir}" classpath="${test.cp}">
+			<sysproperty key="stclass.home" value="${stc.home}" />
+			<sysproperty key="classpath" value="${test.cp}" />
+			<arg value="-val"/>
+			<arg value="-html"/>
+		</java-->
+		<!--java classname="hangman.VisibleState" fork="true" dir="${working.dir}" classpath="${test.cp}">
+			<sysproperty key="stclass.home" value="${stc.home}" />
+			<sysproperty key="classpath" value="${test.cp}" />
+			<arg value="-val"/>
+			<arg value="-html"/>
+		</java-->
+		<!--java classname="hangman.NEWord" fork="true" dir="${working.dir}" classpath="${test.cp}">
+			<sysproperty key="stclass.home" value="${stc.home}" />
+			<sysproperty key="classpath" value="${test.cp}" />
+			<arg value="-val"/>
+			<arg value="-html"/>
+		</java-->
+		
+		
+		<java classname="org.stclass.runtime.ReportsMaker" fork="true" dir="${working.dir}" classpath="${test.cp}">
+			<sysproperty key="stclass.home" value="${stc.home}" />
+		    <sysproperty key="classpath" value="${test.cp}" />
+		    <arg value="struct.Stack"/>
+		    <arg value="-val"/>
+		    <arg value="-html"/>
+		</java>
+		<delete dir="${build.dir}/xml-reports/"/>
 	</target>
-	
-	
-	  <!-- test package compiling task -->
-	  <target name="vv-compile-test" depends="init"
-	          description="compilation with Verification-Validation ('test' package only)">
-	    <java jar="${stclib.dir}/jar/javacst.jar" fork="true" dir="${working.dir}" classpath="${test.cp}">
-	      <sysproperty key="stclass.home" value="${stc.home}/lib/stclass" />
-	      <sysproperty key="classpath" value="${test.cp}" />
-	      <arg value="../java/test/SetOfIntegers.java" />
-	    </java>
-	  </target>
-	
-	  <!-- run TestOfIntegers.java -->
-	  <target name="runtest-test" depends="vv-compile-test">
-	    <java classname="test.SetOfIntegers" fork="true" dir="${working.dir}" classpath="${test.cp}">
-	      <sysproperty key="stclass.home" value="${stc.home}" />
-	      <sysproperty key="classpath" value="${test.cp}" />
-	      <arg value="-val"/>
-	      <arg value="-html"/>
-	    </java>
-	    <java classname="org.stclass.runtime.ReportsMaker" fork="true" dir="${working.dir}" classpath="${test.cp}">
-	      <sysproperty key="stclass.home" value="${stc.home}" />
-	      <sysproperty key="classpath" value="${test.cp}" />
-	      <arg value="struct.Stack"/>
-	      <arg value="-val"/>
-	      <arg value="-html"/>
-	    </java>
-	  	<delete dir="${build.dir}/xml-reports/" />
-	  </target>
-	
 	
 	
 	<!-- Delete test report -->

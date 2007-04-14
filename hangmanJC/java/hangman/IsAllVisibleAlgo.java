@@ -35,7 +35,7 @@ public class IsAllVisibleAlgo implements IWordAlgo {
 	 * @pre host!=null // le IEmptyWord doit être non null.
 	 */
 	public Object emptyCase(IEmptyWord host, Object param) {
-		return new Boolean(true);
+		return new Boolean(Boolean.TRUE);
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class IsAllVisibleAlgo implements IWordAlgo {
 	 * @pre host!=null // le INEWord doit être non null.
 	 */
 	public Object invisibleCase(INEWord host, Object param) {
-		return new Boolean(false);
+		return new Boolean(Boolean.FALSE);
 	}
 	
 	/*
